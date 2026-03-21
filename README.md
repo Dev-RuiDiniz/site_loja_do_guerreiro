@@ -1,182 +1,220 @@
-# Base de Desenvolvimento de Sites (Next.js + CMS)
+# Loja do Guerreiro
 
-Repositorio base para criar sites institucionais, landing pages e catalogos com painel administrativo, blocos visuais editaveis, blog, modulos de SEO e suporte a multi-dominio.
+Loja virtual desenvolvida em `Next.js 16` para a marca **Loja do Guerreiro**, com foco em moda afro-religiosa, vitrine editorial forte e fechamento de atendimento via WhatsApp na primeira versao.
 
-## Objetivo da base
+## Objetivo do projeto
 
-Esta base ja vem com:
-- Frontend pronto com App Router (Next.js 16) e Tailwind CSS v4.
-- CMS proprio no painel (`/admin`) para conteudo, layout, paginas e scripts.
-- Construtor visual de paginas por blocos.
-- Estrutura de blog, catalogo de produtos, marcas, parceiros e banners.
-- Integracao de upload com Vercel Blob.
-- Integracao com Kommo CRM para captura de leads.
-- Estrutura para operar dois contextos de marca (SHR e Maletti) no mesmo codigo.
+Este repositorio deixou de ser uma base generica multi-site e passou a representar um produto unico:
 
-## Stack
+- marca unica: `Loja do Guerreiro`
+- proposta: loja virtual de roupas e acessorios texteis para religioes afro-brasileiras
+- foco inicial: vitrine, catalogo, pagina de produto, carrinho local e CTA de WhatsApp
+- painel administrativo enxuto para operacao da loja
 
-- `next@16`, `react@19`, `typescript`
-- `tailwindcss@4`
-- `prisma` + `@prisma/client`
-- `iron-session` (autenticacao admin)
-- `framer-motion`
-- `@vercel/blob`
-- `react-hook-form` + `zod`
-- componentes UI baseados em Radix + utilitarios locais
+## Direcao da marca
 
-## Estrutura principal
+### Posicionamento
+
+A Loja do Guerreiro combina:
+
+- presenca visual forte
+- linguagem contemporanea
+- acolhimento ao publico
+- referencias afro-brasileiras tratadas com respeito e sem caricatura
+
+### Identidade visual
+
+Direcao criativa: **ritual contemporaneo**
+
+Paleta principal:
+
+- `Obsidiana` `#111111`
+- `Argila Queimada` `#A14F2A`
+- `Dourado Fosco` `#C6A15B`
+- `Areia Ritual` `#E8DCCB`
+- `Verde Folha Profunda` `#2F5D50`
+- `Vinho de Palma` `#6E2230`
+
+Tipografia:
+
+- display: `Cormorant Garamond`
+- interface: `Manrope`
+
+Principios de interface:
+
+- contraste alto
+- composicao editorial
+- cards solidos e bordas finas
+- atmosfera quente e mineral
+- responsividade priorizada para mobile e desktop
+
+## Experiencia da loja
+
+### Frontend publico
+
+O fluxo publico atual inclui:
+
+- home editorial
+- catalogo em `/loja`
+- detalhe de produto em `/produto/[slug]`
+- navegacao por categorias em `/categorias`
+- paginas institucionais em `/sobre` e `/contato`
+- carrinho client-side persistido localmente
+- fechamento de pedido via mensagem preformatada no WhatsApp
+
+### Modelo comercial atual
+
+- sem pagamento online nesta versao
+- sem area de pedidos persistidos
+- sem checkout tradicional
+- atendimento e fechamento comercial via WhatsApp
+
+## Estrutura atual do projeto
 
 ```text
 src/
   app/
-    (site)/                 # Site principal (rotas publicas)
-    admin/                  # Painel administrativo
-    api/                    # APIs publicas e admin
-    maletti/                # LP/experiencia da marca Maletti
-    spa/ tricologia/ salao-de-beleza/  # LPs dedicadas
-    login/                  # Login e setup inicial
+    (site)/                  # rotas publicas da loja
+    admin/                   # painel administrativo enxuto
+    api/
+      admin/                 # APIs do admin mantidas no MVP
+      auth/                  # login, logout, sessao e setup inicial
+      categories/            # categorias publicas
+      products/              # catalogo publico
+      upload/                # upload usado pelo admin
+    login/                   # acesso ao painel
   components/
-    admin/                  # UI do painel + editores
-    blocks/                 # Renderizacao de blocos dinamicos
-    layout/                 # Header, footer, busca, whatsapp
-    sections/               # Fallbacks estaticos da home
-    maletti/                # Blocos especificos da pagina maletti
+    admin/                   # UI do painel
+    layout/                  # header, footer e CTA publico
+    storefront/              # componentes da vitrine e produto
+    ui/                      # primitives compartilhadas
+  contexts/
+    CartContext.tsx          # estado do carrinho
+    ThemeContext.tsx         # tema do admin
+  data/
+    store.ts                 # dados da loja usados na storefront atual
   lib/
-    prisma.ts               # Cliente Prisma
-    auth.ts session.ts      # Sessao admin
-    seo.ts                  # SEO por site/LP
-    getPageData.ts          # leitura de blocos por slug
+    auth.ts                  # leitura de sessao admin
+    prisma.ts                # fallback/local compat layer
+    seo.ts                   # metadata da loja
+    session.ts               # configuracao de sessao admin
+    site.ts                  # configuracoes da marca
+public/
+  icon.svg                   # icone atual da loja
+  images/hero/               # imagens mantidas para o site
 ```
 
-## Rotas publicas incluidas
+## Painel administrativo
 
-- `/`
-- `/produtos`, `/produtos/[slug]`
-- `/marcas`
-- `/blog`, `/blog/categorias`, `/blog/[slug]`
-- `/contato`, `/sobre`, `/manutencao`, `/faq`, `/garantia`, `/categorias`
-- `/p/[slug]` (paginas dinamicas do CMS)
-- `/maletti`, `/spa`, `/tricologia`, `/salao-de-beleza`
-- `/login`, `/login/setup`, `/admin/*`
+O admin foi reduzido ao necessario para o MVP.
 
-## Dominios e roteamento
+Rotas mantidas:
 
-O `src/middleware.ts` faz roteamento por dominio:
-- Dominios SHR servem o site principal.
-- Dominios Maletti reescrevem rotas para `/maletti` (com excecoes para LPs dedicadas).
-- Rotas `/admin` exigem cookie de sessao (`shr-admin-session`).
+- `/admin`
+- `/admin/banners`
+- `/admin/produtos`
+- `/admin/cabecalho`
+- `/admin/rodape`
+- `/admin/configuracoes`
 
-## CMS e templates
+APIs administrativas mantidas:
 
-### Modulos admin prontos
+- `/api/admin/banners`
+- `/api/admin/categories`
+- `/api/admin/layout`
+- `/api/admin/products`
+- `/api/admin/settings`
 
-- Paginas (CRUD + editor visual)
-- Banners
-- Produtos
-- Marcas
-- Catalogo
-- Parceiros
-- Blog
-- Cabecalho
-- Rodape
-- Relatorios
-- Kommo CRM
-- Scripts
-- Configuracoes gerais e SEO por site/LP
+O que foi removido do legado:
 
-### Blocos/template de pagina
+- blog administrativo
+- marcas
+- parceiros
+- catalogos PDF
+- home sections antigas
+- visual editor legado
+- scripts externos antigos
+- integracao Kommo
+- APIs publicas herdadas fora do MVP
 
-O editor visual ja inclui blocos para:
-- Home, conteudo geral, midia e CTAs
-- Contato
-- Manutencao
-- Produtos
-- Marcas
-- Sobre
-- Maletti
-- FAQ
-- Garantia
-- Configuracao do blog
-- Conteudo da pagina 404
+## Stack tecnica
 
-Documentacao detalhada dos blocos: [docs/TEMPLATES-E-BLOCOS.md](docs/TEMPLATES-E-BLOCOS.md)
-
-## API
-
-A base inclui APIs publicas e admin para conteudo, autenticacao, upload, scripts e integracoes.
-
-Mapa completo de rotas e metodos: [docs/ROTAS-E-APIS.md](docs/ROTAS-E-APIS.md)
+- `next@16`
+- `react@19`
+- `typescript`
+- `tailwindcss@4`
+- `framer-motion`
+- `iron-session`
+- `@vercel/blob`
+- componentes UI baseados em Radix
 
 ## Setup local
 
-## 1) Instalar dependencias
+### 1. Instalar dependencias
 
 ```bash
 pnpm install
 ```
 
-## 2) Configurar ambiente
+### 2. Configurar ambiente
 
-Copie `.env.example` para `.env` e ajuste os valores.
+Copie `.env.example` para `.env` e preencha o que for necessario para autenticacao, uploads e servicos auxiliares.
 
-## 3) Rodar projeto
+### 3. Rodar em desenvolvimento
 
 ```bash
 pnpm dev
 ```
 
-Servidor padrao desta base: `http://localhost:3003`
+Servidor local padrao:
 
-## 4) Primeiro admin
+- [http://localhost:3003](http://localhost:3003)
 
-- Acesse `http://localhost:3003/login/setup` para criar o primeiro usuario `SUPER_ADMIN`.
-- Depois, login em `/login` e acesse `/admin`.
+### 4. Acesso ao admin
 
-## Seed de paginas/blocos
+- `http://localhost:3003/login/setup` cria o primeiro administrador
+- `http://localhost:3003/login` faz login no painel
 
-Endpoint util para popular blocos base:
-- `/api/seed-home?page=home`
-- `/api/seed-home?page=contato`
-- `/api/seed-home?page=manutencao`
-- `/api/seed-home?page=produtos`
-- `/api/seed-home?page=marcas`
-- `/api/seed-home?page=sobre`
-- `/api/seed-home?page=maletti`
+## Scripts disponiveis
 
-Exemplo:
+- `pnpm dev`
+- `pnpm build`
+- `pnpm start`
+- `pnpm lint`
 
-```bash
-curl "http://localhost:3003/api/seed-home?page=home"
-```
+## Validacao atual
 
-## Scripts NPM
+Ultimo estado validado nesta base:
 
-- `pnpm dev` -> roda em `:3003`
-- `pnpm build` -> `prisma generate && next build`
-- `pnpm start` -> start de producao
-- `pnpm lint` -> ESLint
+- `pnpm lint` passa com warnings nao bloqueantes
+- `pnpm build` passa
 
-## Estado atual importante
+Avisos conhecidos:
 
-- O repositorio **nao contem** `prisma/schema.prisma`.
-- Sem este arquivo, `pnpm build` falha no `prisma generate`.
-- `pnpm lint` atualmente retorna erros e warnings existentes no codigo legado.
+- `middleware` usa convencao depreciada do Next 16 e pode virar `proxy` em uma rodada futura
+- `baseline-browser-mapping` esta desatualizado e gera aviso no build
 
-## Recomendacoes para usar como base em novo projeto
+## Estado do legado
 
-Checklist de adaptacao: [docs/CHECKLIST-NOVO-SITE.md](docs/CHECKLIST-NOVO-SITE.md)
+O legado principal ja foi removido:
 
-Resumo rapido:
-- Definir identidade visual e conteudo base (logos, cores, textos).
-- Ajustar header/footer nas telas admin dedicadas.
-- Configurar SEO por site/LP em `Configuracoes`.
-- Configurar scripts de tracking em `Scripts`.
-- Configurar Kommo se usar captura de leads.
-- Validar sitemap/robots e comportamento de dominio.
+- assets publicos antigos
+- scripts de tracking antigos
+- logos e favicons de marcas anteriores
+- APIs publicas herdadas
+- modulos administrativos fora do MVP
 
-## Documentacao adicional
+Ainda existe limpeza adicional possivel em rotas publicas herdadas que hoje estao fora do fluxo principal, como paginas antigas devolvendo `notFound()` ou equivalentes.
 
-- [docs/ARQUITETURA.md](docs/ARQUITETURA.md)
-- [docs/TEMPLATES-E-BLOCOS.md](docs/TEMPLATES-E-BLOCOS.md)
-- [docs/ROTAS-E-APIS.md](docs/ROTAS-E-APIS.md)
-- [docs/CHECKLIST-NOVO-SITE.md](docs/CHECKLIST-NOVO-SITE.md)
+## Documentacao complementar
+
+Os arquivos em `docs/` ainda refletem em parte a arquitetura antiga e devem ser tratados como historico tecnico ate serem reescritos:
+
+- [ARQUITETURA.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/ARQUITETURA.md)
+- [CHECKLIST-NOVO-SITE.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/CHECKLIST-NOVO-SITE.md)
+- [ROTAS-E-APIS.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/ROTAS-E-APIS.md)
+- [TEMPLATES-E-BLOCOS.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/TEMPLATES-E-BLOCOS.md)
+
+## Resumo
+
+Este repositorio agora representa uma storefront unica da **Loja do Guerreiro**, com identidade propria, escopo de e-commerce enxuto e painel administrativo focado em operacao real da loja.
