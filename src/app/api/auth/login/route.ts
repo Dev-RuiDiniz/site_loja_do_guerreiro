@@ -20,8 +20,6 @@ export async function POST(request: NextRequest) {
       where: { email: email.toLowerCase().trim() },
     });
 
-    console.log("Login attempt:", { email, userFound: !!user });
-
     if (!user || !user.password) {
       return NextResponse.json(
         { error: "Credenciais inválidas" },
@@ -30,8 +28,6 @@ export async function POST(request: NextRequest) {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log("Password check:", { isPasswordValid });
-
     if (!isPasswordValid) {
       return NextResponse.json(
         { error: "Credenciais inválidas" },

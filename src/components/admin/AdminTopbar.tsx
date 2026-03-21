@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -31,12 +31,9 @@ interface AdminTopbarProps {
 }
 
 function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("admin-theme");
-    setIsDark(stored === "dark");
-  }, []);
+  const [isDark, setIsDark] = useState(
+    () => typeof window !== "undefined" && localStorage.getItem("admin-theme") === "dark"
+  );
 
   const toggle = () => {
     const nextTheme = !isDark;

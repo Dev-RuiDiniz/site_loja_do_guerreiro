@@ -152,6 +152,7 @@ interface Product {
   features: string[];
   image: string | null;
   gallery: string[];
+  specifications?: Array<{ label: string; value: string }>;
   catalog: string | null;
   warranty: string | null;
   featured: boolean;
@@ -259,7 +260,11 @@ export default function ProdutosPage() {
       shortDescription: product.shortDescription || "",
       description: product.description || "",
       features: product.features || [],
-      specifications: (product as any).specifications?.map((s: any) => ({ label: s.label, value: s.value })) || [],
+      specifications:
+        product.specifications?.map((specification) => ({
+          label: specification.label,
+          value: specification.value,
+        })) || [],
       image: product.image || "",
       gallery: product.gallery || [],
       catalog: product.catalog || "",
@@ -392,14 +397,6 @@ export default function ProdutosPage() {
   // Helper para obter categorias principais (sem parent)
   const rootCategories = categories.filter(c => !c.parentId);
   
-  // Helper para obter nome com hierarquia
-  const getCategoryDisplayName = (cat: Category): string => {
-    if (cat.parent) {
-      return `${cat.parent.name} → ${cat.name}`;
-    }
-    return cat.name;
-  };
-
   const handleDeleteCategory = async (id: string) => {
     if (!confirm("Tem certeza que deseja excluir esta categoria?")) return;
     try {

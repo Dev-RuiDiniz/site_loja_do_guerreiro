@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/admin")) {
-    const sessionCookie = request.cookies.get("shr-admin-session");
+    const sessionCookie = request.cookies.get("loja-guerreiro-admin-session");
     if (!sessionCookie) {
       return NextResponse.redirect(new URL("/login", request.url));
     }

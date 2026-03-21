@@ -84,11 +84,15 @@ function normalizeSeoConfig(rawSeoConfig: Record<string, unknown> | null | undef
     };
   }
 
-  if ("shr" in rawSeoConfig && rawSeoConfig.shr) {
+  const legacySeoConfig = Object.values(rawSeoConfig).find(
+    (value) => value && typeof value === "object"
+  ) as SeoSiteConfig | undefined;
+
+  if (legacySeoConfig) {
     return {
       storefront: {
         ...defaultSeoConfig.storefront,
-        ...(rawSeoConfig.shr as SeoSiteConfig),
+        ...legacySeoConfig,
       },
     };
   }
