@@ -23,7 +23,6 @@ export async function GET(request: NextRequest) {
         include: {
           category: true,
           categories: { include: { category: true } },
-          brands: { include: { brand: true } },
           specifications: true,
         },
         orderBy: { createdAt: "desc" },
@@ -76,11 +75,6 @@ export async function POST(request: NextRequest) {
               create: data.categoryIds.map((categoryId: string) => ({ categoryId })),
             }
           : undefined,
-        brands: data.brandIds?.length
-          ? {
-              create: data.brandIds.map((brandId: string) => ({ brandId })),
-            }
-          : undefined,
         specifications: data.specifications?.length
           ? {
               create: data.specifications.map((spec: { label: string; value: string }) => ({
@@ -93,7 +87,6 @@ export async function POST(request: NextRequest) {
       include: {
         category: true,
         categories: { include: { category: true } },
-        brands: { include: { brand: true } },
         specifications: true,
       },
     });

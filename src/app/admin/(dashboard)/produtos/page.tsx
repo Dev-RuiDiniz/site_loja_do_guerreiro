@@ -158,7 +158,6 @@ interface Product {
   active: boolean;
   category: { id: string; name: string } | null;
   categories: { category: { id: string; name: string } }[];
-  brands: { brand: { id: string; name: string } }[];
   metaTitle: string | null;
   metaDescription: string | null;
   metaKeywords: string | null;
@@ -172,11 +171,6 @@ interface Category {
   parentId?: string | null;
   parent?: Category | null;
   children?: Category[];
-}
-
-interface Brand {
-  id: string;
-  name: string;
 }
 
 const emptyProduct = {
@@ -194,7 +188,6 @@ const emptyProduct = {
   featured: false,
   active: true,
   categoryIds: [] as string[],
-  brandIds: [] as string[],
   metaTitle: "",
   metaDescription: "",
   metaKeywords: "",
@@ -204,7 +197,6 @@ const emptyProduct = {
 export default function ProdutosPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -227,7 +219,6 @@ export default function ProdutosPage() {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
-    fetchBrands();
   }, [page, search]);
 
   const fetchProducts = async () => {
@@ -249,16 +240,6 @@ export default function ProdutosPage() {
       const res = await fetch("/api/admin/categories");
       const data = await res.json();
       setCategories(data.categories || []);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const fetchBrands = async () => {
-    try {
-      const res = await fetch("/api/admin/brands?all=true");
-      const data = await res.json();
-      setBrands(data.brands || []);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -287,7 +268,6 @@ export default function ProdutosPage() {
       featured: product.featured,
       active: product.active,
       categoryIds: product.categories?.map((c) => c.category.id) || (product.category?.id ? [product.category.id] : []),
-      brandIds: product.brands?.map((b) => b.brand.id) || [],
       metaTitle: product.metaTitle || "",
       metaDescription: product.metaDescription || "",
       metaKeywords: product.metaKeywords || "",
@@ -670,40 +650,6 @@ export default function ProdutosPage() {
                       </div>
                     )}
                   </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Marcas</label>
-            <div className="flex flex-wrap gap-3 p-4 border border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-800/50">
-              {brands.length === 0 ? (
-                <p className="text-sm text-gray-400">Nenhuma marca cadastrada</p>
-              ) : (
-                brands.map((brand) => (
-                  <label
-                    key={brand.id}
-                    className={`flex items-center gap-2 px-4 py-2 border cursor-pointer transition-all ${
-                      formData.brandIds.includes(brand.id)
-                        ? "border-black dark:border-white bg-black dark:bg-white text-white dark:text-black"
-                        : "border-gray-200 dark:border-zinc-600 hover:border-black dark:hover:border-white"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={formData.brandIds.includes(brand.id)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setFormData({ ...formData, brandIds: [...formData.brandIds, brand.id] });
-                        } else {
-                          setFormData({ ...formData, brandIds: formData.brandIds.filter((id) => id !== brand.id) });
-                        }
-                      }}
-                      className="sr-only"
-                    />
-                    <span className="text-sm font-medium">{brand.name}</span>
-                  </label>
                 ))
               )}
             </div>

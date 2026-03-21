@@ -12,7 +12,6 @@ export async function GET(
       include: {
         category: true,
         categories: { include: { category: true } },
-        brands: { include: { brand: true } },
         specifications: true,
       },
     });
@@ -37,7 +36,6 @@ export async function PUT(
     const data = await request.json();
 
     // Remove existing relations
-    await prisma.productBrand.deleteMany({ where: { productId: id } });
     await prisma.productCategory.deleteMany({ where: { productId: id } });
     await prisma.specification.deleteMany({ where: { productId: id } });
 
@@ -66,11 +64,6 @@ export async function PUT(
               create: data.categoryIds.map((categoryId: string) => ({ categoryId })),
             }
           : undefined,
-        brands: data.brandIds?.length
-          ? {
-              create: data.brandIds.map((brandId: string) => ({ brandId })),
-            }
-          : undefined,
         specifications: data.specifications?.length
           ? {
               create: data.specifications.map((spec: { label: string; value: string }) => ({
@@ -83,7 +76,6 @@ export async function PUT(
       include: {
         category: true,
         categories: { include: { category: true } },
-        brands: { include: { brand: true } },
         specifications: true,
       },
     });

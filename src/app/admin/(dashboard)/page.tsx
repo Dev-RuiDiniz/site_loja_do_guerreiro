@@ -6,7 +6,6 @@ import {
   HiOutlineMenuAlt2,
   HiOutlinePhotograph,
   HiOutlinePlus,
-  HiOutlineTemplate,
   HiOutlineViewBoards,
 } from "react-icons/hi";
 
@@ -17,12 +16,6 @@ export default async function AdminDashboardPage() {
       value: "Produtos e variações",
       icon: HiOutlineCube,
       href: "/admin/produtos",
-    },
-    {
-      title: "Estrutura",
-      value: "Páginas e blocos",
-      icon: HiOutlineTemplate,
-      href: "/admin/paginas",
     },
     {
       title: "Destaques",

@@ -8,7 +8,6 @@ import {
   HiOutlineExternalLink,
   HiOutlineMenuAlt2,
   HiOutlinePhotograph,
-  HiOutlineTemplate,
   HiOutlineViewBoards,
   HiOutlineViewGrid,
 } from "react-icons/hi";
@@ -21,7 +20,6 @@ const menuItems = [
   {
     section: "Loja",
     items: [
-      { title: "Páginas", href: "/admin/paginas", icon: HiOutlineTemplate },
       { title: "Banners", href: "/admin/banners", icon: HiOutlinePhotograph },
       { title: "Produtos", href: "/admin/produtos", icon: HiOutlineCube },
       { title: "Cabeçalho", href: "/admin/cabecalho", icon: HiOutlineMenuAlt2 },

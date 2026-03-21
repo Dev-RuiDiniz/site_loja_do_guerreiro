@@ -15,7 +15,6 @@ import {
 
 const menuItems = [
   { title: "Visão Geral", href: "/admin" },
-  { title: "Páginas", href: "/admin/paginas" },
   { title: "Banners", href: "/admin/banners" },
   { title: "Produtos", href: "/admin/produtos" },
   { title: "Cabeçalho", href: "/admin/cabecalho" },
