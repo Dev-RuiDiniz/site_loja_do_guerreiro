@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 
-// GET /api/admin/layout?type=header&variant=shr
+// GET /api/admin/layout?type=header&variant=store
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();

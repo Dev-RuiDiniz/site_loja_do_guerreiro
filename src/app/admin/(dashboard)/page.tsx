@@ -1,133 +1,97 @@
-import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import {
-  HiOutlineCube,
-  HiOutlineTag,
-  HiOutlineEye,
-  HiOutlineCursorClick,
-  HiOutlineNewspaper,
-  HiOutlineUserGroup,
   HiOutlineArrowRight,
+  HiOutlineCog,
+  HiOutlineCube,
+  HiOutlineMenuAlt2,
+  HiOutlinePhotograph,
   HiOutlinePlus,
+  HiOutlineTemplate,
+  HiOutlineViewBoards,
 } from "react-icons/hi";
-interface PageViewItem {
-  id: string;
-  path: string;
-  country: string | null;
-  createdAt: Date;
-}
-
-async function getStats() {
-  const [
-    productsCount,
-    brandsCount,
-    partnersCount,
-    blogPostsCount,
-    pageViewsCount,
-    clicksCount,
-  ] = await Promise.all([
-    prisma.product.count(),
-    prisma.brand.count(),
-    prisma.partner.count(),
-    prisma.blogPost.count(),
-    prisma.pageView.count(),
-    prisma.click.count(),
-  ]);
-
-  return {
-    productsCount,
-    brandsCount,
-    partnersCount,
-    blogPostsCount,
-    pageViewsCount,
-    clicksCount,
-  };
-}
-
-async function getRecentPageViews() {
-  return prisma.pageView.findMany({
-    take: 5,
-    orderBy: { createdAt: "desc" },
-  });
-}
 
 export default async function AdminDashboardPage() {
-  const stats = await getStats();
-  const recentViews = await getRecentPageViews();
-
   const statCards = [
     {
-      title: "Produtos",
-      value: stats.productsCount,
+      title: "Catálogo",
+      value: "Produtos e variações",
       icon: HiOutlineCube,
       href: "/admin/produtos",
     },
     {
-      title: "Marcas",
-      value: stats.brandsCount,
-      icon: HiOutlineTag,
-      href: "/admin/marcas",
+      title: "Estrutura",
+      value: "Páginas e blocos",
+      icon: HiOutlineTemplate,
+      href: "/admin/paginas",
     },
     {
-      title: "Parceiros",
-      value: stats.partnersCount,
-      icon: HiOutlineUserGroup,
-      href: "/admin/parceiros",
+      title: "Destaques",
+      value: "Banners e home",
+      icon: HiOutlinePhotograph,
+      href: "/admin/banners",
     },
     {
-      title: "Blog",
-      value: stats.blogPostsCount,
-      icon: HiOutlineNewspaper,
-      href: "/admin/blog",
+      title: "Cabeçalho",
+      value: "Menu e CTAs",
+      icon: HiOutlineMenuAlt2,
+      href: "/admin/cabecalho",
     },
     {
-      title: "Views",
-      value: stats.pageViewsCount,
-      icon: HiOutlineEye,
-      href: "/admin/relatorios",
+      title: "Rodapé",
+      value: "Contato e links",
+      icon: HiOutlineViewBoards,
+      href: "/admin/rodape",
     },
     {
-      title: "Cliques",
-      value: stats.clicksCount,
-      icon: HiOutlineCursorClick,
-      href: "/admin/relatorios",
+      title: "Marca",
+      value: "SEO e canais",
+      icon: HiOutlineCog,
+      href: "/admin/configuracoes",
     },
   ];
 
   const quickActions = [
-    { title: "Novo Produto", href: "/admin/produtos/novo", icon: HiOutlineCube },
-    { title: "Nova Marca", href: "/admin/marcas/novo", icon: HiOutlineTag },
-    { title: "Novo Post", href: "/admin/blog/novo", icon: HiOutlineNewspaper },
-    { title: "Novo Parceiro", href: "/admin/parceiros/novo", icon: HiOutlineUserGroup },
+    { title: "Abrir produtos", href: "/admin/produtos", icon: HiOutlineCube },
+    { title: "Editar banners", href: "/admin/banners", icon: HiOutlinePhotograph },
+    { title: "Ajustar cabeçalho", href: "/admin/cabecalho", icon: HiOutlineMenuAlt2 },
+    { title: "Revisar configurações", href: "/admin/configuracoes", icon: HiOutlineCog },
+  ];
+
+  const operationCards = [
+    {
+      title: "Fluxo recomendado",
+      description:
+        "Atualize o catálogo, revise a home e confirme os canais de contato antes de publicar campanhas.",
+    },
+    {
+      title: "Foco do painel",
+      description:
+        "A operação deve sustentar a vitrine, o conteúdo institucional e a identidade da Loja do Guerreiro.",
+    },
+    {
+      title: "Checklist rápido",
+      description:
+        "Verificar preços, tamanhos, links do menu, dados do rodapé e metadata sempre que houver nova coleção.",
+    },
   ];
 
   return (
     <div className="space-y-10">
-      {/* Header */}
       <div>
-        <h1 className="text-3xl font-serif font-semibold text-black">
-          Visão Geral
-        </h1>
-        <p className="text-gray-400 mt-2 text-sm">
-          Bem-vindo ao painel administrativo
-        </p>
+        <h1 className="text-3xl font-serif font-semibold text-black">Visão Geral</h1>
+        <p className="mt-2 text-sm text-gray-400">Central de operação da Loja do Guerreiro</p>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
         {statCards.map((stat) => (
-          <Link
-            key={stat.title}
-            href={stat.href}
-            className="group"
-          >
-            <div className="border border-gray-200 p-6 hover:border-black transition-colors duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <stat.icon className="h-5 w-5 text-gray-400 group-hover:text-black transition-colors" />
-                <HiOutlineArrowRight className="h-4 w-4 text-gray-300 group-hover:text-black group-hover:translate-x-1 transition-all" />
+          <Link key={stat.title} href={stat.href} className="group">
+            <div className="border border-gray-200 p-6 transition-colors duration-300 hover:border-black">
+              <div className="mb-4 flex items-center justify-between">
+                <stat.icon className="h-5 w-5 text-gray-400 transition-colors group-hover:text-black" />
+                <HiOutlineArrowRight className="h-4 w-4 text-gray-300 transition-all group-hover:translate-x-1 group-hover:text-black" />
               </div>
-              <p className="text-3xl font-light text-black">{stat.value}</p>
-              <p className="text-[11px] uppercase tracking-[0.1em] text-gray-400 mt-1">
+              <p className="text-sm font-medium text-black">{stat.value}</p>
+              <p className="mt-2 text-[11px] uppercase tracking-[0.1em] text-gray-400">
                 {stat.title}
               </p>
             </div>
@@ -135,54 +99,25 @@ export default async function AdminDashboardPage() {
         ))}
       </div>
 
-      {/* Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Recent Activity */}
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-sm uppercase tracking-[0.15em] text-gray-400 font-medium">
-              Acessos Recentes
+          <div className="mb-6">
+            <h2 className="text-sm font-medium uppercase tracking-[0.15em] text-gray-400">
+              Direção operacional
             </h2>
-            <Link
-              href="/admin/relatorios"
-              className="text-xs text-gray-400 hover:text-black transition-colors"
-            >
-              Ver todos →
-            </Link>
           </div>
-          <div className="border border-gray-200">
-            {recentViews.length > 0 ? (
-              <div className="divide-y divide-gray-100">
-                {recentViews.map((view: PageViewItem) => (
-                  <div
-                    key={view.id}
-                    className="flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-black truncate">
-                        {view.path}
-                      </p>
-                      <p className="text-[11px] text-gray-400 mt-0.5">
-                        {new Date(view.createdAt).toLocaleString("pt-BR")}
-                      </p>
-                    </div>
-                    {view.country && (
-                      <span className="text-xs text-gray-400 ml-4">{view.country}</span>
-                    )}
-                  </div>
-                ))}
+          <div className="grid grid-cols-1 gap-4">
+            {operationCards.map((card) => (
+              <div key={card.title} className="border border-gray-200 p-6">
+                <h3 className="text-sm font-medium text-black">{card.title}</h3>
+                <p className="mt-2 text-sm text-gray-500">{card.description}</p>
               </div>
-            ) : (
-              <div className="px-6 py-12 text-center">
-                <p className="text-gray-400 text-sm">Nenhum acesso registrado</p>
-              </div>
-            )}
+            ))}
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-gray-400 font-medium mb-6">
+          <h2 className="mb-6 text-sm font-medium uppercase tracking-[0.15em] text-gray-400">
             Ações Rápidas
           </h2>
           <div className="space-y-3">
@@ -190,9 +125,9 @@ export default async function AdminDashboardPage() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="flex items-center gap-4 p-4 border border-gray-200 hover:border-black hover:bg-black hover:text-white transition-all duration-300 group"
+                className="group flex items-center gap-4 border border-gray-200 p-4 transition-all duration-300 hover:border-black hover:bg-black hover:text-white"
               >
-                <div className="h-10 w-10 border border-gray-200 group-hover:border-white/20 flex items-center justify-center transition-colors">
+                <div className="flex h-10 w-10 items-center justify-center border border-gray-200 transition-colors group-hover:border-white/20">
                   <HiOutlinePlus className="h-4 w-4" />
                 </div>
                 <span className="text-sm font-medium">{action.title}</span>

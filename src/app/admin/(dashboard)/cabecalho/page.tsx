@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
+  HiOutlineCheck,
   HiOutlineMenuAlt2,
   HiOutlinePlus,
-  HiOutlineTrash,
   HiOutlineSave,
-  HiOutlineCheck,
+  HiOutlineTrash,
 } from "react-icons/hi";
-import { Button } from "@/components/ui/button";
 import { ImageUpload } from "@/components/admin/ImageUpload";
+import { Button } from "@/components/ui/button";
 
 interface NavLink {
   label: string;
@@ -29,88 +28,69 @@ interface HeaderConfig {
   contactCity?: string;
 }
 
-const DEFAULT_SHR_HEADER: HeaderConfig = {
-  logoUrl: "/logoshr-dark.png",
-  logoWhiteUrl: "/logoshr-white.png",
-  subtitle: "Distribuidor Exclusivo",
-  subtitleLine2: "Maletti e Nilo",
+const STORE_VARIANT = "store";
+
+const defaultHeaderConfig: HeaderConfig = {
+  logoUrl: "",
+  logoWhiteUrl: "",
+  subtitle: "Loja virtual",
+  subtitleLine2: "Moda afro-religiosa",
   navLinks: [
-    { label: "Home", href: "/" },
-    { label: "Produtos", href: "/produtos" },
-    { label: "Nossas Marcas", href: "/marcas" },
-    { label: "Blog", href: "/blog" },
+    { label: "Início", href: "/" },
+    { label: "Loja", href: "/loja" },
+    { label: "Categorias", href: "/categorias" },
     { label: "Sobre", href: "/sobre" },
-    { label: "Manutenção", href: "/manutencao" },
     { label: "Contato", href: "/contato" },
   ],
   ctaButtons: [
-    { label: "Solicitar Catálogo", href: "/contato?assunto=catalogo", variant: "outline" },
-    { label: "Falar com Consultor", href: "https://wa.me/5511981982279?text=Olá! Gostaria de falar com um consultor.", variant: "solid" },
+    { label: "Ver coleção", href: "/loja", variant: "outline" },
+    {
+      label: "Falar no WhatsApp",
+      href: "https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20atendimento%20da%20Loja%20do%20Guerreiro.",
+      variant: "solid",
+    },
   ],
-  contactEmail: "marketing@shrhair.com.br",
-  contactPhone: "(11) 98198-2279",
+  contactEmail: "contato@lojadoguerreiro.com.br",
+  contactPhone: "(11) 99999-9999",
   contactCity: "São Paulo, SP",
 };
 
-const DEFAULT_MALETTI_HEADER: HeaderConfig = {
-  logoUrl: "/images/site/malliti-preto.png",
-  navLinks: [
-    { label: "A Essência", href: "essencia" },
-    { label: "Head SPA", href: "head-spa" },
-    { label: "Design & Experiências", href: "design" },
-    { label: "Catálogo", href: "catalogo" },
-    { label: "Blog", href: "https://shrhair.com.br/blog" },
-  ],
-  ctaButtons: [],
-};
-
-type Variant = "shr" | "maletti";
-
 export default function CabecalhoPage() {
-  const [activeVariant, setActiveVariant] = useState<Variant>("shr");
-  const [configs, setConfigs] = useState<Record<Variant, HeaderConfig>>({
-    shr: DEFAULT_SHR_HEADER,
-    maletti: DEFAULT_MALETTI_HEADER,
-  });
+  const [config, setConfig] = useState<HeaderConfig>(defaultHeaderConfig);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    loadConfigs();
-  }, []);
-
-  const loadConfigs = async () => {
-    try {
-      const [shrRes, malettiRes] = await Promise.all([
-        fetch("/api/admin/layout?type=header&variant=shr"),
-        fetch("/api/admin/layout?type=header&variant=maletti"),
-      ]);
-      const [shrData, malettiData] = await Promise.all([shrRes.json(), malettiRes.json()]);
-
-      setConfigs({
-        shr: shrData.config?.content || DEFAULT_SHR_HEADER,
-        maletti: malettiData.config?.content || DEFAULT_MALETTI_HEADER,
-      });
-    } catch (error) {
-      console.error("Error loading header configs:", error);
-    } finally {
-      setLoading(false);
+    async function loadConfig() {
+      try {
+        const response = await fetch(`/api/admin/layout?type=header&variant=${STORE_VARIANT}`);
+        const data = await response.json();
+        setConfig(data.config?.content || defaultHeaderConfig);
+      } catch (error) {
+        console.error("Error loading header config:", error);
+      } finally {
+        setLoading(false);
+      }
     }
-  };
+
+    loadConfig();
+  }, []);
 
   const handleSave = async () => {
     setSaving(true);
+
     try {
       await fetch("/api/admin/layout", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "header",
-          variant: activeVariant,
-          content: configs[activeVariant],
+          variant: STORE_VARIANT,
+          content: config,
         }),
       });
+
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
     } catch (error) {
@@ -121,289 +101,266 @@ export default function CabecalhoPage() {
     }
   };
 
-  const updateConfig = (updates: Partial<HeaderConfig>) => {
-    setConfigs((prev) => ({
-      ...prev,
-      [activeVariant]: { ...prev[activeVariant], ...updates },
-    }));
-  };
-
-  const config = configs[activeVariant];
-
   const updateNavLink = (index: number, field: keyof NavLink, value: string) => {
-    const newLinks = [...config.navLinks];
-    newLinks[index] = { ...newLinks[index], [field]: value };
-    updateConfig({ navLinks: newLinks });
+    const nextLinks = [...config.navLinks];
+    nextLinks[index] = { ...nextLinks[index], [field]: value };
+    setConfig((current) => ({ ...current, navLinks: nextLinks }));
   };
 
   const addNavLink = () => {
-    updateConfig({ navLinks: [...config.navLinks, { label: "", href: "" }] });
+    setConfig((current) => ({
+      ...current,
+      navLinks: [...current.navLinks, { label: "", href: "" }],
+    }));
   };
 
   const removeNavLink = (index: number) => {
-    updateConfig({ navLinks: config.navLinks.filter((_, i) => i !== index) });
+    setConfig((current) => ({
+      ...current,
+      navLinks: current.navLinks.filter((_, currentIndex) => currentIndex !== index),
+    }));
   };
 
   const updateCtaButton = (index: number, field: string, value: string) => {
-    const newButtons = [...config.ctaButtons];
-    newButtons[index] = { ...newButtons[index], [field]: value };
-    updateConfig({ ctaButtons: newButtons });
+    const nextButtons = [...config.ctaButtons];
+    nextButtons[index] = { ...nextButtons[index], [field]: value };
+    setConfig((current) => ({ ...current, ctaButtons: nextButtons }));
   };
 
   const addCtaButton = () => {
-    updateConfig({
-      ctaButtons: [...config.ctaButtons, { label: "", href: "", variant: "solid" }],
-    });
+    setConfig((current) => ({
+      ...current,
+      ctaButtons: [...current.ctaButtons, { label: "", href: "", variant: "solid" }],
+    }));
   };
 
   const removeCtaButton = (index: number) => {
-    updateConfig({ ctaButtons: config.ctaButtons.filter((_, i) => i !== index) });
+    setConfig((current) => ({
+      ...current,
+      ctaButtons: current.ctaButtons.filter((_, currentIndex) => currentIndex !== index),
+    }));
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black" />
+      <div className="flex h-64 items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-black" />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Cabeçalho</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-            Edite o cabeçalho do site SHR e da página Maletti
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Configure a navegação principal da Loja do Guerreiro
           </p>
         </div>
         <Button onClick={handleSave} disabled={saving}>
           {saved ? (
             <>
-              <HiOutlineCheck className="w-4 h-4 mr-2" />
+              <HiOutlineCheck className="mr-2 h-4 w-4" />
               Salvo!
             </>
           ) : (
             <>
-              <HiOutlineSave className="w-4 h-4 mr-2" />
+              <HiOutlineSave className="mr-2 h-4 w-4" />
               {saving ? "Salvando..." : "Salvar"}
             </>
           )}
         </Button>
       </div>
 
-      {/* Variant Tabs */}
-      <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700">
-        {(["shr", "maletti"] as Variant[]).map((v) => (
-          <button
-            key={v}
-            onClick={() => setActiveVariant(v)}
-            className={`px-6 py-3 text-sm font-medium transition-colors border-b-2 -mb-px ${
-              activeVariant === v
-                ? "border-black text-black dark:border-white dark:text-white"
-                : "border-transparent text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            {v === "shr" ? "SHR (Principal)" : "Maletti"}
-          </button>
-        ))}
-      </div>
-
-      {/* Editor */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Logo & Info */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 space-y-4">
-          <h3 className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
-            <HiOutlineMenuAlt2 className="w-5 h-5" />
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+          <h3 className="flex items-center gap-2 font-medium text-gray-900 dark:text-white">
+            <HiOutlineMenuAlt2 className="h-5 w-5" />
             Identidade
           </h3>
 
           <ImageUpload
             value={config.logoUrl || ""}
-            onChange={(url) => updateConfig({ logoUrl: url })}
-            label={activeVariant === "shr" ? "Logo (escuro)" : "Logo"}
+            onChange={(url) => setConfig((current) => ({ ...current, logoUrl: url }))}
+            label="Logo principal"
             folder="layout"
           />
 
-          {activeVariant === "shr" && (
-            <>
-              <ImageUpload
-                value={config.logoWhiteUrl || ""}
-                onChange={(url) => updateConfig({ logoWhiteUrl: url })}
-                label="Logo (branco)"
-                folder="layout"
+          <ImageUpload
+            value={config.logoWhiteUrl || ""}
+            onChange={(url) => setConfig((current) => ({ ...current, logoWhiteUrl: url }))}
+            label="Logo para fundo escuro"
+            folder="layout"
+          />
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Linha de apoio
+              </label>
+              <input
+                type="text"
+                value={config.subtitle || ""}
+                onChange={(event) =>
+                  setConfig((current) => ({ ...current, subtitle: event.target.value }))
+                }
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Linha complementar
+              </label>
+              <input
+                type="text"
+                value={config.subtitleLine2 || ""}
+                onChange={(event) =>
+                  setConfig((current) => ({ ...current, subtitleLine2: event.target.value }))
+                }
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              />
+            </div>
+          </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Subtítulo Linha 1
-                  </label>
-                  <input
-                    type="text"
-                    value={config.subtitle || ""}
-                    onChange={(e) => updateConfig({ subtitle: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Subtítulo Linha 2
-                  </label>
-                  <input
-                    type="text"
-                    value={config.subtitleLine2 || ""}
-                    onChange={(e) => updateConfig({ subtitleLine2: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    E-mail
-                  </label>
-                  <input
-                    type="text"
-                    value={config.contactEmail || ""}
-                    onChange={(e) => updateConfig({ contactEmail: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Telefone
-                  </label>
-                  <input
-                    type="text"
-                    value={config.contactPhone || ""}
-                    onChange={(e) => updateConfig({ contactPhone: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Cidade
-                  </label>
-                  <input
-                    type="text"
-                    value={config.contactCity || ""}
-                    onChange={(e) => updateConfig({ contactCity: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
-                  />
-                </div>
-              </div>
-            </>
-          )}
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                E-mail
+              </label>
+              <input
+                type="text"
+                value={config.contactEmail || ""}
+                onChange={(event) =>
+                  setConfig((current) => ({ ...current, contactEmail: event.target.value }))
+                }
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Telefone
+              </label>
+              <input
+                type="text"
+                value={config.contactPhone || ""}
+                onChange={(event) =>
+                  setConfig((current) => ({ ...current, contactPhone: event.target.value }))
+                }
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Cidade
+              </label>
+              <input
+                type="text"
+                value={config.contactCity || ""}
+                onChange={(event) =>
+                  setConfig((current) => ({ ...current, contactCity: event.target.value }))
+                }
+                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Nav Links */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 space-y-4">
+        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-gray-900 dark:text-white">Links de Navegação</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white">Links de navegação</h3>
             <button
               onClick={addNavLink}
-              className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
+              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
             >
-              <HiOutlinePlus className="w-4 h-4" />
+              <HiOutlinePlus className="h-4 w-4" />
               Adicionar
             </button>
           </div>
 
-          <div className="space-y-3 max-h-[400px] overflow-y-auto">
-            {config.navLinks.map((link, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="flex items-center gap-2"
-              >
+          <div className="space-y-3">
+            {config.navLinks.map((link, index) => (
+              <div key={`${link.href}-${index}`} className="flex items-center gap-2">
                 <input
                   type="text"
                   value={link.label}
-                  onChange={(e) => updateNavLink(i, "label", e.target.value)}
-                  placeholder="Label"
-                  className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  onChange={(event) => updateNavLink(index, "label", event.target.value)}
+                  placeholder="Texto do menu"
+                  className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="text"
                   value={link.href}
-                  onChange={(e) => updateNavLink(i, "href", e.target.value)}
-                  placeholder="/caminho ou #secao"
-                  className="flex-1 px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+                  onChange={(event) => updateNavLink(index, "href", event.target.value)}
+                  placeholder="/caminho"
+                  className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 />
                 <button
-                  onClick={() => removeNavLink(i)}
-                  className="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                  onClick={() => removeNavLink(index)}
+                  className="rounded-lg p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
                 >
-                  <HiOutlineTrash className="w-4 h-4" />
+                  <HiOutlineTrash className="h-4 w-4" />
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 space-y-4 lg:col-span-2">
+        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-gray-900 dark:text-white">Botões de Ação (CTA)</h3>
+            <h3 className="font-medium text-gray-900 dark:text-white">Botões de ação</h3>
             <button
               onClick={addCtaButton}
-              className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"
+              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
             >
-              <HiOutlinePlus className="w-4 h-4" />
+              <HiOutlinePlus className="h-4 w-4" />
               Adicionar
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {config.ctaButtons.map((btn, i) => (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {config.ctaButtons.map((button, index) => (
               <div
-                key={i}
-                className="p-4 border border-gray-100 dark:border-gray-600 rounded-lg space-y-3 bg-gray-50 dark:bg-gray-700"
+                key={`${button.href}-${index}`}
+                className="space-y-3 rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-500">Botão {i + 1}</span>
+                  <span className="text-xs font-medium text-gray-500">Botão {index + 1}</span>
                   <button
-                    onClick={() => removeCtaButton(i)}
+                    onClick={() => removeCtaButton(index)}
                     className="text-red-500 hover:text-red-700"
                   >
-                    <HiOutlineTrash className="w-4 h-4" />
+                    <HiOutlineTrash className="h-4 w-4" />
                   </button>
                 </div>
+
                 <input
                   type="text"
-                  value={btn.label}
-                  onChange={(e) => updateCtaButton(i, "label", e.target.value)}
+                  value={button.label}
+                  onChange={(event) => updateCtaButton(index, "label", event.target.value)}
                   placeholder="Texto do botão"
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
                 />
+
                 <input
                   type="text"
-                  value={btn.href}
-                  onChange={(e) => updateCtaButton(i, "href", e.target.value)}
-                  placeholder="Link do botão"
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
+                  value={button.href}
+                  onChange={(event) => updateCtaButton(index, "href", event.target.value)}
+                  placeholder="Destino do botão"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
                 />
+
                 <select
-                  value={btn.variant}
-                  onChange={(e) => updateCtaButton(i, "variant", e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm"
+                  value={button.variant}
+                  onChange={(event) => updateCtaButton(index, "variant", event.target.value)}
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
                 >
-                  <option value="outline">Outline (borda)</option>
-                  <option value="solid">Solid (preenchido)</option>
+                  <option value="outline">Outline</option>
+                  <option value="solid">Solid</option>
                 </select>
               </div>
             ))}
           </div>
-
-          {config.ctaButtons.length === 0 && (
-            <p className="text-sm text-gray-400 text-center py-4">
-              Nenhum botão de ação configurado
-            </p>
-          )}
         </div>
       </div>
     </div>

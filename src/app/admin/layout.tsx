@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin | SHR",
-  description: "Painel administrativo SHR",
+  title: "Admin | Loja do Guerreiro",
+  description: "Painel administrativo da Loja do Guerreiro",
 };
 
 export default function AdminLayout({
