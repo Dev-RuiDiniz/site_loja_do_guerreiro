@@ -144,7 +144,7 @@ export default function CabecalhoPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-black" />
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[var(--color-primary)]" />
       </div>
     );
   }
@@ -153,8 +153,10 @@ export default function CabecalhoPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Cabeçalho</h1>
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <h1 className="text-2xl font-semibold text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
+            Cabeçalho
+          </h1>
+          <p className="mt-1 text-sm text-[var(--color-muted-foreground)] dark:text-[var(--color-muted-foreground)]">
             Configure a navegação principal da Loja do Guerreiro
           </p>
         </div>
@@ -174,8 +176,8 @@ export default function CabecalhoPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-          <h3 className="flex items-center gap-2 font-medium text-gray-900 dark:text-white">
+        <div className="space-y-4 rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-6 dark:border-[var(--color-border)] dark:bg-[var(--color-card)]">
+          <h3 className="flex items-center gap-2 font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
             <HiOutlineMenuAlt2 className="h-5 w-5" />
             Identidade
           </h3>
@@ -196,7 +198,7 @@ export default function CabecalhoPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
                 Linha de apoio
               </label>
               <input
@@ -205,11 +207,11 @@ export default function CabecalhoPage() {
                 onChange={(event) =>
                   setConfig((current) => ({ ...current, subtitle: event.target.value }))
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
                 Linha complementar
               </label>
               <input
@@ -218,14 +220,14 @@ export default function CabecalhoPage() {
                 onChange={(event) =>
                   setConfig((current) => ({ ...current, subtitleLine2: event.target.value }))
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
                 E-mail
               </label>
               <input
@@ -234,11 +236,11 @@ export default function CabecalhoPage() {
                 onChange={(event) =>
                   setConfig((current) => ({ ...current, contactEmail: event.target.value }))
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
                 Telefone
               </label>
               <input
@@ -247,11 +249,11 @@ export default function CabecalhoPage() {
                 onChange={(event) =>
                   setConfig((current) => ({ ...current, contactPhone: event.target.value }))
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-1 block text-sm font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
                 Cidade
               </label>
               <input
@@ -260,18 +262,20 @@ export default function CabecalhoPage() {
                 onChange={(event) =>
                   setConfig((current) => ({ ...current, contactCity: event.target.value }))
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
               />
             </div>
           </div>
         </div>
 
-        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+        <div className="space-y-4 rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-6 dark:border-[var(--color-border)] dark:bg-[var(--color-card)]">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-gray-900 dark:text-white">Links de navegação</h3>
+            <h3 className="font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
+              Links de navegação
+            </h3>
             <button
               onClick={addNavLink}
-              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
+              className="flex items-center gap-1 text-sm text-[var(--color-accent)] hover:text-[color:#6f8634]"
             >
               <HiOutlinePlus className="h-4 w-4" />
               Adicionar
@@ -286,18 +290,18 @@ export default function CabecalhoPage() {
                   value={link.label}
                   onChange={(event) => updateNavLink(index, "label", event.target.value)}
                   placeholder="Texto do menu"
-                  className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="flex-1 rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
                 />
                 <input
                   type="text"
                   value={link.href}
                   onChange={(event) => updateNavLink(index, "href", event.target.value)}
                   placeholder="/caminho"
-                  className="flex-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="flex-1 rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
                 />
                 <button
                   onClick={() => removeNavLink(index)}
-                  className="rounded-lg p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
+                  className="rounded-xl p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
                 >
                   <HiOutlineTrash className="h-4 w-4" />
                 </button>
@@ -306,12 +310,14 @@ export default function CabecalhoPage() {
           </div>
         </div>
 
-        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 lg:col-span-2">
+        <div className="space-y-4 rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-6 dark:border-[var(--color-border)] dark:bg-[var(--color-card)] lg:col-span-2">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-gray-900 dark:text-white">Botões de ação</h3>
+            <h3 className="font-medium text-[var(--color-primary)] dark:text-[var(--color-primary-foreground)]">
+              Botões de ação
+            </h3>
             <button
               onClick={addCtaButton}
-              className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
+              className="flex items-center gap-1 text-sm text-[var(--color-accent)] hover:text-[color:#6f8634]"
             >
               <HiOutlinePlus className="h-4 w-4" />
               Adicionar
@@ -322,10 +328,12 @@ export default function CabecalhoPage() {
             {config.ctaButtons.map((button, index) => (
               <div
                 key={`${button.href}-${index}`}
-                className="space-y-3 rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700"
+                className="space-y-3 rounded-[1.25rem] border border-[color:rgba(16,37,107,0.08)] bg-[var(--color-secondary)] p-4 dark:border-[var(--color-border)] dark:bg-[var(--color-secondary)]"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-500">Botão {index + 1}</span>
+                  <span className="text-xs font-medium text-[var(--color-muted-foreground)]">
+                    Botão {index + 1}
+                  </span>
                   <button
                     onClick={() => removeCtaButton(index)}
                     className="text-red-500 hover:text-red-700"
@@ -339,7 +347,7 @@ export default function CabecalhoPage() {
                   value={button.label}
                   onChange={(event) => updateCtaButton(index, "label", event.target.value)}
                   placeholder="Texto do botão"
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                  className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
                 />
 
                 <input
@@ -347,13 +355,13 @@ export default function CabecalhoPage() {
                   value={button.href}
                   onChange={(event) => updateCtaButton(index, "href", event.target.value)}
                   placeholder="Destino do botão"
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                  className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
                 />
 
                 <select
                   value={button.variant}
                   onChange={(event) => updateCtaButton(index, "variant", event.target.value)}
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                  className="w-full rounded-xl border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] px-3 py-2 text-sm text-[var(--color-primary)] dark:border-[var(--color-border)] dark:bg-[var(--color-card)] dark:text-[var(--color-primary-foreground)]"
                 >
                   <option value="outline">Outline</option>
                   <option value="solid">Solid</option>

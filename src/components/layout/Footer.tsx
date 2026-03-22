@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Brand } from "@/components/layout/Brand";
 import { storeCategories } from "@/data/store";
 import { buildWhatsAppUrl, siteConfig } from "@/lib/site";
 
@@ -10,21 +11,21 @@ const institutionalLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-black/10 bg-[#111111] text-white">
+    <footer className="border-t border-[color:rgba(16,37,107,0.1)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-10">
         <div className="space-y-5">
-          <div>
-            <p className="font-serif text-4xl">Loja do Guerreiro</p>
-            <p className="mt-2 max-w-md text-sm leading-7 text-white/70">
-              Moda afro-brasileira com presença forte, leitura contemporânea e
-              acolhimento comercial feito por gente.
+          <div className="space-y-3">
+            <Brand invert subtitle="Moda autoral afro-brasileira" />
+            <p className="max-w-md text-sm leading-7 text-white/72">
+              Moda afro-brasileira com presença forte, leitura contemporânea e acolhimento
+              comercial feito por gente.
             </p>
           </div>
           <a
             href={buildWhatsAppUrl(siteConfig.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex rounded-full border border-[#C6A15B]/35 px-5 py-3 text-xs uppercase tracking-[0.24em] text-[#E8DCCB] transition-colors hover:border-[#C6A15B] hover:text-white"
+            className="inline-flex rounded-full border border-[color:rgba(248,245,237,0.24)] bg-[color:rgba(248,245,237,0.06)] px-5 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-primary-foreground)] transition-colors hover:border-[var(--color-chart-4)] hover:bg-[color:rgba(248,245,237,0.12)]"
           >
             Finalizar pedido no WhatsApp
           </a>
@@ -39,7 +40,7 @@ export function Footer() {
               <li key={category.slug}>
                 <Link
                   href={`/loja?categoria=${category.slug}`}
-                  className="transition-colors hover:text-[#C6A15B]"
+                  className="transition-colors hover:text-[var(--color-chart-4)]"
                 >
                   {category.name}
                 </Link>
@@ -55,7 +56,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-white/70">
             {institutionalLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="transition-colors hover:text-[#C6A15B]">
+                <Link href={link.href} className="transition-colors hover:text-[var(--color-chart-4)]">
                   {link.label}
                 </Link>
               </li>
@@ -63,7 +64,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="transition-colors hover:text-[#C6A15B]"
+                className="transition-colors hover:text-[var(--color-chart-4)]"
               >
                 {siteConfig.email}
               </a>
@@ -73,7 +74,7 @@ export function Footer() {
                 href={siteConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-[#C6A15B]"
+                className="transition-colors hover:text-[var(--color-chart-4)]"
               >
                 Instagram
               </a>

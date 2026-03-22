@@ -21,7 +21,7 @@ export default async function AdminDashboardLayout({
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-zinc-950 transition-colors">
+      <div className="min-h-screen bg-[color:rgba(248,245,237,0.96)] transition-colors dark:bg-[var(--color-background)]">
         <AdminSidebar />
         <div className="lg:pl-72">
           <AdminTopbar user={{ name: session.name, email: session.email }} />

@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="256" cy="256" r="240" fill="#10256B"/>
+  <path d="M116 274C116 274 135 215 142 179C161 199 173 229 176 266C157 251 137 245 116 274Z" fill="#7F9642" stroke="#18202C" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M154 230C154 230 169 173 174 136C191 156 201 190 202 229C186 214 170 209 154 230Z" fill="#93A84A" stroke="#18202C" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M190 248C190 248 213 187 221 152C239 173 246 204 244 238C228 224 211 220 190 248Z" fill="#8CA246" stroke="#18202C" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M142 277C162 302 173 332 174 366" stroke="#18202C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M176 266C192 289 203 319 205 353" stroke="#18202C" stroke-width="7" stroke-linecap="round"/>
+  <path d="M206 258C225 280 240 310 248 345" stroke="#18202C" stroke-width="7" stroke-linecap="round"/>
+  <text x="250" y="238" fill="#F8F5ED" font-family="Georgia, 'Times New Roman', serif" font-size="46">Loja do</text>
+  <text x="222" y="300" fill="#F8F5ED" font-family="Georgia, 'Times New Roman', serif" font-size="72">Guerreiro</text>
+</svg>

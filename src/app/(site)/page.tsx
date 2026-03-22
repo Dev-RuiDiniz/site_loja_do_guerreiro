@@ -11,27 +11,27 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="ritual-grid overflow-hidden border-b border-black/10">
+      <section className="ritual-grid overflow-hidden border-b border-[color:rgba(16,37,107,0.1)]">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-24">
           <div className="flex flex-col justify-center">
-            <p className="text-xs uppercase tracking-[0.32em] text-[#8A7D71]">
+            <p className="text-xs uppercase tracking-[0.32em] text-[var(--color-muted-foreground)]">
               Loja do Guerreiro
             </p>
-            <h1 className="mt-5 max-w-4xl font-serif text-6xl leading-none text-[#111111] lg:text-8xl">
+            <h1 className="mt-5 max-w-4xl font-serif text-6xl leading-none text-[var(--color-primary)] lg:text-8xl">
               Força visual, tecido vivo e presença contemporânea.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#544B44]">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-muted-foreground)]">
               Uma loja virtual de roupas e acessórios têxteis para expressões
               afro-brasileiras, criada para unir imponência, acolhimento e compra
               descomplicada.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button className="h-12 bg-[#111111] px-6 text-white hover:bg-[#A14F2A]" asChild>
+              <Button className="h-12 bg-[var(--color-primary)] px-6 text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]" asChild>
                 <Link href="/loja">Explorar coleção</Link>
               </Button>
               <Button
                 variant="outline"
-                className="h-12 border-black/15 bg-white text-[#111111] hover:bg-[#111111] hover:text-white"
+                className="h-12 border-[color:rgba(16,37,107,0.16)] bg-[var(--color-card)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
                 asChild
               >
                 <a
@@ -67,14 +67,14 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.24em] text-[#8A7D71]">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
               Coleções em destaque
             </p>
-            <h2 className="mt-2 font-serif text-4xl text-[#111111]">
+            <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
               Linguagem forte, leitura acessível
             </h2>
           </div>
-          <Link href="/categorias" className="text-sm uppercase tracking-[0.2em] text-[#111111]">
+          <Link href="/categorias" className="text-sm uppercase tracking-[0.2em] text-[var(--color-primary)] transition-colors hover:text-[var(--color-accent)]">
             Ver todas
           </Link>
         </div>
@@ -83,14 +83,14 @@ export default function HomePage() {
             <Link
               key={category.slug}
               href={`/loja?categoria=${category.slug}`}
-              className="ritual-shell block border border-black/10 bg-white/70 p-6 transition-transform hover:-translate-y-1"
+              className="ritual-shell block border border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.82)] p-6 transition-transform hover:-translate-y-1"
             >
               <span
                 className="inline-block h-3 w-14 rounded-full"
                 style={{ backgroundColor: category.accent }}
               />
-              <h3 className="mt-5 font-serif text-3xl text-[#111111]">{category.name}</h3>
-              <p className="mt-3 text-sm leading-7 text-[#544B44]">
+              <h3 className="mt-5 font-serif text-3xl text-[var(--color-primary)]">{category.name}</h3>
+              <p className="mt-3 text-sm leading-7 text-[var(--color-muted-foreground)]">
                 {category.description}
               </p>
             </Link>
@@ -98,13 +98,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-white/55">
+      <section className="border-y border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.68)]">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
           <div className="mb-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[#8A7D71]">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
               Lançamentos
             </p>
-            <h2 className="mt-2 font-serif text-4xl text-[#111111]">
+            <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
               Vitrine em movimento
             </h2>
           </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
-        <div className="rounded-[2rem] bg-[#111111] p-8 text-white">
+        <div className="rounded-[2rem] bg-[var(--color-primary)] p-8 text-[var(--color-primary-foreground)]">
           <p className="text-xs uppercase tracking-[0.24em] text-white/55">Manifesto</p>
           <h2 className="mt-4 font-serif text-4xl">
             Vestir presença não precisa parecer distante.
@@ -138,14 +138,14 @@ export default function HomePage() {
             "Tecidos com leitura forte e toque confortável.",
             "Atendimento humano para montar pedido com segurança.",
           ].map((item) => (
-            <div key={item} className="border border-black/10 bg-white p-6">
-              <p className="font-serif text-2xl text-[#111111]">{item}</p>
+            <div key={item} className="border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-6">
+              <p className="font-serif text-2xl text-[var(--color-primary)]">{item}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#111111]">
+      <section className="bg-[var(--color-primary)]">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-16 text-center lg:px-10">
           <p className="text-xs uppercase tracking-[0.28em] text-white/55">
             Atendimento direto
@@ -158,12 +158,12 @@ export default function HomePage() {
             seleciona cor e tamanho e fecha com atendimento humano.
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
-            <Button className="h-12 bg-[#A14F2A] px-6 text-white hover:bg-[#8A4330]" asChild>
+            <Button className="h-12 bg-[var(--color-accent)] px-6 text-[var(--color-accent-foreground)] hover:bg-[color:#6f8634]" asChild>
               <Link href="/loja">Ir para a loja</Link>
             </Button>
             <Button
               variant="outline"
-              className="h-12 border-white/15 bg-transparent text-white hover:bg-white hover:text-[#111111]"
+              className="h-12 border-white/15 bg-transparent text-white hover:bg-white hover:text-[var(--color-primary)]"
               asChild
             >
               <a

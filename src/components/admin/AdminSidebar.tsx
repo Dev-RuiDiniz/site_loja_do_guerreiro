@@ -11,6 +11,7 @@ import {
   HiOutlineViewBoards,
   HiOutlineViewGrid,
 } from "react-icons/hi";
+import { Brand } from "@/components/layout";
 
 const menuItems = [
   {
@@ -36,19 +37,11 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-72 bg-black text-white lg:block">
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-72 bg-[var(--color-sidebar)] text-[var(--color-sidebar-foreground)] lg:block">
       <div className="flex h-full flex-col">
         <div className="flex h-20 items-center border-b border-white/10 px-8">
           <Link href="/admin" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#C6A15B]/60 bg-white/5">
-              <span className="font-serif text-lg text-[#E8DCCB]">LG</span>
-            </div>
-            <div>
-              <p className="font-serif text-2xl text-white">Loja do Guerreiro</p>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-white/50">
-                Admin
-              </span>
-            </div>
+            <Brand invert compact subtitle="Painel administrativo" />
           </Link>
         </div>
 
@@ -70,8 +63,8 @@ export function AdminSidebar() {
                         href={item.href}
                         className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 ${
                           isActive
-                            ? "bg-white text-black font-medium"
-                            : "text-white/60 hover:bg-white/5 hover:text-white"
+                            ? "bg-[var(--color-sidebar-primary)] text-[var(--color-sidebar-primary-foreground)] font-medium"
+                            : "text-white/65 hover:bg-white/8 hover:text-white"
                         }`}
                       >
                         <item.icon className="h-4 w-4" />
@@ -89,7 +82,7 @@ export function AdminSidebar() {
           <Link
             href="/"
             target="_blank"
-            className="group flex items-center justify-between text-xs text-white/40 transition-colors hover:text-white"
+            className="group flex items-center justify-between text-xs text-white/45 transition-colors hover:text-white"
           >
             <span>Ver site</span>
             <HiOutlineExternalLink className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

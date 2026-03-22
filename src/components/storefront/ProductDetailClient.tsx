@@ -24,22 +24,22 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
   return (
     <>
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-10 lg:px-10 lg:pb-24">
-        <div className="mb-8 text-sm text-[#6C6258]">
-          <Link href="/" className="hover:text-[#111111]">
+        <div className="mb-8 text-sm text-[var(--color-muted-foreground)]">
+          <Link href="/" className="hover:text-[var(--color-primary)]">
             Início
           </Link>{" "}
           /{" "}
-          <Link href="/loja" className="hover:text-[#111111]">
+          <Link href="/loja" className="hover:text-[var(--color-primary)]">
             Loja
           </Link>{" "}
-          / <span className="text-[#111111]">{product.name}</span>
+          / <span className="text-[var(--color-primary)]">{product.name}</span>
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div className="space-y-5">
             <ProductArtwork
               artwork={product.artworks[selectedArtwork]}
-              className="aspect-[4/5] rounded-[2rem] border border-black/10"
+              className="aspect-[4/5] rounded-[2rem] border border-[color:rgba(16,37,107,0.1)]"
             />
             <div className="grid grid-cols-2 gap-4">
               {product.artworks.map((artwork, index) => (
@@ -49,8 +49,8 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   onClick={() => setSelectedArtwork(index)}
                   className={`overflow-hidden rounded-[1.25rem] border transition-colors ${
                     selectedArtwork === index
-                      ? "border-[#A14F2A]"
-                      : "border-black/10 hover:border-[#C6A15B]"
+                      ? "border-[var(--color-accent)]"
+                      : "border-[color:rgba(16,37,107,0.1)] hover:border-[var(--color-chart-4)]"
                   }`}
                 >
                   <ProductArtwork
@@ -65,36 +65,36 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-xs uppercase tracking-[0.24em] text-[#8A7D71]">
+                <span className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
                   {category?.name || "Coleção"}
                 </span>
                 {product.badge ? (
-                  <span className="rounded-full bg-[#111111] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white">
+                  <span className="rounded-full bg-[var(--color-primary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary-foreground)]">
                     {product.badge}
                   </span>
                 ) : null}
               </div>
-              <h1 className="font-serif text-5xl leading-tight text-[#111111] lg:text-6xl">
+              <h1 className="font-serif text-5xl leading-tight text-[var(--color-primary)] lg:text-6xl">
                 {product.name}
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-[#544B44]">
+              <p className="max-w-2xl text-lg leading-8 text-[var(--color-muted-foreground)]">
                 {product.shortDescription}
               </p>
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-semibold text-[#111111]">
+                <span className="text-3xl font-semibold text-[var(--color-primary)]">
                   {formatCurrency(product.price)}
                 </span>
                 {product.compareAtPrice ? (
-                  <span className="text-lg text-[#8A7D71] line-through">
+                  <span className="text-lg text-[var(--color-muted-foreground)] line-through">
                     {formatCurrency(product.compareAtPrice)}
                   </span>
                 ) : null}
               </div>
             </div>
 
-            <div className="grid gap-6 border-y border-black/10 py-8">
+            <div className="grid gap-6 border-y border-[color:rgba(16,37,107,0.1)] py-8">
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Cor
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -105,12 +105,12 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                       onClick={() => setSelectedColor(color)}
                       className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
                         selectedColor.name === color.name
-                          ? "border-[#111111] bg-[#111111] text-white"
-                          : "border-black/10 bg-white text-[#111111]"
+                          ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
+                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
                       }`}
                     >
                       <span
-                        className="h-3 w-3 rounded-full border border-black/10"
+                        className="h-3 w-3 rounded-full border border-[color:rgba(16,37,107,0.1)]"
                         style={{ backgroundColor: color.hex }}
                       />
                       {color.name}
@@ -120,7 +120,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
 
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Tamanho
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -131,8 +131,8 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                       onClick={() => setSelectedSize(size)}
                       className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                         selectedSize === size
-                          ? "border-[#111111] bg-[#111111] text-white"
-                          : "border-black/10 bg-white text-[#111111]"
+                          ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
+                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
                       }`}
                     >
                       {size}
@@ -142,13 +142,13 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
 
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Quantidade
                 </p>
-                <div className="inline-flex items-center rounded-full border border-black/10 bg-white">
+                <div className="inline-flex items-center rounded-full border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)]">
                   <button
                     type="button"
-                    className="px-4 py-2 text-[#111111]"
+                    className="px-4 py-2 text-[var(--color-primary)]"
                     onClick={() => setQuantity((current) => Math.max(1, current - 1))}
                   >
                     -
@@ -156,7 +156,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   <span className="min-w-10 text-center">{quantity}</span>
                   <button
                     type="button"
-                    className="px-4 py-2 text-[#111111]"
+                    className="px-4 py-2 text-[var(--color-primary)]"
                     onClick={() => setQuantity((current) => current + 1)}
                   >
                     +
@@ -168,7 +168,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
             <div className="grid gap-3 sm:grid-cols-2">
               <Button
                 size="lg"
-                className="h-12 bg-[#111111] text-white hover:bg-[#A14F2A]"
+                className="h-12 bg-[var(--color-primary)] text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]"
                 onClick={() =>
                   addItem({
                     product,
@@ -184,7 +184,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-12 border-black/15 bg-white text-[#111111] hover:bg-[#111111] hover:text-white"
+                className="h-12 border-[color:rgba(16,37,107,0.16)] bg-[var(--color-card)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
                 asChild
               >
                 <a
@@ -199,29 +199,29 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </Button>
             </div>
 
-            <div className="rounded-[1.5rem] border border-black/10 bg-white/60 p-6">
-              <p className="text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+            <div className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.78)] p-6">
+              <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                 Sobre a peça
               </p>
-              <p className="mt-4 text-base leading-8 text-[#544B44]">
+              <p className="mt-4 text-base leading-8 text-[var(--color-muted-foreground)]">
                 {product.description}
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                     Materiais
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-[#111111]">
+                  <ul className="mt-3 space-y-2 text-sm text-[var(--color-primary)]">
                     {product.materials.map((material) => (
                       <li key={material}>{material}</li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-[#8A7D71]">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                     Destaques
                   </p>
-                  <ul className="mt-3 space-y-2 text-sm text-[#111111]">
+                  <ul className="mt-3 space-y-2 text-sm text-[var(--color-primary)]">
                     {product.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
@@ -232,7 +232,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
 
             <Button
               variant="ghost"
-              className="px-0 text-[#111111] hover:bg-transparent hover:text-[#A14F2A]"
+              className="px-0 text-[var(--color-primary)] hover:bg-transparent hover:text-[var(--color-accent)]"
               onClick={openCart}
             >
               Abrir carrinho ritual
@@ -242,14 +242,14 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
       </section>
 
       {relatedProducts.length > 0 ? (
-        <section className="border-t border-black/10 bg-white/50">
+        <section className="border-t border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.72)]">
           <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-[#8A7D71]">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
                   Continue explorando
                 </p>
-                <h2 className="mt-2 font-serif text-4xl text-[#111111]">
+                <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
                   Peças da mesma linha
                 </h2>
               </div>
@@ -259,16 +259,16 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                 <Link
                   key={related.slug}
                   href={`/produto/${related.slug}`}
-                  className="rounded-[1.5rem] border border-black/10 bg-white p-5 transition-transform hover:-translate-y-1"
+                  className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-5 transition-transform hover:-translate-y-1"
                 >
                   <ProductArtwork
                     artwork={related.artworks[0]}
                     className="aspect-[4/5] rounded-[1.25rem] border-0 shadow-none"
                   />
-                  <h3 className="mt-4 font-serif text-2xl text-[#111111]">
+                  <h3 className="mt-4 font-serif text-2xl text-[var(--color-primary)]">
                     {related.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#544B44]">
+                  <p className="mt-2 text-sm leading-6 text-[var(--color-muted-foreground)]">
                     {related.shortDescription}
                   </p>
                 </Link>

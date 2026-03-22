@@ -81,7 +81,7 @@ export function ProductArtwork({
   return (
     <div
       className={cn(
-        "relative overflow-hidden border border-black/10 shadow-[0_14px_40px_rgba(17,17,17,0.08)]",
+        "relative overflow-hidden border border-[color:rgba(16,37,107,0.12)] shadow-[0_14px_40px_rgba(16,37,107,0.12)]",
         className
       )}
       style={{
@@ -100,7 +100,7 @@ export function ProductArtwork({
       <div className="absolute inset-x-0 bottom-0 p-4">
         <span
           className={cn(
-            "inline-flex rounded-full bg-black/75 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white",
+            "inline-flex rounded-full bg-[color:rgba(16,37,107,0.82)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-card)]",
             labelClassName
           )}
         >

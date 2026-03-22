@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiOutlineMenuAlt3, HiOutlineShoppingBag } from "react-icons/hi";
+import { Brand } from "@/components/layout/Brand";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
@@ -16,24 +17,6 @@ const navItems = [
   { href: "/contato", label: "Contato" },
 ];
 
-function BrandMark({ invert = false }: { invert?: boolean }) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#C6A15B]/60 bg-[#111111] text-[#E8DCCB] shadow-[0_12px_30px_rgba(17,17,17,0.18)]">
-        <span className="font-serif text-lg">LG</span>
-      </div>
-      <div>
-        <p className={`font-serif text-2xl ${invert ? "text-white" : "text-[#111111]"}`}>
-          Loja do Guerreiro
-        </p>
-        <p className={`text-[10px] uppercase tracking-[0.28em] ${invert ? "text-white/55" : "text-[#6C6258]"}`}>
-          Ritual contemporâneo
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function CartButton() {
   const { itemCount, openCart } = useCart();
 
@@ -41,12 +24,12 @@ function CartButton() {
     <button
       type="button"
       onClick={openCart}
-      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-[#111111] shadow-[0_8px_24px_rgba(17,17,17,0.08)] transition-all hover:border-[#A14F2A] hover:text-[#A14F2A]"
+      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-card)] text-[var(--color-primary)] shadow-[0_10px_28px_rgba(16,37,107,0.12)] transition-all hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
       aria-label="Abrir carrinho"
     >
       <HiOutlineShoppingBag className="h-5 w-5" />
       {itemCount > 0 ? (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#A14F2A] px-1 text-[10px] font-medium text-white">
+        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--color-accent)] px-1 text-[10px] font-medium text-[var(--color-accent-foreground)]">
           {itemCount}
         </span>
       ) : null}
@@ -58,10 +41,10 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/10 bg-[#F4ECE1]/92 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(248,245,237,0.92)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10">
         <Link href="/" aria-label={siteConfig.name}>
-          <BrandMark />
+          <Brand subtitle="Azul profundo, verde vivo e presença autoral" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -76,7 +59,9 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={`text-sm uppercase tracking-[0.2em] transition-colors ${
-                  isActive ? "text-[#A14F2A]" : "text-[#111111] hover:text-[#A14F2A]"
+                  isActive
+                    ? "text-[var(--color-accent)]"
+                    : "text-[var(--color-primary)] hover:text-[var(--color-accent)]"
                 }`}
               >
                 {item.label}
@@ -87,10 +72,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <div className="hidden lg:block">
-            <Button
-              className="h-11 bg-[#111111] px-5 text-white hover:bg-[#A14F2A]"
-              asChild
-            >
+            <Button className="h-11 bg-[var(--color-primary)] px-5 text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]" asChild>
               <a
                 href={buildWhatsAppUrl("Olá! Quero atendimento da Loja do Guerreiro.")}
                 target="_blank"
@@ -107,7 +89,7 @@ export function Header() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-[#111111] lg:hidden"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-card)] text-[var(--color-primary)] lg:hidden"
                 aria-label="Abrir menu"
               >
                 <HiOutlineMenuAlt3 className="h-6 w-6" />
@@ -115,16 +97,20 @@ export function Header() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full border-l border-black/10 bg-[#111111] p-0 text-white sm:max-w-md"
+              className="w-full border-l border-[color:rgba(248,245,237,0.12)] bg-[var(--color-primary)] p-0 text-[var(--color-primary-foreground)] sm:max-w-md"
             >
               <div className="flex h-full flex-col px-6 py-8">
-                <BrandMark invert />
+                <Brand
+                  invert
+                  subtitle="Moda autoral afro-brasileira"
+                  subtitleClassName="tracking-[0.24em]"
+                />
                 <div className="mt-10 flex flex-1 flex-col gap-2">
                   {navItems.map((item) => (
                     <SheetClose asChild key={item.href}>
                       <Link
                         href={item.href}
-                        className="border-b border-white/10 py-4 font-serif text-3xl text-white/85 transition-colors hover:text-[#C6A15B]"
+                        className="border-b border-white/10 py-4 font-serif text-3xl text-white/85 transition-colors hover:text-[var(--color-chart-4)]"
                       >
                         {item.label}
                       </Link>
@@ -132,10 +118,7 @@ export function Header() {
                   ))}
                 </div>
                 <div className="space-y-3">
-                  <Button
-                    className="h-12 w-full bg-[#A14F2A] text-white hover:bg-[#8A4330]"
-                    asChild
-                  >
+                  <Button className="h-12 w-full bg-[var(--color-accent)] text-[var(--color-accent-foreground)] hover:bg-[color:#6f8634]" asChild>
                     <a
                       href={buildWhatsAppUrl("Olá! Quero atendimento da Loja do Guerreiro.")}
                       target="_blank"
@@ -144,7 +127,7 @@ export function Header() {
                       Falar no WhatsApp
                     </a>
                   </Button>
-                  <p className="text-sm text-white/60">{siteConfig.address}</p>
+                  <p className="text-sm text-white/65">{siteConfig.address}</p>
                 </div>
               </div>
             </SheetContent>

@@ -47,7 +47,7 @@ export const storeCategories: StoreCategory[] = [
     name: "Vestidos e Saias",
     description:
       "Modelagens fluidas, presença de roda e acabamento pensado para movimento, celebração e elegância.",
-    accent: "#6E2230",
+    accent: "#4F658F",
   },
   {
     id: "cat-batas",
@@ -55,7 +55,7 @@ export const storeCategories: StoreCategory[] = [
     name: "Camisas e Batas",
     description:
       "Peças de presença limpa, caimento firme e visual contemporâneo para rituais, encontros e uso cotidiano.",
-    accent: "#A14F2A",
+    accent: "#7F9642",
   },
   {
     id: "cat-conjuntos",
@@ -63,7 +63,7 @@ export const storeCategories: StoreCategory[] = [
     name: "Conjuntos Rituais",
     description:
       "Combinações coordenadas para quem busca unidade visual, conforto e força simbólica sem excesso.",
-    accent: "#2F5D50",
+    accent: "#5A7340",
   },
   {
     id: "cat-acessorios",
@@ -71,7 +71,7 @@ export const storeCategories: StoreCategory[] = [
     name: "Acessórios Têxteis",
     description:
       "Faixas, panos e complementos que finalizam a composição com textura, cor e identidade.",
-    accent: "#C6A15B",
+    accent: "#B8C88E",
   },
 ];
 
@@ -91,8 +91,8 @@ export const storeProducts: StoreProduct[] = [
     featured: true,
     newArrival: false,
     colors: [
-      { name: "Areia Ritual", hex: "#E8DCCB" },
-      { name: "Vinho de Palma", hex: "#6E2230" },
+      { name: "Offwhite Ritual", hex: "#F8F5ED" },
+      { name: "Azul da Marca", hex: "#4F658F" },
     ],
     sizes: ["P", "M", "G", "GG"],
     materials: ["Viscose premium", "Algodão estruturado"],
@@ -102,8 +102,8 @@ export const storeProducts: StoreProduct[] = [
       "Visual equilibrado entre tradição e moda atual",
     ],
     artworks: [
-      { label: "Frente", base: "#E8DCCB", accent: "#A14F2A", detail: "#C6A15B", motif: "arcs" },
-      { label: "Detalhe", base: "#F4ECE1", accent: "#6E2230", detail: "#C6A15B", motif: "sun" },
+      { label: "Frente", base: "#F8F5ED", accent: "#7F9642", detail: "#B8C88E", motif: "arcs" },
+      { label: "Detalhe", base: "#FCFAF4", accent: "#4F658F", detail: "#B8C88E", motif: "sun" },
     ],
   },
   {
@@ -120,8 +120,8 @@ export const storeProducts: StoreProduct[] = [
     featured: true,
     newArrival: true,
     colors: [
-      { name: "Obsidiana", hex: "#111111" },
-      { name: "Argila Queimada", hex: "#A14F2A" },
+      { name: "Azul Profundo", hex: "#10256B" },
+      { name: "Verde Oliva", hex: "#7F9642" },
     ],
     sizes: ["P", "M", "G", "GG"],
     materials: ["Tricoline pesada", "Forro leve"],
@@ -131,8 +131,8 @@ export const storeProducts: StoreProduct[] = [
       "Acabamento pensado para composições rituais e editoriais",
     ],
     artworks: [
-      { label: "Frente", base: "#111111", accent: "#A14F2A", detail: "#C6A15B", motif: "bands" },
-      { label: "Movimento", base: "#2B1C1A", accent: "#E8DCCB", detail: "#6E2230", motif: "diamond" },
+      { label: "Frente", base: "#10256B", accent: "#7F9642", detail: "#B8C88E", motif: "bands" },
+      { label: "Movimento", base: "#142654", accent: "#F8F5ED", detail: "#4F658F", motif: "diamond" },
     ],
   },
   {
@@ -148,8 +148,8 @@ export const storeProducts: StoreProduct[] = [
     featured: true,
     newArrival: false,
     colors: [
-      { name: "Branco Ritual", hex: "#F7F2EB" },
-      { name: "Dourado Fosco", hex: "#C6A15B" },
+      { name: "Branco Ritual", hex: "#FCFAF4" },
+      { name: "Oliva Claro", hex: "#B8C88E" },
     ],
     sizes: ["P", "M", "G", "GG", "XG"],
     materials: ["Algodão penteado", "Linho misto"],
@@ -159,8 +159,8 @@ export const storeProducts: StoreProduct[] = [
       "Peça-chave para bases monocromáticas",
     ],
     artworks: [
-      { label: "Frente", base: "#F7F2EB", accent: "#C6A15B", detail: "#2F5D50", motif: "sun" },
-      { label: "Detalhe", base: "#E8DCCB", accent: "#111111", detail: "#C6A15B", motif: "bands" },
+      { label: "Frente", base: "#FCFAF4", accent: "#B8C88E", detail: "#5A7340", motif: "sun" },
+      { label: "Detalhe", base: "#F8F5ED", accent: "#10256B", detail: "#B8C88E", motif: "bands" },
     ],
   },
   {
@@ -178,8 +178,8 @@ export const storeProducts: StoreProduct[] = [
     featured: false,
     newArrival: true,
     colors: [
-      { name: "Obsidiana", hex: "#111111" },
-      { name: "Verde Folha Profunda", hex: "#2F5D50" },
+      { name: "Azul Profundo", hex: "#10256B" },
+      { name: "Verde Folha Profunda", hex: "#5A7340" },
     ],
     sizes: ["P", "M", "G", "GG"],
     materials: ["Sarja leve", "Viscose fosca"],
@@ -189,8 +189,8 @@ export const storeProducts: StoreProduct[] = [
       "Combina com saias, calças ou conjuntos",
     ],
     artworks: [
-      { label: "Frente", base: "#111111", accent: "#2F5D50", detail: "#C6A15B", motif: "arcs" },
-      { label: "Textura", base: "#1B1B1B", accent: "#A14F2A", detail: "#E8DCCB", motif: "bands" },
+      { label: "Frente", base: "#10256B", accent: "#5A7340", detail: "#B8C88E", motif: "arcs" },
+      { label: "Textura", base: "#0F1D47", accent: "#7F9642", detail: "#F8F5ED", motif: "bands" },
     ],
   },
   {
@@ -207,8 +207,8 @@ export const storeProducts: StoreProduct[] = [
     featured: true,
     newArrival: true,
     colors: [
-      { name: "Verde Folha Profunda", hex: "#2F5D50" },
-      { name: "Dourado Fosco", hex: "#C6A15B" },
+      { name: "Verde Folha Profunda", hex: "#5A7340" },
+      { name: "Oliva Claro", hex: "#B8C88E" },
     ],
     sizes: ["P", "M", "G", "GG"],
     materials: ["Linho misto", "Algodão premium"],
@@ -218,8 +218,8 @@ export const storeProducts: StoreProduct[] = [
       "Visual de coleção com assinatura forte",
     ],
     artworks: [
-      { label: "Frente", base: "#2F5D50", accent: "#C6A15B", detail: "#E8DCCB", motif: "diamond" },
-      { label: "Detalhe", base: "#274F44", accent: "#111111", detail: "#C6A15B", motif: "sun" },
+      { label: "Frente", base: "#5A7340", accent: "#B8C88E", detail: "#F8F5ED", motif: "diamond" },
+      { label: "Detalhe", base: "#476337", accent: "#10256B", detail: "#B8C88E", motif: "sun" },
     ],
   },
   {
@@ -235,8 +235,8 @@ export const storeProducts: StoreProduct[] = [
     featured: false,
     newArrival: true,
     colors: [
-      { name: "Argila Queimada", hex: "#A14F2A" },
-      { name: "Areia Ritual", hex: "#E8DCCB" },
+      { name: "Oliva Terreno", hex: "#7F9642" },
+      { name: "Offwhite Ritual", hex: "#F8F5ED" },
     ],
     sizes: ["P", "M", "G", "GG"],
     materials: ["Viscose texturizada", "Linho misto"],
@@ -246,8 +246,8 @@ export const storeProducts: StoreProduct[] = [
       "Estrutura visual amigável e marcante",
     ],
     artworks: [
-      { label: "Frente", base: "#A14F2A", accent: "#E8DCCB", detail: "#C6A15B", motif: "arcs" },
-      { label: "Costas", base: "#6E2230", accent: "#E8DCCB", detail: "#2F5D50", motif: "bands" },
+      { label: "Frente", base: "#7F9642", accent: "#F8F5ED", detail: "#B8C88E", motif: "arcs" },
+      { label: "Costas", base: "#4F658F", accent: "#F8F5ED", detail: "#5A7340", motif: "bands" },
     ],
   },
   {
@@ -263,8 +263,8 @@ export const storeProducts: StoreProduct[] = [
     featured: false,
     newArrival: false,
     colors: [
-      { name: "Dourado Fosco", hex: "#C6A15B" },
-      { name: "Obsidiana", hex: "#111111" },
+      { name: "Oliva Claro", hex: "#B8C88E" },
+      { name: "Azul Profundo", hex: "#10256B" },
     ],
     sizes: ["Único"],
     materials: ["Tecido acetinado fosco"],
@@ -274,8 +274,8 @@ export const storeProducts: StoreProduct[] = [
       "Combina com a coleção inteira",
     ],
     artworks: [
-      { label: "Frente", base: "#C6A15B", accent: "#111111", detail: "#E8DCCB", motif: "bands" },
-      { label: "Textura", base: "#D9B87C", accent: "#6E2230", detail: "#111111", motif: "diamond" },
+      { label: "Frente", base: "#B8C88E", accent: "#10256B", detail: "#F8F5ED", motif: "bands" },
+      { label: "Textura", base: "#C9D7A8", accent: "#4F658F", detail: "#10256B", motif: "diamond" },
     ],
   },
   {
@@ -292,8 +292,8 @@ export const storeProducts: StoreProduct[] = [
     featured: true,
     newArrival: true,
     colors: [
-      { name: "Verde Folha Profunda", hex: "#2F5D50" },
-      { name: "Areia Ritual", hex: "#E8DCCB" },
+      { name: "Verde Folha Profunda", hex: "#5A7340" },
+      { name: "Offwhite Ritual", hex: "#F8F5ED" },
     ],
     sizes: ["Único"],
     materials: ["Malha premium", "Toque macio"],
@@ -303,8 +303,8 @@ export const storeProducts: StoreProduct[] = [
       "Acabamento limpo para uso recorrente",
     ],
     artworks: [
-      { label: "Frente", base: "#2F5D50", accent: "#E8DCCB", detail: "#C6A15B", motif: "sun" },
-      { label: "Drapeado", base: "#23483F", accent: "#111111", detail: "#E8DCCB", motif: "arcs" },
+      { label: "Frente", base: "#5A7340", accent: "#F8F5ED", detail: "#B8C88E", motif: "sun" },
+      { label: "Drapeado", base: "#405B36", accent: "#10256B", detail: "#F8F5ED", motif: "arcs" },
     ],
   },
 ];
