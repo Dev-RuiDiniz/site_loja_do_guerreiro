@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { Button } from "@/components/ui/button";
 import { ProductArtwork } from "@/components/storefront/ProductArtwork";
+import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 import { StoreColor, StoreProduct, storeCategories, storeProducts } from "@/data/store";
 import { ancestryArtLayers, heroImages, themePanels } from "@/data/visualAssets";
-import { useCart } from "@/contexts/CartContext";
 import { buildWhatsAppUrl, formatCurrency } from "@/lib/site";
 
 export function ProductDetailClient({ product }: { product: StoreProduct }) {
@@ -23,12 +23,18 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
     .filter((item) => item.categorySlug === product.categorySlug && item.slug !== product.slug)
     .slice(0, 3);
 
+  const assuranceCards = [
+    product.trustNote || "Atendimento humano para orientar medidas e combinacoes.",
+    product.shippingNote || "Pedido finalizado no WhatsApp com apoio da equipe.",
+    product.bundleText || "A colecao foi pensada para funcionar em camadas e coordenacoes.",
+  ];
+
   return (
     <>
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-10 lg:px-10 lg:pb-24">
+      <section className="mx-auto max-w-[var(--section-max)] px-6 pb-16 pt-10 lg:px-10 lg:pb-24">
         <div className="mb-8 text-sm text-[var(--color-muted-foreground)]">
           <Link href="/" className="hover:text-[var(--color-primary)]">
-            Início
+            Inicio
           </Link>{" "}
           /{" "}
           <Link href="/loja" className="hover:text-[var(--color-primary)]">
@@ -41,7 +47,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
           <div className="space-y-5">
             <ProductArtwork
               artwork={product.artworks[selectedArtwork]}
-              className="aspect-[4/5] rounded-[2rem] border border-[color:rgba(16,37,107,0.1)]"
+              className="aspect-[4/5] rounded-[2rem] border border-[var(--commerce-border)]"
             />
             <div className="grid grid-cols-2 gap-4">
               {product.artworks.map((artwork, index) => (
@@ -52,7 +58,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   className={`overflow-hidden rounded-[1.25rem] border transition-colors ${
                     selectedArtwork === index
                       ? "border-[var(--color-accent)]"
-                      : "border-[color:rgba(16,37,107,0.1)] hover:border-[var(--color-chart-4)]"
+                      : "border-[var(--commerce-border)] hover:border-[var(--color-chart-4)]"
                   }`}
                 >
                   <ProductArtwork
@@ -68,7 +74,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-                  {category?.name || "Coleção"}
+                  {product.eyebrow || category?.name || "Colecao"}
                 </span>
                 {product.badge ? (
                   <span className="rounded-full bg-[var(--color-primary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary-foreground)]">
@@ -92,118 +98,157 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   </span>
                 ) : null}
               </div>
-            </div>
-
-            <div className="grid gap-6 border-y border-[color:rgba(16,37,107,0.1)] py-8">
-              <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                  Cor
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color.name}
-                      type="button"
-                      onClick={() => setSelectedColor(color)}
-                      className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
-                        selectedColor.name === color.name
-                          ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
-                      }`}
-                    >
-                      <span
-                        className="h-3 w-3 rounded-full border border-[color:rgba(16,37,107,0.1)]"
-                        style={{ backgroundColor: color.hex }}
-                      />
-                      {color.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                  Tamanho
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      type="button"
-                      onClick={() => setSelectedSize(size)}
-                      className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-                        selectedSize === size
-                          ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                  Quantidade
-                </p>
-                <div className="inline-flex items-center rounded-full border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)]">
-                  <button
-                    type="button"
-                    className="px-4 py-2 text-[var(--color-primary)]"
-                    onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+              <div className="grid gap-3 md:grid-cols-3">
+                {assuranceCards.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.2rem] border border-[var(--commerce-border)] bg-[var(--surface-soft)] p-4 text-sm leading-6 text-[var(--color-primary)]"
                   >
-                    -
-                  </button>
-                  <span className="min-w-10 text-center">{quantity}</span>
-                  <button
-                    type="button"
-                    className="px-4 py-2 text-[var(--color-primary)]"
-                    onClick={() => setQuantity((current) => current + 1)}
-                  >
-                    +
-                  </button>
-                </div>
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <Button
-                size="lg"
-                className="h-12 bg-[var(--color-primary)] text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]"
-                onClick={() =>
-                  addItem({
-                    product,
-                    size: selectedSize,
-                    color: selectedColor,
-                    quantity,
-                  })
-                }
-              >
-                <HiOutlineShoppingBag className="mr-2 h-5 w-5" />
-                Adicionar ao carrinho
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-12 border-[color:rgba(16,37,107,0.16)] bg-[var(--color-card)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
-                asChild
-              >
-                <a
-                  href={buildWhatsAppUrl(
-                    `Olá! Quero atendimento para o produto ${product.name}, tamanho ${selectedSize}, cor ${selectedColor.name}.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="commerce-panel rounded-[2rem] p-6">
+              <div className="grid gap-6 border-b border-[var(--commerce-border)] pb-6">
+                <div>
+                  <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
+                    Cor
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {product.colors.map((color) => (
+                      <button
+                        key={color.name}
+                        type="button"
+                        onClick={() => setSelectedColor(color)}
+                        className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
+                          selectedColor.name === color.name
+                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
+                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)]"
+                        }`}
+                      >
+                        <span
+                          className="h-3 w-3 rounded-full border border-[var(--commerce-border)]"
+                          style={{ backgroundColor: color.hex }}
+                        />
+                        {color.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
+                    Tamanho
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {product.sizes.map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => setSelectedSize(size)}
+                        className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                          selectedSize === size
+                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
+                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)]"
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
+                      Quantidade
+                    </p>
+                    <div className="inline-flex items-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)]">
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-[var(--color-primary)]"
+                        onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+                      >
+                        -
+                      </button>
+                      <span className="min-w-10 text-center">{quantity}</span>
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-[var(--color-primary)]"
+                        onClick={() => setQuantity((current) => current + 1)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
+                      Subtotal da selecao
+                    </p>
+                    <p className="mt-2 font-serif text-3xl text-[var(--color-primary)]">
+                      {formatCurrency(product.price * quantity)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <Button
+                  size="lg"
+                  className="h-12 rounded-full bg-[var(--color-accent)] text-[var(--color-accent-foreground)] hover:bg-[color:#6f8634]"
+                  onClick={() =>
+                    addItem({
+                      product,
+                      size: selectedSize,
+                      color: selectedColor,
+                      quantity,
+                    })
+                  }
                 >
-                  Falar com atendimento
-                </a>
-              </Button>
+                  <HiOutlineShoppingBag className="mr-2 h-5 w-5" />
+                  Adicionar ao carrinho
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
+                  asChild
+                >
+                  <a
+                    href={buildWhatsAppUrl(
+                      `Olá! Quero atendimento para o produto ${product.name}, tamanho ${selectedSize}, cor ${selectedColor.name}.`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Falar com atendimento
+                  </a>
+                </Button>
+              </div>
+
+              <div className="mt-5 rounded-[1.3rem] border border-[var(--commerce-border)] bg-[var(--surface-soft)] p-4">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
+                  Compra assistida
+                </p>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-primary)]">
+                  Confirmamos medidas, disponibilidade, combinacoes e detalhes de finalizacao pelo WhatsApp.
+                </p>
+              </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.78)] p-6">
+            <Button
+              variant="ghost"
+              className="justify-start px-0 text-[var(--color-primary)] hover:bg-transparent hover:text-[var(--color-accent)]"
+              onClick={openCart}
+            >
+              Abrir carrinho ritual
+            </Button>
+
+            <div className="commerce-panel rounded-[1.8rem] p-6">
               <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                Sobre a peça
+                Sobre a peca
               </p>
               <p className="mt-4 text-base leading-8 text-[var(--color-muted-foreground)]">
                 {product.description}
@@ -232,7 +277,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
             </div>
 
-            <div className="ancestry-frame grid gap-5 overflow-hidden rounded-[1.7rem] p-4 md:grid-cols-[0.88fr_1.12fr]">
+            <div className="commerce-panel grid gap-5 overflow-hidden rounded-[1.7rem] p-4 md:grid-cols-[0.88fr_1.12fr]">
               <div className="relative min-h-[15rem] overflow-hidden rounded-[1.3rem]">
                 <Image
                   src={themePanels[0].src}
@@ -254,29 +299,21 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                 />
                 <div className="relative">
                   <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                    Campo visual
+                    Campo editorial
                   </p>
                   <p className="mt-3 font-serif text-3xl leading-tight text-[var(--color-primary)]">
-                    A peça dialoga com luz, tecido e permanência em uma estética de
-                    ancestralidade elegante.
+                    {product.featuredReason ||
+                      "A peca dialoga com luz, tecido e permanencia em uma estetica de ancestralidade elegante."}
                   </p>
                 </div>
               </div>
             </div>
-
-            <Button
-              variant="ghost"
-              className="px-0 text-[var(--color-primary)] hover:bg-transparent hover:text-[var(--color-accent)]"
-              onClick={openCart}
-            >
-              Abrir carrinho ritual
-            </Button>
           </div>
         </div>
       </section>
 
       {relatedProducts.length > 0 ? (
-        <section className="relative overflow-hidden border-t border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.72)]">
+        <section className="relative overflow-hidden border-t border-[var(--commerce-border)] bg-[color:rgba(252,250,244,0.72)]">
           <Image
             src={heroImages[1].src}
             alt=""
@@ -285,14 +322,14 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
             sizes="100vw"
             aria-hidden
           />
-          <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
+          <div className="mx-auto max-w-[var(--section-max)] px-6 py-14 lg:px-10">
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
                   Continue explorando
                 </p>
                 <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
-                  Peças da mesma linha
+                  Pecas da mesma linha
                 </h2>
               </div>
             </div>
@@ -301,7 +338,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                 <Link
                   key={related.slug}
                   href={`/produto/${related.slug}`}
-                  className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-5 transition-transform hover:-translate-y-1"
+                  className="commerce-card rounded-[1.5rem] p-5 transition-transform hover:-translate-y-1"
                 >
                   <ProductArtwork
                     artwork={related.artworks[0]}

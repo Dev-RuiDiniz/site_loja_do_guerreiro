@@ -193,25 +193,25 @@ function CartDrawer() {
     }}>
       <SheetContent
         side="right"
-        className="w-full max-w-xl border-l border-black/10 bg-[#F4ECE1] p-0 sm:max-w-xl"
+        className="w-full max-w-xl border-l border-[var(--commerce-border)] bg-[var(--surface-strong)] p-0 sm:max-w-xl"
       >
         <div className="flex h-full flex-col">
-          <div className="border-b border-black/10 px-6 py-6">
-            <SheetTitle className="font-serif text-3xl text-[#111111]">
+          <div className="border-b border-[var(--commerce-border)] px-6 py-6">
+            <SheetTitle className="font-serif text-3xl text-[var(--color-primary)]">
               Carrinho ritual
             </SheetTitle>
-            <p className="mt-2 text-sm text-[#5C5148]">
+            <p className="mt-2 text-sm text-[var(--commerce-muted)]">
               Revise suas escolhas e finalize o pedido no WhatsApp.
             </p>
           </div>
 
           <div className="flex-1 overflow-y-auto px-6 py-6">
             {items.length === 0 ? (
-              <div className="space-y-4 rounded-2xl border border-dashed border-black/15 bg-white/60 p-6 text-center">
-                <p className="font-serif text-2xl text-[#111111]">
+              <div className="space-y-4 rounded-2xl border border-dashed border-[var(--commerce-border)] bg-[var(--surface-soft)] p-6 text-center">
+                <p className="font-serif text-2xl text-[var(--color-primary)]">
                   Seu carrinho ainda está vazio
                 </p>
-                <p className="text-sm leading-6 text-[#5C5148]">
+                <p className="text-sm leading-6 text-[var(--commerce-muted)]">
                   Adicione peças, escolha cor e tamanho e monte seu pedido com calma.
                 </p>
               </div>
@@ -220,18 +220,18 @@ function CartDrawer() {
                 {items.map((item) => (
                   <div
                     key={item.key}
-                    className="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_12px_30px_rgba(17,17,17,0.05)]"
+                    className="rounded-2xl border border-[var(--commerce-border)] bg-white p-4 shadow-[0_12px_30px_rgba(17,17,17,0.05)]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="space-y-2">
-                        <p className="font-serif text-xl text-[#111111]">{item.name}</p>
-                        <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-[#6C6258]">
+                        <p className="font-serif text-xl text-[var(--color-primary)]">{item.name}</p>
+                        <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em] text-[var(--commerce-muted)]">
                           <span>Tam {item.size}</span>
                           <span>Cor {item.color.name}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-[#5C5148]">
+                        <div className="flex items-center gap-2 text-sm text-[var(--commerce-muted)]">
                           <span
-                            className="inline-block h-3 w-3 rounded-full border border-black/10"
+                            className="inline-block h-3 w-3 rounded-full border border-[var(--commerce-border)]"
                             style={{ backgroundColor: item.color.hex }}
                           />
                           {formatCurrency(item.price)} cada
@@ -240,34 +240,34 @@ function CartDrawer() {
                       <button
                         type="button"
                         onClick={() => removeItem(item.key)}
-                        className="text-xs uppercase tracking-[0.18em] text-[#8A4330] transition-colors hover:text-[#111111]"
+                        className="text-xs uppercase tracking-[0.18em] text-[#8A4330] transition-colors hover:text-[var(--color-primary)]"
                       >
                         Remover
                       </button>
                     </div>
 
                     <div className="mt-4 flex items-center justify-between">
-                      <div className="flex items-center rounded-full border border-black/10">
+                      <div className="flex items-center rounded-full border border-[var(--commerce-border)]">
                         <button
                           type="button"
                           onClick={() => decrementItem(item.key)}
-                          className="px-4 py-2 text-[#111111]"
+                          className="px-4 py-2 text-[var(--color-primary)]"
                         >
                           -
                         </button>
-                        <span className="min-w-10 text-center text-sm text-[#111111]">
+                        <span className="min-w-10 text-center text-sm text-[var(--color-primary)]">
                           {item.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => incrementItem(item.key)}
-                          className="px-4 py-2 text-[#111111]"
+                          className="px-4 py-2 text-[var(--color-primary)]"
                         >
                           +
                         </button>
                       </div>
 
-                      <span className="font-medium text-[#111111]">
+                      <span className="font-medium text-[var(--color-primary)]">
                         {formatCurrency(item.price * item.quantity)}
                       </span>
                     </div>
@@ -277,7 +277,7 @@ function CartDrawer() {
             )}
           </div>
 
-          <div className="border-t border-black/10 bg-[#111111] px-6 py-6 text-white">
+          <div className="border-t border-[var(--commerce-border)] bg-[var(--brand-panel-strong)] px-6 py-6 text-white">
             <div className="mb-5 flex items-center justify-between">
               <span className="text-sm uppercase tracking-[0.2em] text-white/70">
                 subtotal estimado
@@ -288,7 +288,7 @@ function CartDrawer() {
             <div className="grid gap-3">
               <Button
                 size="lg"
-                className="h-12 bg-[#A14F2A] text-white hover:bg-[#8A4330]"
+                className="h-12 rounded-full bg-[var(--color-accent)] text-[var(--color-accent-foreground)] hover:bg-[color:#6f8634]"
                 asChild
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -298,7 +298,7 @@ function CartDrawer() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-12 border-white/20 bg-transparent text-white hover:bg-white hover:text-[#111111]"
+                className="h-12 rounded-full border-white/20 bg-transparent text-white hover:bg-white hover:text-[var(--color-primary)]"
                 onClick={clearCart}
                 disabled={items.length === 0}
               >

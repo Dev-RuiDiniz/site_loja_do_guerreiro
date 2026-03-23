@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
+import { ProductArtwork } from "@/components/storefront/ProductArtwork";
 import { StoreCategory, StoreProduct } from "@/data/store";
 import { formatCurrency } from "@/lib/site";
-import { ProductArtwork } from "@/components/storefront/ProductArtwork";
 
 interface ProductCardProps {
   product: StoreProduct;
@@ -13,13 +13,13 @@ export function ProductCard({ product, category }: ProductCardProps) {
   return (
     <Link
       href={`/produto/${product.slug}`}
-      className="group block overflow-hidden border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] shadow-[0_18px_40px_rgba(16,37,107,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(16,37,107,0.14)]"
+      className="commerce-card group block overflow-hidden rounded-[1.8rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(16,37,107,0.14)]"
     >
       <div className="relative">
         <ProductArtwork
           artwork={product.artworks[0]}
-          className="aspect-[4/5] border-0 shadow-none"
-          labelClassName="bg-white/85 text-black"
+          className="aspect-[4/5] rounded-b-none border-0 shadow-none"
+          labelClassName="bg-white/88 text-[var(--brand-ink)]"
         />
         <div className="absolute left-4 top-4 flex gap-2">
           {product.badge ? (
@@ -28,7 +28,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
             </span>
           ) : null}
           {product.newArrival ? (
-            <span className="rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-secondary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
+            <span className="rounded-full border border-[var(--commerce-border)] bg-[var(--color-secondary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
               Lancamento
             </span>
           ) : null}
@@ -36,15 +36,33 @@ export function ProductCard({ product, category }: ProductCardProps) {
       </div>
 
       <div className="space-y-4 p-5">
-        <div className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-            {category?.name || "Colecao"}
-          </p>
-          <h3 className="font-serif text-2xl text-[var(--color-primary)] transition-colors group-hover:text-[var(--color-accent)]">
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
+              {product.eyebrow || category?.eyebrow || category?.name || "Colecao"}
+            </p>
+            <span className="text-xs uppercase tracking-[0.22em] text-[var(--color-accent)]">
+              {category?.name || "Colecao"}
+            </span>
+          </div>
+          <h3 className="font-serif text-[1.9rem] leading-tight text-[var(--color-primary)] transition-colors group-hover:text-[var(--color-accent)]">
             {product.name}
           </h3>
           <p className="line-clamp-2 text-sm leading-6 text-[var(--color-muted-foreground)]">
             {product.shortDescription}
+          </p>
+          <p className="line-clamp-2 text-sm leading-6 text-[var(--commerce-muted)]">
+            {product.featuredReason || category?.trustNote}
+          </p>
+        </div>
+
+        <div className="rounded-[1.2rem] border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-4 py-3">
+          <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
+            Compra assistida
+          </p>
+          <p className="mt-2 text-sm leading-6 text-[var(--color-primary)]">
+            {product.trustNote ||
+              "Atendimento humano para confirmar medidas, combinacoes e disponibilidade."}
           </p>
         </div>
 
@@ -66,7 +84,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
           </div>
 
           <span className="inline-flex items-center text-sm font-medium text-[var(--color-primary)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-accent)]">
-            Ver
+            Ver peca
             <HiArrowRight className="ml-2 h-4 w-4" />
           </span>
         </div>

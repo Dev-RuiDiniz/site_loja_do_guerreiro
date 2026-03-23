@@ -4,7 +4,9 @@ export interface StoreCategory {
   id: string;
   slug: string;
   name: string;
+  eyebrow?: string;
   description: string;
+  trustNote?: string;
   accent: string;
 }
 
@@ -26,6 +28,7 @@ export interface StoreProduct {
   slug: string;
   name: string;
   categorySlug: string;
+  eyebrow?: string;
   shortDescription: string;
   description: string;
   price: number;
@@ -37,6 +40,10 @@ export interface StoreProduct {
   sizes: string[];
   materials: string[];
   highlights: string[];
+  trustNote?: string;
+  featuredReason?: string;
+  bundleText?: string;
+  shippingNote?: string;
   artworks: StoreArtwork[];
 }
 
@@ -45,32 +52,40 @@ export const storeCategories: StoreCategory[] = [
     id: "cat-vestidos",
     slug: "vestidos-e-saias",
     name: "Vestidos e Saias",
+    eyebrow: "Presenca em movimento",
     description:
-      "Modelagens fluidas, presença de roda e acabamento pensado para movimento, celebração e elegância.",
+      "Modelagens fluidas, presenca de roda e acabamento pensado para movimento, celebracao e elegancia.",
+    trustNote: "Modelagens amplas com leitura forte para ocasioes especiais e uso autoral.",
     accent: "#4F658F",
   },
   {
     id: "cat-batas",
     slug: "camisas-e-batas",
     name: "Camisas e Batas",
+    eyebrow: "Base ritual contemporanea",
     description:
-      "Peças de presença limpa, caimento firme e visual contemporâneo para rituais, encontros e uso cotidiano.",
+      "Pecas de presenca limpa, caimento firme e visual contemporaneo para rituais, encontros e uso cotidiano.",
+    trustNote: "Bases versateis para coordenar com saias, calcas e acessorios da colecao.",
     accent: "#7F9642",
   },
   {
     id: "cat-conjuntos",
     slug: "conjuntos-rituais",
     name: "Conjuntos Rituais",
+    eyebrow: "Composicao pronta",
     description:
-      "Combinações coordenadas para quem busca unidade visual, conforto e força simbólica sem excesso.",
+      "Combinacoes coordenadas para quem busca unidade visual, conforto e forca simbolica sem excesso.",
+    trustNote: "Silhuetas completas para quem quer vestir presenca com menos friccao.",
     accent: "#5A7340",
   },
   {
     id: "cat-acessorios",
     slug: "acessorios-texteis",
-    name: "Acessórios Têxteis",
+    name: "Acessorios Texteis",
+    eyebrow: "Acabamento de assinatura",
     description:
-      "Faixas, panos e complementos que finalizam a composição com textura, cor e identidade.",
+      "Faixas, panos e complementos que finalizam a composicao com textura, cor e identidade.",
+    trustNote: "Complementos que elevam a leitura da colecao sem disputar com a peca principal.",
     accent: "#B8C88E",
   },
 ];
@@ -81,10 +96,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "vestido-ori-areia",
     name: "Vestido Ori Areia",
     categorySlug: "vestidos-e-saias",
+    eyebrow: "Vestido manifesto",
     shortDescription:
-      "Vestido longo de presença serena, com cintura marcada e volume controlado para um visual imponente e acolhedor.",
+      "Vestido longo de presenca serena, com cintura marcada e volume controlado para um visual imponente e acolhedor.",
     description:
-      "O Vestido Ori Areia foi pensado para criar presença sem rigidez. A modelagem alongada acompanha o corpo com conforto, enquanto o tecido encorpado mantém leitura elegante em cerimônias, festas e produções autorais. O acabamento prioriza mobilidade, caimento limpo e uma paleta quente que conversa com a estética ritual contemporânea da marca.",
+      "O Vestido Ori Areia foi pensado para criar presenca sem rigidez. A modelagem alongada acompanha o corpo com conforto, enquanto o tecido encorpado mantem leitura elegante em cerimonias, festas e producoes autorais. O acabamento prioriza mobilidade, caimento limpo e uma paleta quente que conversa com a estetica ritual contemporanea da marca.",
     price: 289.9,
     compareAtPrice: 329.9,
     badge: "Destaque",
@@ -95,12 +111,16 @@ export const storeProducts: StoreProduct[] = [
       { name: "Azul da Marca", hex: "#4F658F" },
     ],
     sizes: ["P", "M", "G", "GG"],
-    materials: ["Viscose premium", "Algodão estruturado"],
+    materials: ["Viscose premium", "Algodao estruturado"],
     highlights: [
       "Saia com movimento amplo",
-      "Costura reforçada para uso recorrente",
-      "Visual equilibrado entre tradição e moda atual",
+      "Costura reforcada para uso recorrente",
+      "Visual equilibrado entre tradicao e moda atual",
     ],
+    trustNote: "Pedido assistido no WhatsApp para confirmar medidas, combinacoes e disponibilidade.",
+    featuredReason: "Silhueta longa e firme para abrir a colecao com elegancia imediata.",
+    bundleText: "Combine com Faixa Dourado Fosco para uma leitura mais cerimonial.",
+    shippingNote: "Atendimento online para todo o Brasil com orientacao humana na finalizacao.",
     artworks: [
       { label: "Frente", base: "#F8F5ED", accent: "#7F9642", detail: "#B8C88E", motif: "arcs" },
       { label: "Detalhe", base: "#FCFAF4", accent: "#4F658F", detail: "#B8C88E", motif: "sun" },
@@ -111,10 +131,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "saia-alvorada-de-roda",
     name: "Saia Alvorada de Roda",
     categorySlug: "vestidos-e-saias",
+    eyebrow: "Saia de giro amplo",
     shortDescription:
-      "Saia de roda com volume firme, cintura confortável e leitura visual marcante para composições de presença.",
+      "Saia de roda com volume firme, cintura confortavel e leitura visual marcante para composicoes de presenca.",
     description:
-      "A Saia Alvorada foi construída para valorizar movimento, giro e composição com batas, camisas ou peças lisas. A roda abre com leveza e mantém estrutura visual, entregando um resultado forte em fotos, celebrações e uso cultural. O tecido mistura resistência e fluidez para acompanhar diferentes ocasiões.",
+      "A Saia Alvorada foi construida para valorizar movimento, giro e composicao com batas, camisas ou pecas lisas. A roda abre com leveza e mantem estrutura visual, entregando um resultado forte em fotos, celebracoes e uso cultural. O tecido mistura resistencia e fluidez para acompanhar diferentes ocasioes.",
     price: 239.9,
     badge: "Novo",
     featured: true,
@@ -126,10 +147,14 @@ export const storeProducts: StoreProduct[] = [
     sizes: ["P", "M", "G", "GG"],
     materials: ["Tricoline pesada", "Forro leve"],
     highlights: [
-      "Cintura confortável com melhor ajuste",
+      "Cintura confortavel com melhor ajuste",
       "Amplitude generosa de roda",
-      "Acabamento pensado para composições rituais e editoriais",
+      "Acabamento pensado para composicoes rituais e editoriais",
     ],
+    trustNote: "Indicada para composicoes com batas e camisas de leitura forte.",
+    featuredReason: "Peca de alto impacto visual para vitrines e editoriais.",
+    bundleText: "Funciona bem com Bata Axe Branca e faixa em oliva claro.",
+    shippingNote: "Equipe auxilia na escolha do tamanho e na composicao do look completo.",
     artworks: [
       { label: "Frente", base: "#10256B", accent: "#7F9642", detail: "#B8C88E", motif: "bands" },
       { label: "Movimento", base: "#142654", accent: "#F8F5ED", detail: "#4F658F", motif: "diamond" },
@@ -138,12 +163,13 @@ export const storeProducts: StoreProduct[] = [
   {
     id: "prod-axe",
     slug: "bata-axe-branca",
-    name: "Bata Axé Branca",
+    name: "Bata Axe Branca",
     categorySlug: "camisas-e-batas",
+    eyebrow: "Bata de base nobre",
     shortDescription:
       "Bata de linhas limpas e gola marcada, desenvolvida para compor visual claro, sofisticado e funcional.",
     description:
-      "A Bata Axé Branca traduz o essencial da Loja do Guerreiro: presença, conforto e acabamento honesto. A peça traz volume controlado nas mangas, gola estruturada e comprimento pensado para uso solto ou coordenado com saias e calças. Ideal para quem deseja uma base versátil com identidade forte.",
+      "A Bata Axe Branca traduz o essencial da Loja do Guerreiro: presenca, conforto e acabamento honesto. A peca traz volume controlado nas mangas, gola estruturada e comprimento pensado para uso solto ou coordenado com saias e calcas. Ideal para quem deseja uma base versatil com identidade forte.",
     price: 189.9,
     featured: true,
     newArrival: false,
@@ -152,12 +178,16 @@ export const storeProducts: StoreProduct[] = [
       { name: "Oliva Claro", hex: "#B8C88E" },
     ],
     sizes: ["P", "M", "G", "GG", "XG"],
-    materials: ["Algodão penteado", "Linho misto"],
+    materials: ["Algodao penteado", "Linho misto"],
     highlights: [
-      "Caimento leve com presença",
+      "Caimento leve com presenca",
       "Gola com acabamento limpo",
-      "Peça-chave para bases monocromáticas",
+      "Peca-chave para bases monocromaticas",
     ],
+    trustNote: "Base versatil para pedidos assistidos e composicoes sob medida.",
+    featuredReason: "Entrada ideal para clientes que querem comecar pela colecao.",
+    bundleText: "Combine com Saia Alvorada ou Conjunto Terra Sagrada para um look coordenado.",
+    shippingNote: "Suporte humano para definir combinacoes de tamanho e caimento.",
     artworks: [
       { label: "Frente", base: "#FCFAF4", accent: "#B8C88E", detail: "#5A7340", motif: "sun" },
       { label: "Detalhe", base: "#F8F5ED", accent: "#10256B", detail: "#B8C88E", motif: "bands" },
@@ -168,10 +198,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "camisa-raiz-obsidiana",
     name: "Camisa Raiz Obsidiana",
     categorySlug: "camisas-e-batas",
+    eyebrow: "Camisa de tom profundo",
     shortDescription:
       "Camisa de corte reto, tom profundo e acabamento seco para looks de forte assinatura visual.",
     description:
-      "A Camisa Raiz Obsidiana traz uma leitura urbana e ritual ao mesmo tempo. A construção reta, o punho limpo e a base escura criam um visual sóbrio, poderoso e adaptável. É uma peça que sustenta bem tanto produções completas quanto combinações minimalistas.",
+      "A Camisa Raiz Obsidiana traz uma leitura urbana e ritual ao mesmo tempo. A construcao reta, o punho limpo e a base escura criam um visual sobrio, poderoso e adaptavel. E uma peca que sustenta bem tanto producoes completas quanto combinacoes minimalistas.",
     price: 209.9,
     compareAtPrice: 249.9,
     badge: "Colecao",
@@ -185,9 +216,13 @@ export const storeProducts: StoreProduct[] = [
     materials: ["Sarja leve", "Viscose fosca"],
     highlights: [
       "Leitura forte em tons escuros",
-      "Modelagem confortável para uso prolongado",
-      "Combina com saias, calças ou conjuntos",
+      "Modelagem confortavel para uso prolongado",
+      "Combina com saias, calcas ou conjuntos",
     ],
+    trustNote: "Boa opcao para quem busca uma peca escura com assinatura e flexibilidade.",
+    featuredReason: "Traz densidade visual e ajuda a equilibrar a paleta da vitrine.",
+    bundleText: "Use com acessorios texteis para puxar a colecao para um campo mais editorial.",
+    shippingNote: "Atendimento acompanha disponibilidade e sugestoes de coordenacao.",
     artworks: [
       { label: "Frente", base: "#10256B", accent: "#5A7340", detail: "#B8C88E", motif: "arcs" },
       { label: "Textura", base: "#0F1D47", accent: "#7F9642", detail: "#F8F5ED", motif: "bands" },
@@ -198,10 +233,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "conjunto-ogu-verde-profundo",
     name: "Conjunto Ogu Verde Profundo",
     categorySlug: "conjuntos-rituais",
+    eyebrow: "Coordenado de presenca",
     shortDescription:
-      "Conjunto coordenado com camisa ampla e calça reta, pensado para conforto, firmeza e presença contemporânea.",
+      "Conjunto coordenado com camisa ampla e calca reta, pensado para conforto, firmeza e presenca contemporanea.",
     description:
-      "O Conjunto Ogu Verde Profundo organiza o visual de forma imediata. A composição equilibra volume na parte superior e estrutura na inferior, criando uma silhueta segura e moderna. A cor profunda e os detalhes foscos reforçam um acabamento sofisticado sem perder proximidade com o público.",
+      "O Conjunto Ogu Verde Profundo organiza o visual de forma imediata. A composicao equilibra volume na parte superior e estrutura na inferior, criando uma silhueta segura e moderna. A cor profunda e os detalhes foscos reforcam um acabamento sofisticado sem perder proximidade com o publico.",
     price: 369.9,
     badge: "Destaque",
     featured: true,
@@ -211,12 +247,16 @@ export const storeProducts: StoreProduct[] = [
       { name: "Oliva Claro", hex: "#B8C88E" },
     ],
     sizes: ["P", "M", "G", "GG"],
-    materials: ["Linho misto", "Algodão premium"],
+    materials: ["Linho misto", "Algodao premium"],
     highlights: [
       "Look coordenado pronto para vestir",
       "Caimento equilibrado entre conforto e estrutura",
-      "Visual de coleção com assinatura forte",
+      "Visual de colecao com assinatura forte",
     ],
+    trustNote: "Pensado para quem quer sair com a composicao principal resolvida.",
+    featuredReason: "Resume a proposta da marca em uma silhueta forte e comercial.",
+    bundleText: "Finalize com Pano de Cabeca Folha Profunda para elevar a assinatura.",
+    shippingNote: "Orientacao de medidas e disponibilidade diretamente no atendimento.",
     artworks: [
       { label: "Frente", base: "#5A7340", accent: "#B8C88E", detail: "#F8F5ED", motif: "diamond" },
       { label: "Detalhe", base: "#476337", accent: "#10256B", detail: "#B8C88E", motif: "sun" },
@@ -227,10 +267,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "conjunto-terra-sagrada",
     name: "Conjunto Terra Sagrada",
     categorySlug: "conjuntos-rituais",
+    eyebrow: "Conjunto de tons quentes",
     shortDescription:
-      "Camadas em tons terrosos com leitura forte e amigável, para quem busca um visual de impacto sem excesso.",
+      "Camadas em tons terrosos com leitura forte e amigavel, para quem busca um visual de impacto sem excesso.",
     description:
-      "Terra Sagrada une camisa de caimento leve e saia ou calça coordenada em tons quentes. O resultado é uma composição acolhedora, contemporânea e fotogênica, com textura visual que valoriza movimento. É uma peça central para o manifesto visual da coleção.",
+      "Terra Sagrada une camisa de caimento leve e saia ou calca coordenada em tons quentes. O resultado e uma composicao acolhedora, contemporanea e fotogenica, com textura visual que valoriza movimento. E uma peca central para o manifesto visual da colecao.",
     price: 349.9,
     featured: false,
     newArrival: true,
@@ -241,10 +282,14 @@ export const storeProducts: StoreProduct[] = [
     sizes: ["P", "M", "G", "GG"],
     materials: ["Viscose texturizada", "Linho misto"],
     highlights: [
-      "Coordenação pronta para ocasiões especiais",
+      "Coordenacao pronta para ocasioes especiais",
       "Tons quentes com apelo editorial",
-      "Estrutura visual amigável e marcante",
+      "Estrutura visual amigavel e marcante",
     ],
+    trustNote: "Boa escolha para quem quer impacto visual sem excesso de informacao.",
+    featuredReason: "Mistura acolhimento comercial e imagem forte para venda assistida.",
+    bundleText: "Pode ser finalizado com faixa ou acessorio textil em tons mais claros.",
+    shippingNote: "Atendimento apoia a montagem do pedido e da combinacao completa.",
     artworks: [
       { label: "Frente", base: "#7F9642", accent: "#F8F5ED", detail: "#B8C88E", motif: "arcs" },
       { label: "Costas", base: "#4F658F", accent: "#F8F5ED", detail: "#5A7340", motif: "bands" },
@@ -255,10 +300,11 @@ export const storeProducts: StoreProduct[] = [
     slug: "faixa-dourado-fosco",
     name: "Faixa Dourado Fosco",
     categorySlug: "acessorios-texteis",
+    eyebrow: "Complemento de brilho contido",
     shortDescription:
-      "Faixa têxtil com brilho controlado, usada para finalizar a composição com unidade e presença.",
+      "Faixa textil com brilho controlado, usada para finalizar a composicao com unidade e presenca.",
     description:
-      "A Faixa Dourado Fosco funciona como acabamento visual para vestidos, batas e conjuntos. O toque é macio, o brilho é discreto e a tonalidade conversa com a paleta principal da marca. É um acessório versátil que eleva a composição sem roubar a cena.",
+      "A Faixa Dourado Fosco funciona como acabamento visual para vestidos, batas e conjuntos. O toque e macio, o brilho e discreto e a tonalidade conversa com a paleta principal da marca. E um acessorio versatil que eleva a composicao sem roubar a cena.",
     price: 79.9,
     featured: false,
     newArrival: false,
@@ -266,13 +312,17 @@ export const storeProducts: StoreProduct[] = [
       { name: "Oliva Claro", hex: "#B8C88E" },
       { name: "Azul Profundo", hex: "#10256B" },
     ],
-    sizes: ["Único"],
+    sizes: ["Unico"],
     materials: ["Tecido acetinado fosco"],
     highlights: [
       "Brilho discreto e elegante",
-      "Ajuste versátil",
-      "Combina com a coleção inteira",
+      "Ajuste versatil",
+      "Combina com a colecao inteira",
     ],
+    trustNote: "Acessorio de finalizacao pensado para venda combinada.",
+    featuredReason: "Ajuda a aumentar ticket sem perder coerencia de marca.",
+    bundleText: "Ideal para ser somada a vestidos, batas e conjuntos da colecao.",
+    shippingNote: "Atendimento sugere as melhores combinacoes por cor e uso.",
     artworks: [
       { label: "Frente", base: "#B8C88E", accent: "#10256B", detail: "#F8F5ED", motif: "bands" },
       { label: "Textura", base: "#C9D7A8", accent: "#4F658F", detail: "#10256B", motif: "diamond" },
@@ -281,12 +331,13 @@ export const storeProducts: StoreProduct[] = [
   {
     id: "prod-pano",
     slug: "pano-de-cabeca-folha-profunda",
-    name: "Pano de Cabeça Folha Profunda",
+    name: "Pano de Cabeca Folha Profunda",
     categorySlug: "acessorios-texteis",
+    eyebrow: "Acessorio de assinatura",
     shortDescription:
-      "Pano de cabeça em tom profundo, com toque suave e acabamento limpo para composições autorais.",
+      "Pano de cabeca em tom profundo, com toque suave e acabamento limpo para composicoes autorais.",
     description:
-      "O Pano de Cabeça Folha Profunda foi desenhado para complementar o visual com sofisticação e presença. O tecido tem boa acomodação, volume controlado e tonalidade intensa, permitindo diferentes amarrações e leituras visuais. Funciona como peça de apoio e também como elemento protagonista.",
+      "O Pano de Cabeca Folha Profunda foi desenhado para complementar o visual com sofisticacao e presenca. O tecido tem boa acomodacao, volume controlado e tonalidade intensa, permitindo diferentes amarracoes e leituras visuais. Funciona como peca de apoio e tambem como elemento protagonista.",
     price: 89.9,
     badge: "Novo",
     featured: true,
@@ -295,13 +346,17 @@ export const storeProducts: StoreProduct[] = [
       { name: "Verde Folha Profunda", hex: "#5A7340" },
       { name: "Offwhite Ritual", hex: "#F8F5ED" },
     ],
-    sizes: ["Único"],
+    sizes: ["Unico"],
     materials: ["Malha premium", "Toque macio"],
     highlights: [
-      "Boa maleabilidade para amarrações",
+      "Boa maleabilidade para amarracoes",
       "Cor profunda e elegante",
       "Acabamento limpo para uso recorrente",
     ],
+    trustNote: "Permite montar looks autorais com orientacao humana no fechamento.",
+    featuredReason: "Traz protagonismo sem exigir uma producao inteira.",
+    bundleText: "Funciona especialmente bem com Conjunto Ogu e Camisa Raiz.",
+    shippingNote: "Suporte no WhatsApp para propor amarracoes e coordenacoes.",
     artworks: [
       { label: "Frente", base: "#5A7340", accent: "#F8F5ED", detail: "#B8C88E", motif: "sun" },
       { label: "Drapeado", base: "#405B36", accent: "#10256B", detail: "#F8F5ED", motif: "arcs" },

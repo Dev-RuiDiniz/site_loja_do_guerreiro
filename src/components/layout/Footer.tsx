@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { Brand } from "@/components/layout/Brand";
 import { storeCategories } from "@/data/store";
 import { ancestryArtLayers } from "@/data/visualAssets";
@@ -13,7 +13,7 @@ const institutionalLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-[color:rgba(16,37,107,0.1)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
+    <footer className="relative overflow-hidden border-t border-[var(--commerce-border)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
       <Image
         src={ancestryArtLayers[2].src}
         alt=""
@@ -22,13 +22,19 @@ export function Footer() {
         sizes="100vw"
         aria-hidden
       />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-[var(--section-max)] gap-12 px-6 py-16 lg:grid-cols-[1.2fr_0.9fr_0.9fr_1fr] lg:px-10">
         <div className="relative space-y-5">
           <div className="space-y-3">
             <Brand invert subtitle="Moda autoral afro-brasileira" />
             <p className="max-w-md text-sm leading-7 text-white/72">
-              Moda afro-brasileira com presença forte, leitura contemporânea e acolhimento
+              Moda afro-brasileira com presenca forte, leitura contemporanea e acolhimento
               comercial feito por gente.
+            </p>
+          </div>
+          <div className="rounded-[1.6rem] border border-white/12 bg-white/6 p-5">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/52">Manifesto</p>
+            <p className="mt-3 font-serif text-2xl leading-tight text-white">
+              Uma vitrine para vestir presenca com cuidado, orientacao e linguagem propria.
             </p>
           </div>
           <a
@@ -42,9 +48,7 @@ export function Footer() {
         </div>
 
         <div className="relative">
-          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">
-            Coleções
-          </p>
+          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">Colecoes</p>
           <ul className="space-y-3 text-sm text-white/70">
             {storeCategories.map((category) => (
               <li key={category.slug}>
@@ -60,13 +64,14 @@ export function Footer() {
         </div>
 
         <div className="relative">
-          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">
-            Marca
-          </p>
+          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">Marca</p>
           <ul className="space-y-3 text-sm text-white/70">
             {institutionalLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="transition-colors hover:text-[var(--color-chart-4)]">
+                <Link
+                  href={link.href}
+                  className="transition-colors hover:text-[var(--color-chart-4)]"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -90,6 +95,17 @@ export function Footer() {
               </a>
             </li>
           </ul>
+        </div>
+
+        <div className="relative">
+          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">
+            Compra assistida
+          </p>
+          <div className="space-y-3 text-sm leading-7 text-white/72">
+            <p>Atendimento online para todo o Brasil.</p>
+            <p>Montagem de pedido com apoio humano no WhatsApp.</p>
+            <p>Orientacao de combinacoes, tamanhos e disponibilidade.</p>
+          </div>
         </div>
       </div>
 

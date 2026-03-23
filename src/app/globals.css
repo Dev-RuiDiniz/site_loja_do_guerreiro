@@ -80,6 +80,17 @@
   --ancestry-line: rgba(127, 150, 66, 0.22);
   --ancestry-blue-haze: rgba(16, 37, 107, 0.18);
   --ancestry-paper: rgba(252, 250, 244, 0.82);
+  --brand-panel: #10256b;
+  --brand-panel-strong: #0b1a50;
+  --brand-ink: #172033;
+  --surface-soft: rgba(252, 250, 244, 0.86);
+  --surface-strong: #fcfaf4;
+  --surface-tint: rgba(232, 238, 216, 0.52);
+  --commerce-border: rgba(16, 37, 107, 0.12);
+  --commerce-muted: #5b6678;
+  --commerce-shadow: 0 22px 60px rgba(16, 37, 107, 0.12);
+  --commerce-shadow-strong: 0 26px 80px rgba(16, 37, 107, 0.16);
+  --section-max: 80rem;
 }
 
 .dark {
@@ -128,9 +139,9 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(circle at top left, rgba(16, 37, 107, 0.14), transparent 34%),
-      radial-gradient(circle at right 18%, rgba(127, 150, 66, 0.12), transparent 28%),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.42), transparent 60%);
+      radial-gradient(circle at top left, rgba(16, 37, 107, 0.12), transparent 32%),
+      radial-gradient(circle at right 16%, rgba(127, 150, 66, 0.1), transparent 28%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent 58%);
   }
 
   a {
@@ -144,7 +155,7 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0)),
       linear-gradient(150deg, rgba(127, 150, 66, 0.12), rgba(16, 37, 107, 0.06));
     border: 1px solid var(--ancestry-line);
-    box-shadow: 0 22px 60px rgba(16, 37, 107, 0.1);
+    box-shadow: var(--commerce-shadow);
   }
 
   .ancestry-paper {
@@ -152,6 +163,32 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0)),
       linear-gradient(160deg, rgba(127, 150, 66, 0.08), rgba(127, 150, 66, 0.03));
     background-color: var(--ancestry-paper);
+  }
+
+  .commerce-panel {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0.06)),
+      linear-gradient(160deg, rgba(127, 150, 66, 0.08), rgba(16, 37, 107, 0.04));
+    background-color: var(--surface-strong);
+    border: 1px solid var(--commerce-border);
+    box-shadow: var(--commerce-shadow);
+  }
+
+  .commerce-card {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.12)),
+      linear-gradient(160deg, rgba(127, 150, 66, 0.08), rgba(16, 37, 107, 0.03));
+    background-color: var(--surface-strong);
+    border: 1px solid var(--commerce-border);
+    box-shadow: 0 18px 44px rgba(16, 37, 107, 0.08);
+  }
+
+  .brand-panel {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)),
+      linear-gradient(180deg, rgba(12, 26, 77, 0.94), rgba(16, 37, 107, 0.86));
+    border: 1px solid rgba(248, 245, 237, 0.12);
+    box-shadow: var(--commerce-shadow-strong);
   }
 
   .ancestry-veil {
@@ -182,5 +219,19 @@
       linear-gradient(to right, rgba(16, 37, 107, 0.07) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(127, 150, 66, 0.07) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  .editorial-divider {
+    position: relative;
+  }
+
+  .editorial-divider::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 6rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-accent), rgba(16, 37, 107, 0));
   }
 }

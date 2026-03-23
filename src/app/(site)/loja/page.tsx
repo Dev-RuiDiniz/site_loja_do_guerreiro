@@ -10,14 +10,16 @@ export default async function LojaPage({
 
   return (
     <>
-      <section className="mx-auto max-w-7xl px-6 pb-10 pt-12 lg:px-10 lg:pt-16">
-        <p className="text-xs uppercase tracking-[0.28em] text-[#8A7D71]">Loja virtual</p>
-        <h1 className="mt-4 font-serif text-6xl leading-none text-[#111111] lg:text-7xl">
-          Coleção viva para vestir presença.
+      <section className="mx-auto max-w-[var(--section-max)] px-6 pb-10 pt-12 lg:px-10 lg:pt-16">
+        <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-muted-foreground)]">
+          Loja virtual
+        </p>
+        <h1 className="mt-4 max-w-5xl font-serif text-6xl leading-none text-[var(--color-primary)] lg:text-7xl">
+          Colecao viva para vestir presenca com compra guiada.
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-[#544B44]">
-          Navegue por categorias, escolha cor e tamanho e monte um pedido assistido
-          pela Loja do Guerreiro.
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--commerce-muted)]">
+          Navegue por categorias, compare silhuetas, escolha cor e tamanho e monte um pedido
+          assistido pela Loja do Guerreiro.
         </p>
       </section>
       <CatalogClient
