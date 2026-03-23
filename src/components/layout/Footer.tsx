@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Brand } from "@/components/layout/Brand";
 import { storeCategories } from "@/data/store";
+import { ancestryArtLayers } from "@/data/visualAssets";
 import { buildWhatsAppUrl, siteConfig } from "@/lib/site";
 
 const institutionalLinks = [
@@ -11,9 +13,17 @@ const institutionalLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[color:rgba(16,37,107,0.1)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
+    <footer className="relative overflow-hidden border-t border-[color:rgba(16,37,107,0.1)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
+      <Image
+        src={ancestryArtLayers[2].src}
+        alt=""
+        fill
+        className="pointer-events-none object-cover opacity-18 mix-blend-screen"
+        sizes="100vw"
+        aria-hidden
+      />
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-10">
-        <div className="space-y-5">
+        <div className="relative space-y-5">
           <div className="space-y-3">
             <Brand invert subtitle="Moda autoral afro-brasileira" />
             <p className="max-w-md text-sm leading-7 text-white/72">
@@ -31,7 +41,7 @@ export function Footer() {
           </a>
         </div>
 
-        <div>
+        <div className="relative">
           <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">
             Coleções
           </p>
@@ -49,7 +59,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="relative">
           <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">
             Marca
           </p>
@@ -83,7 +93,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-6 py-5 text-center text-xs uppercase tracking-[0.18em] text-white/45 lg:px-10">
+      <div className="relative border-t border-white/10 px-6 py-5 text-center text-xs uppercase tracking-[0.18em] text-white/45 lg:px-10">
         © {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
       </div>
     </footer>

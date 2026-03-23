@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Button } from "@/components/ui/button";
 import { ProductArtwork } from "@/components/storefront/ProductArtwork";
 import { StoreColor, StoreProduct, storeCategories, storeProducts } from "@/data/store";
+import { ancestryArtLayers, heroImages, themePanels } from "@/data/visualAssets";
 import { useCart } from "@/contexts/CartContext";
 import { buildWhatsAppUrl, formatCurrency } from "@/lib/site";
 
@@ -230,6 +232,38 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
             </div>
 
+            <div className="ancestry-frame grid gap-5 overflow-hidden rounded-[1.7rem] p-4 md:grid-cols-[0.88fr_1.12fr]">
+              <div className="relative min-h-[15rem] overflow-hidden rounded-[1.3rem]">
+                <Image
+                  src={themePanels[0].src}
+                  alt={themePanels[0].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 20vw"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(16,37,107,0.16),rgba(16,37,107,0.44))]" />
+              </div>
+              <div className="relative flex flex-col justify-center">
+                <Image
+                  src={ancestryArtLayers[2].src}
+                  alt=""
+                  fill
+                  className="pointer-events-none object-cover opacity-20"
+                  sizes="(max-width: 768px) 100vw, 28vw"
+                  aria-hidden
+                />
+                <div className="relative">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
+                    Campo visual
+                  </p>
+                  <p className="mt-3 font-serif text-3xl leading-tight text-[var(--color-primary)]">
+                    A peça dialoga com luz, tecido e permanência em uma estética de
+                    ancestralidade elegante.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <Button
               variant="ghost"
               className="px-0 text-[var(--color-primary)] hover:bg-transparent hover:text-[var(--color-accent)]"
@@ -242,7 +276,15 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
       </section>
 
       {relatedProducts.length > 0 ? (
-        <section className="border-t border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.72)]">
+        <section className="relative overflow-hidden border-t border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.72)]">
+          <Image
+            src={heroImages[1].src}
+            alt=""
+            fill
+            className="pointer-events-none object-cover opacity-12"
+            sizes="100vw"
+            aria-hidden
+          />
           <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>

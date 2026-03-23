@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { HiOutlineMenuAlt3, HiOutlineShoppingBag } from "react-icons/hi";
 import { Brand } from "@/components/layout/Brand";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
+import { ancestryArtLayers } from "@/data/visualAssets";
 import { buildWhatsAppUrl, siteConfig } from "@/lib/site";
 
 const navItems = [
@@ -42,6 +44,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(248,245,237,0.92)] backdrop-blur">
+      <Image
+        src={ancestryArtLayers[1].src}
+        alt=""
+        width={900}
+        height={220}
+        className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-auto -translate-x-1/2 opacity-12 lg:block"
+        aria-hidden
+      />
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10">
         <Link href="/" aria-label={siteConfig.name}>
           <Brand subtitle="Azul profundo, verde vivo e presença autoral" />
@@ -100,6 +110,14 @@ export function Header() {
               className="w-full border-l border-[color:rgba(248,245,237,0.12)] bg-[var(--color-primary)] p-0 text-[var(--color-primary-foreground)] sm:max-w-md"
             >
               <div className="flex h-full flex-col px-6 py-8">
+                <Image
+                  src={ancestryArtLayers[0].src}
+                  alt=""
+                  width={680}
+                  height={860}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-18 mix-blend-screen"
+                  aria-hidden
+                />
                 <Brand
                   invert
                   subtitle="Moda autoral afro-brasileira"
