@@ -13,13 +13,13 @@ export function ProductCard({ product, category }: ProductCardProps) {
   return (
     <Link
       href={`/produto/${product.slug}`}
-      className="group ritual-shell surface-grain editorial-shadow block overflow-hidden rounded-[1.7rem] border border-[var(--olive-line)] bg-[var(--offwhite-raised)] transition-all duration-300 hover:-translate-y-1"
+      className="group block overflow-hidden border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] shadow-[0_18px_40px_rgba(16,37,107,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(16,37,107,0.14)]"
     >
       <div className="relative">
         <ProductArtwork
           artwork={product.artworks[0]}
           className="aspect-[4/5] border-0 shadow-none"
-          labelClassName="bg-[color:rgba(255,253,248,0.9)] text-[var(--color-primary)]"
+          labelClassName="bg-white/85 text-black"
         />
         <div className="absolute left-4 top-4 flex gap-2">
           {product.badge ? (
@@ -28,7 +28,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
             </span>
           ) : null}
           {product.newArrival ? (
-            <span className="rounded-full border border-[var(--olive-line)] bg-[var(--olive-soft)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
+            <span className="rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-secondary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
               Lancamento
             </span>
           ) : null}
@@ -37,13 +37,13 @@ export function ProductCard({ product, category }: ProductCardProps) {
 
       <div className="space-y-4 p-5">
         <div className="space-y-2">
-          <p className="caption-label">
+          <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
             {category?.name || "Colecao"}
           </p>
-          <h3 className="font-serif text-[1.9rem] leading-tight text-[var(--color-primary)] transition-colors group-hover:text-[var(--color-accent)]">
+          <h3 className="font-serif text-2xl text-[var(--color-primary)] transition-colors group-hover:text-[var(--color-accent)]">
             {product.name}
           </h3>
-          <p className="line-clamp-2 text-sm leading-7 text-[var(--color-muted-foreground)]">
+          <p className="line-clamp-2 text-sm leading-6 text-[var(--color-muted-foreground)]">
             {product.shortDescription}
           </p>
         </div>

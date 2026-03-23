@@ -63,9 +63,9 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
           </div>
 
           <div className="space-y-8">
-            <div className="space-y-4 lens-glow">
+            <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="eyebrow">
+                <span className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
                   {category?.name || "Coleção"}
                 </span>
                 {product.badge ? (
@@ -74,10 +74,10 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   </span>
                 ) : null}
               </div>
-              <h1 className="section-title text-5xl lg:text-6xl">
+              <h1 className="font-serif text-5xl leading-tight text-[var(--color-primary)] lg:text-6xl">
                 {product.name}
               </h1>
-              <p className="lede max-w-2xl">
+              <p className="max-w-2xl text-lg leading-8 text-[var(--color-muted-foreground)]">
                 {product.shortDescription}
               </p>
               <div className="flex items-center gap-3">
@@ -92,9 +92,9 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
             </div>
 
-            <div className="grid gap-6 border-y border-[var(--olive-line)] py-8">
+            <div className="grid gap-6 border-y border-[color:rgba(16,37,107,0.1)] py-8">
               <div>
-                <p className="caption-label mb-3">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Cor
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -106,7 +106,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                       className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
                         selectedColor.name === color.name
                           ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                          : "border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)]"
+                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
                       }`}
                     >
                       <span
@@ -120,7 +120,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
 
               <div>
-                <p className="caption-label mb-3">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Tamanho
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -132,7 +132,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                       className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                         selectedSize === size
                           ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                          : "border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)]"
+                          : "border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)]"
                       }`}
                     >
                       {size}
@@ -142,10 +142,10 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </div>
 
               <div>
-                <p className="caption-label mb-3">
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                   Quantidade
                 </p>
-                <div className="editorial-shadow inline-flex items-center rounded-full border border-[var(--olive-line)] bg-[var(--offwhite-raised)]">
+                <div className="inline-flex items-center rounded-full border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)]">
                   <button
                     type="button"
                     className="px-4 py-2 text-[var(--color-primary)]"
@@ -184,7 +184,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-12 border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
+                className="h-12 border-[color:rgba(16,37,107,0.16)] bg-[var(--color-card)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)]"
                 asChild
               >
                 <a
@@ -199,16 +199,16 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
               </Button>
             </div>
 
-            <div className="surface-grain editorial-shadow rounded-[1.7rem] border border-[var(--olive-line)] bg-[var(--offwhite-raised)] p-6">
-              <p className="caption-label">
+            <div className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.78)] p-6">
+              <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                 Sobre a peça
               </p>
-              <p className="lede mt-4 text-base">
+              <p className="mt-4 text-base leading-8 text-[var(--color-muted-foreground)]">
                 {product.description}
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <p className="caption-label">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                     Materiais
                   </p>
                   <ul className="mt-3 space-y-2 text-sm text-[var(--color-primary)]">
@@ -218,7 +218,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   </ul>
                 </div>
                 <div>
-                  <p className="caption-label">
+                  <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
                     Destaques
                   </p>
                   <ul className="mt-3 space-y-2 text-sm text-[var(--color-primary)]">
@@ -242,14 +242,14 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
       </section>
 
       {relatedProducts.length > 0 ? (
-        <section className="surface-fiber border-t border-[var(--olive-line)] bg-[var(--olive-soft)]">
+        <section className="border-t border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.72)]">
           <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
             <div className="mb-8 flex items-end justify-between gap-4">
               <div>
-                <p className="eyebrow">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
                   Continue explorando
                 </p>
-                <h2 className="section-title mt-2">
+                <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
                   Peças da mesma linha
                 </h2>
               </div>
@@ -259,7 +259,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                 <Link
                   key={related.slug}
                   href={`/produto/${related.slug}`}
-                  className="ritual-shell editorial-shadow rounded-[1.7rem] border border-[var(--olive-line)] bg-[var(--offwhite-raised)] p-5 transition-transform hover:-translate-y-1"
+                  className="rounded-[1.5rem] border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] p-5 transition-transform hover:-translate-y-1"
                 >
                   <ProductArtwork
                     artwork={related.artworks[0]}
@@ -268,7 +268,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   <h3 className="mt-4 font-serif text-2xl text-[var(--color-primary)]">
                     {related.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-7 text-[var(--color-muted-foreground)]">
+                  <p className="mt-2 text-sm leading-6 text-[var(--color-muted-foreground)]">
                     {related.shortDescription}
                   </p>
                 </Link>

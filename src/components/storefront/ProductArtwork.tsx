@@ -81,7 +81,7 @@ export function ProductArtwork({
   return (
     <div
       className={cn(
-        "surface-grain relative overflow-hidden border border-[var(--olive-line)] shadow-[0_14px_40px_rgba(16,37,107,0.12)]",
+        "relative overflow-hidden border border-[color:rgba(16,37,107,0.12)] shadow-[0_14px_40px_rgba(16,37,107,0.12)]",
         className
       )}
       style={{
@@ -96,7 +96,6 @@ export function ProductArtwork({
           backgroundSize: "20px 20px",
         }}
       />
-      <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.32),transparent_28%),radial-gradient(circle_at_70%_68%,rgba(127,150,66,0.14),transparent_30%)]" />
       <Motif artwork={artwork} />
       <div className="absolute inset-x-0 bottom-0 p-4">
         <span

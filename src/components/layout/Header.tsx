@@ -24,7 +24,7 @@ function CartButton() {
     <button
       type="button"
       onClick={openCart}
-      className="editorial-shadow relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)] transition-all hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-card)] text-[var(--color-primary)] shadow-[0_10px_28px_rgba(16,37,107,0.12)] transition-all hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
       aria-label="Abrir carrinho"
     >
       <HiOutlineShoppingBag className="h-5 w-5" />
@@ -41,7 +41,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[color:rgba(127,150,66,0.16)] bg-[color:rgba(251,248,240,0.82)] backdrop-blur supports-[backdrop-filter]:surface-fiber">
+    <header className="sticky top-0 z-40 border-b border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(248,245,237,0.92)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10">
         <Link href="/" aria-label={siteConfig.name}>
           <Brand subtitle="Azul profundo, verde vivo e presença autoral" />
@@ -58,11 +58,10 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                data-active={isActive ? "true" : "false"}
                 className={`text-sm uppercase tracking-[0.2em] transition-colors ${
                   isActive
-                    ? "nav-sheen text-[var(--color-accent)]"
-                    : "nav-sheen text-[var(--color-primary)] hover:text-[var(--color-accent)]"
+                    ? "text-[var(--color-accent)]"
+                    : "text-[var(--color-primary)] hover:text-[var(--color-accent)]"
                 }`}
               >
                 {item.label}
@@ -73,7 +72,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <div className="hidden lg:block">
-            <Button className="editorial-shadow h-11 bg-[var(--color-primary)] px-5 text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]" asChild>
+            <Button className="h-11 bg-[var(--color-primary)] px-5 text-[var(--color-primary-foreground)] hover:bg-[color:#17358f]" asChild>
               <a
                 href={buildWhatsAppUrl("Olá! Quero atendimento da Loja do Guerreiro.")}
                 target="_blank"
@@ -90,7 +89,7 @@ export function Header() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="editorial-shadow flex h-11 w-11 items-center justify-center rounded-full border border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)] lg:hidden"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(16,37,107,0.12)] bg-[var(--color-card)] text-[var(--color-primary)] lg:hidden"
                 aria-label="Abrir menu"
               >
                 <HiOutlineMenuAlt3 className="h-6 w-6" />

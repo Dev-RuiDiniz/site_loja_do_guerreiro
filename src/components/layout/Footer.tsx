@@ -11,10 +11,10 @@ const institutionalLinks = [
 
 export function Footer() {
   return (
-    <footer className="surface-grain border-t border-[color:rgba(127,150,66,0.16)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
+    <footer className="border-t border-[color:rgba(16,37,107,0.1)] bg-[var(--color-primary)] text-[var(--color-primary-foreground)]">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-10">
         <div className="space-y-5">
-          <div className="lens-glow space-y-3">
+          <div className="space-y-3">
             <Brand invert subtitle="Moda autoral afro-brasileira" />
             <p className="max-w-md text-sm leading-7 text-white/72">
               Moda afro-brasileira com presença forte, leitura contemporânea e acolhimento
@@ -25,7 +25,7 @@ export function Footer() {
             href={buildWhatsAppUrl(siteConfig.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="editorial-shadow inline-flex rounded-full border border-[color:rgba(248,245,237,0.24)] bg-[color:rgba(248,245,237,0.06)] px-5 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-primary-foreground)] transition-colors hover:border-[var(--color-chart-4)] hover:bg-[color:rgba(248,245,237,0.12)]"
+            className="inline-flex rounded-full border border-[color:rgba(248,245,237,0.24)] bg-[color:rgba(248,245,237,0.06)] px-5 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-primary-foreground)] transition-colors hover:border-[var(--color-chart-4)] hover:bg-[color:rgba(248,245,237,0.12)]"
           >
             Finalizar pedido no WhatsApp
           </a>
