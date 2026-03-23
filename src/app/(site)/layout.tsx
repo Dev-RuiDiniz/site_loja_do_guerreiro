@@ -1,4 +1,5 @@
 import { Header, Footer, WhatsAppButton } from "@/components/layout";
+import { MotionProvider } from "@/components/ui/LazyMotion";
 import { CartProvider } from "@/contexts/CartContext";
 
 export default function SiteLayout({
@@ -8,10 +9,12 @@ export default function SiteLayout({
 }) {
   return (
     <CartProvider>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-      <WhatsAppButton />
+      <MotionProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <WhatsAppButton />
+      </MotionProvider>
     </CartProvider>
   );
 }

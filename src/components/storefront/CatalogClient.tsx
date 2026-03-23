@@ -34,11 +34,11 @@ export function CatalogClient({
 
   return (
     <>
-      <section className="border-y border-[color:rgba(16,37,107,0.1)] bg-[color:rgba(252,250,244,0.78)]">
+      <section className="surface-fiber border-y border-[color:rgba(127,150,66,0.16)] bg-[var(--olive-soft)]">
         <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
+              <p className="eyebrow">
                 Filtre sua presença
               </p>
               <div className="flex flex-wrap gap-2">
@@ -47,8 +47,8 @@ export function CatalogClient({
                   onClick={() => setSelectedCategory("all")}
                   className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors ${
                     selectedCategory === "all"
-                      ? "bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                      : "border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
+                      ? "editorial-shadow bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
+                      : "border border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
                   }`}
                 >
                   Tudo
@@ -60,8 +60,8 @@ export function CatalogClient({
                     onClick={() => setSelectedCategory(category.slug)}
                     className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors ${
                       selectedCategory === category.slug
-                        ? "bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
-                        : "border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
+                        ? "editorial-shadow bg-[var(--color-primary)] text-[var(--color-primary-foreground)]"
+                        : "border border-[var(--olive-line)] bg-[var(--offwhite-raised)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
                     }`}
                   >
                     {category.name}
@@ -77,7 +77,7 @@ export function CatalogClient({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Buscar por nome, coleção ou descrição"
-                className="h-12 w-full border border-[color:rgba(16,37,107,0.1)] bg-[var(--color-card)] pl-11 pr-4 text-sm text-[var(--color-primary)] outline-none transition-colors placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-accent)]"
+                className="editorial-shadow h-12 w-full rounded-full border border-[var(--olive-line)] bg-[var(--offwhite-raised)] pl-11 pr-4 text-sm text-[var(--color-primary)] outline-none transition-colors placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-accent)]"
               />
             </label>
           </div>
@@ -86,7 +86,7 @@ export function CatalogClient({
 
       <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
         <div className="mb-6 flex items-center justify-between gap-4">
-          <p className="text-sm text-[var(--color-muted-foreground)]">
+          <p className="lede text-sm">
             {filteredProducts.length} peça{filteredProducts.length !== 1 ? "s" : ""} encontrada
             {filteredProducts.length !== 1 ? "s" : ""}
           </p>
