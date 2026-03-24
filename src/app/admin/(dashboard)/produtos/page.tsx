@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { HiOutlinePlus, HiOutlinePencil, HiOutlineTrash, HiOutlineEye, HiOutlineSearch, HiOutlineCog, HiX, HiOutlineLink } from "react-icons/hi";
 import { Modal, ConfirmModal } from "@/components/admin/Modal";
@@ -217,12 +217,7 @@ export default function ProdutosPage() {
   const [newCategoryParentId, setNewCategoryParentId] = useState<string | null>(null);
   const [savingCategory, setSavingCategory] = useState(false);
 
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories();
-  }, [page, search]);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/products?page=${page}&search=${search}`);
@@ -234,7 +229,7 @@ export default function ProdutosPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, search]);
 
   const fetchCategories = async () => {
     try {
@@ -245,6 +240,11 @@ export default function ProdutosPage() {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+  }, [fetchProducts]);
 
   const openCreate = () => {
     setSelectedProduct(null);

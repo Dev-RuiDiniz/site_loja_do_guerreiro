@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiSearch, FiGlobe, FiAlertCircle, FiCheckCircle } from "react-icons/fi";
 import { HiOutlinePhotograph, HiOutlineX } from "react-icons/hi";
 import { upload } from "@vercel/blob/client";
@@ -28,7 +28,12 @@ export default function SEOFields({
   const [activeTab, setActiveTab] = useState<"fields" | "preview">("fields");
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [ogImagePreviewError, setOgImagePreviewError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setOgImagePreviewError(false);
+  }, [ogImage]);
 
   const handleUploadOgImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -51,6 +56,7 @@ export default function SEOFields({
       });
 
       onChange("ogImage", blob.url);
+      setOgImagePreviewError(false);
     } catch (error) {
       console.error("Upload error:", error);
       alert("Erro ao fazer upload. Tente novamente.");
@@ -375,15 +381,18 @@ export default function SEOFields({
               <div className="max-w-md overflow-hidden rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.32)]">
                 <div className="flex aspect-[1200/630] items-center justify-center bg-[color:rgba(198,161,91,0.08)]">
                   {ogImage ? (
-                    <img
-                      src={ogImage}
-                      alt="OG Preview"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).parentElement!.innerHTML = 
-                          '<div class="flex items-center justify-center w-full h-full text-gray-400 text-sm">Imagem não encontrada</div>';
-                      }}
-                    />
+                    ogImagePreviewError ? (
+                      <span className="text-sm text-[var(--admin-muted)]">Imagem nao encontrada</span>
+                    ) : (
+                      <Image
+                        src={ogImage}
+                        alt="OG Preview"
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        onError={() => setOgImagePreviewError(true)}
+                      />
+                    )
                   ) : (
                     <span className="text-sm text-[var(--admin-muted)]">Sem imagem OG</span>
                   )}

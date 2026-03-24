@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (pathname) => {
+      onBeforeGenerateToken: async () => {
         // Aqui você pode adicionar autenticação se necessário
         return {
           allowedContentTypes: [
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
           maximumSizeInBytes: 50 * 1024 * 1024, // 50MB
         };
       },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
+      onUploadCompleted: async ({ blob }) => {
         // Upload completed - você pode salvar no banco aqui se necessário
         console.log("Upload completed:", blob.url);
       },

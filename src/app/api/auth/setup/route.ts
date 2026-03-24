@@ -63,7 +63,7 @@ export async function GET() {
     return NextResponse.json({
       hasAdmin: !!existingAdmin,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ hasAdmin: false });
   }
 }

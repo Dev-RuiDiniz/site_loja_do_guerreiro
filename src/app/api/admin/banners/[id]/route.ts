@@ -12,7 +12,7 @@ export async function GET(
       return NextResponse.json({ error: "Banner não encontrado" }, { status: 404 });
     }
     return NextResponse.json({ banner });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Erro ao buscar banner" }, { status: 500 });
   }
 }
@@ -46,7 +46,7 @@ export async function PUT(
       },
     });
     return NextResponse.json({ success: true, banner });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Erro ao atualizar banner" }, { status: 500 });
   }
 }
@@ -59,7 +59,7 @@ export async function DELETE(
     const { id } = await params;
     await prisma.banner.delete({ where: { id } });
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Erro ao deletar banner" }, { status: 500 });
   }
 }
