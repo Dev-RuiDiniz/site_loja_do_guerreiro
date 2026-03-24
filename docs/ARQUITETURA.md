@@ -1,100 +1,107 @@
 # Arquitetura da Loja do Guerreiro
 
-## Visao geral
+## Visão geral
 
-O projeto usa o App Router do Next.js com separacao direta entre:
+O projeto usa o App Router do Next.js com separação direta entre:
 
-- storefront publica
+- storefront pública
 - painel administrativo autenticado
-- APIs para leitura publica e operacao interna
-- bibliotecas de UI e dados locais para o MVP
+- APIs para leitura pública e operação interna
+- bibliotecas locais de catálogo, marca e interface
 
-Nao ha mais arquitetura multi-site, editor visual por blocos ou experiencias dedicadas por dominio.
+Não há mais arquitetura multi-site, editor visual por blocos nem experiências separadas por domínio.
 
 ## Camadas principais
 
-## 1) App (`src/app`)
+### App (`src/app`)
 
 - `(site)`
-  - rotas publicas da loja
-  - usa `Header`, `Footer` e `WhatsAppButton` no layout
+  - rotas públicas da loja
+  - usa `Header`, `Footer` e CTA de WhatsApp no layout
 - `admin`
-  - painel de gestao com autenticacao por sessao
+  - painel de gestão com autenticação por sessão
   - dashboards e CRUDs operacionais
 - `api`
-  - endpoints publicos e administrativos
+  - endpoints públicos e administrativos
 - `login`
   - setup inicial e login admin
 - `proxy.ts`
-  - protecao de `/admin` por cookie de sessao
+  - proteção de `/admin` por cookie de sessão
 
-## 2) Componentes (`src/components`)
+### Componentes (`src/components`)
 
 - `layout`
-  - header, footer, marca e CTA publico
+  - header, footer, marca e CTA público
 - `storefront`
-  - cards de produto, detalhe, catalogo e arte editorial
+  - cards de produto, detalhe, catálogo e arte editorial
 - `admin`
   - sidebar, topbar, modais, uploads, SEO e CRUDs do painel
 - `ui`
   - primitives compartilhadas baseadas em Radix e Tailwind
 
-## 3) Dados e bibliotecas (`src/data` e `src/lib`)
+### Dados e bibliotecas (`src/data` e `src/lib`)
 
 - `data/store.ts`
-  - dados de loja usados na storefront atual
+  - fonte de verdade do catálogo público
+  - categorias públicas ativas: `Saias`, `Ojás`, `Panos das Costas` e `Lançamentos`
 - `data/visualAssets.ts`
   - acervo visual editorial da marca
 - `lib/prisma.ts`
   - singleton do Prisma Client
 - `lib/session.ts` e `lib/auth.ts`
-  - sessao admin via `iron-session`
+  - sessão admin via `iron-session`
 - `lib/seo.ts`
   - metadata da loja
 - `lib/site.ts`
-  - configuracoes centrais da marca e do fluxo de WhatsApp
+  - configurações centrais da marca e do fluxo de WhatsApp
 
-## Fluxo de autenticacao
+## Fluxo público de compra
 
-1. Usuario cria o primeiro admin em `/login/setup`.
-2. Login acontece em `/login`.
-3. Sessao e persistida por cookie.
+1. A pessoa navega pela home, pelas categorias e pelo catálogo.
+2. Escolhe uma peça em `/loja` ou `/produto/[slug]`.
+3. Adiciona ao carrinho client-side.
+4. Fecha o pedido pelo WhatsApp com mensagem pré-formatada.
+
+## Catálogo público atual
+
+- categorias removidas da vitrine: `Camisas e Batas` e `Conjuntos Rituais`
+- categorias novas ou mantidas: `Saias`, `Ojás`, `Panos das Costas` e `Lançamentos`
+- categorias podem existir vazias até a entrada de novos produtos
+
+## Fluxo de autenticação
+
+1. A pessoa cria o primeiro admin em `/login/setup`.
+2. O login acontece em `/login`.
+3. A sessão é persistida por cookie.
 4. `src/proxy.ts` protege o acesso a `/admin`.
 
-## Fluxo publico de compra
+## Fluxo de operação do admin
 
-1. Usuario navega pela home, colecoes e catalogo.
-2. Escolhe uma peca em `/loja` ou `/produto/[slug]`.
-3. Adiciona ao carrinho client-side.
-4. Fecha o pedido pelo WhatsApp com mensagem preformatada.
-
-## Fluxo de operacao do admin
-
-O painel cobre o necessario para o MVP:
+O painel cobre o necessário para o MVP:
 
 - banners da vitrine
-- catalogo de produtos
-- cabecalho e rodape
-- configuracoes de marca e SEO
+- catálogo de produtos
+- cabeçalho e rodapé
+- configurações de marca e SEO
 
 ## Upload de arquivos
 
 - `ImageUpload` usa upload direto para Vercel Blob via `/api/upload/client`
-- `/api/upload` permanece para cenarios server-side
+- `/api/upload` permanece para cenários server-side
 
-## Interface system
+## Sistema de interface
 
-A direcao visual compartilhada entre storefront e admin esta documentada em:
+A direção visual compartilhada entre storefront e admin está documentada em:
 
 - `.interface-design/system.md`
 
 ## Notas sobre o legado
 
-O repositorio ja teve uma base maior com:
+O repositório já teve uma base maior com:
 
 - multi-site
 - editor visual por blocos
-- integracao Kommo
-- CRUDs adicionais e paginas dinamicas antigas
+- integração Kommo
+- CRUDs adicionais e páginas dinâmicas antigas
 
-Esse desenho nao representa mais a arquitetura ativa do projeto.
+Esse desenho não representa mais a arquitetura ativa do projeto.

@@ -4,15 +4,17 @@ import { siteConfig } from "@/lib/site";
 const defaultMetadata = {
   title: "Loja do Guerreiro | Moda afro-brasileira com presença contemporânea",
   description:
-    "Saias, ojás, panos das costas, conjuntos e lançamentos com estética forte, moderna e acolhedora para expressões afro-brasileiras.",
+    "Saias, ojás, panos das costas e lançamentos com estética forte, moderna e acolhedora para expressões afro-brasileiras.",
   keywords: [
     "loja do guerreiro",
     "moda afro-brasileira",
     "roupas afro-religiosas",
     "umbanda",
     "candomblé",
-    "vestidos afro",
-    "batas e conjuntos",
+    "saias afro",
+    "ojás",
+    "panos das costas",
+    "lançamentos afro-brasileiros",
   ],
 };
 

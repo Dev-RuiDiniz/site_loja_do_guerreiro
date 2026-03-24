@@ -15,7 +15,7 @@ export default async function LojaPage({
           Loja virtual
         </p>
         <h1 className="mt-4 max-w-5xl font-serif text-6xl leading-none text-[var(--color-primary)] lg:text-7xl">
-          Colecao viva para vestir presenca com compra guiada.
+          Coleção viva para vestir presença com compra guiada.
         </h1>
         <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--commerce-muted)]">
           Navegue por categorias, compare silhuetas, escolha cor e tamanho e monte um pedido

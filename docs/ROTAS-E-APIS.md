@@ -1,6 +1,6 @@
 # Rotas e APIs Atuais
 
-## Rotas web publicas
+## Rotas web públicas
 
 Principais rotas ativas:
 
@@ -16,12 +16,27 @@ Principais rotas ativas:
 - `/blog/[slug]`
 - `/blog/categorias`
 
-Rotas publicas auxiliares ainda presentes no projeto:
+Rotas públicas auxiliares ainda presentes no projeto:
 
 - `/marcas`
 - `/produtos`
 - `/produtos/[slug]`
 - `/p/[slug]`
+
+## Catálogo público exposto
+
+Categorias públicas ativas:
+
+- `saias`
+- `ojas`
+- `panos-das-costas`
+- `lancamentos`
+
+Categorias removidas da vitrine pública:
+
+- `camisas-e-batas`
+- `conjuntos-rituais`
+- `saias-ojas-e-panos-das-costas`
 
 ## Rotas de login e admin
 
@@ -45,7 +60,7 @@ Rotas publicas auxiliares ainda presentes no projeto:
 - `/api/admin/products/[id]` `[GET, PUT, DELETE]`
 - `/api/admin/settings` `[GET, POST]`
 
-## APIs de autenticacao
+## APIs de autenticação
 
 - `/api/auth/forgot-password` `[POST]`
 - `/api/auth/login` `[POST]`
@@ -53,7 +68,7 @@ Rotas publicas auxiliares ainda presentes no projeto:
 - `/api/auth/session` `[GET]`
 - `/api/auth/setup` `[GET, POST]`
 
-## APIs publicas
+## APIs públicas
 
 - `/api/categories` `[GET]`
 - `/api/products` `[GET]`
@@ -62,16 +77,21 @@ Rotas publicas auxiliares ainda presentes no projeto:
 - `/api/upload` `[POST]`
 - `/api/upload/client` `[POST]`
 
-## Metadados e utilitarios
+Observações:
+
+- `/api/categories` reflete apenas as categorias públicas atuais do dataset
+- `/api/products` e `/api/products/[slug]` não expõem mais produtos de `Camisas e Batas` nem de `Conjuntos Rituais`
+
+## Metadados e utilitários
 
 - `/robots.txt`
 - `/sitemap.xml`
 
 ## Fora de escopo atual
 
-As rotas abaixo pertenciam ao legado e nao devem mais ser usadas como referencia de implementacao:
+As rotas abaixo pertenciam ao legado e não devem mais ser usadas como referência de implementação:
 
-- multi-site por dominio
+- multi-site por domínio
 - `/admin/blog`
 - `/admin/paginas`
 - `/admin/editor/[pageId]`
