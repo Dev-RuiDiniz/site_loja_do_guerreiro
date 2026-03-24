@@ -34,13 +34,18 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className={`relative bg-white dark:bg-zinc-900 w-full ${sizeClasses[size]} max-h-[90vh] overflow-hidden flex flex-col`}>
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-zinc-800">
-          <h2 className="text-lg font-semibold text-black dark:text-white">{title}</h2>
+      <div className="fixed inset-0 bg-[var(--admin-overlay)] backdrop-blur-sm" onClick={onClose} />
+      <div
+        className={`admin-panel-strong relative flex max-h-[90vh] w-full ${sizeClasses[size]} flex-col overflow-hidden rounded-[1.8rem]`}
+      >
+        <div className="flex items-center justify-between border-b border-[var(--admin-border)] px-6 py-5">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--admin-muted)]">Edicao</p>
+            <h2 className="mt-2 font-serif text-2xl text-[var(--admin-ink)]">{title}</h2>
+          </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+            className="admin-action flex h-11 w-11 items-center justify-center text-[var(--admin-muted)]"
           >
             <HiX className="h-5 w-5" />
           </button>
@@ -74,21 +79,22 @@ export function ConfirmModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white dark:bg-zinc-900 w-full max-w-sm p-6">
-        <h2 className="text-lg font-semibold text-black dark:text-white mb-2">{title}</h2>
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">{message}</p>
+      <div className="fixed inset-0 bg-[var(--admin-overlay)] backdrop-blur-sm" onClick={onClose} />
+      <div className="admin-panel-strong relative w-full max-w-sm rounded-[1.6rem] p-6">
+        <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--admin-muted)]">Confirmacao</p>
+        <h2 className="mt-2 font-serif text-2xl text-[var(--admin-ink)]">{title}</h2>
+        <p className="mt-3 text-sm leading-6 text-[var(--admin-muted)]">{message}</p>
         <div className="flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2.5 border border-gray-200 dark:border-zinc-700 text-sm font-medium hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
+            className="admin-action flex-1 px-4 py-2.5 text-sm font-medium"
           >
             Cancelar
           </button>
           <button
             onClick={onConfirm}
             disabled={loading}
-            className="flex-1 px-4 py-2.5 bg-red-600 text-white text-sm font-medium hover:bg-red-700 disabled:opacity-50 transition-colors"
+            className="flex-1 rounded-full border border-[color:rgba(138,47,63,0.24)] bg-[var(--admin-danger)] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:brightness-110 disabled:opacity-50"
           >
             {loading ? "..." : confirmText}
           </button>

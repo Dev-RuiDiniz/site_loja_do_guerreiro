@@ -21,11 +21,11 @@ export default async function AdminDashboardLayout({
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[color:rgba(248,245,237,0.96)] transition-colors dark:bg-[var(--color-background)]">
+      <div className="admin-canvas min-h-screen transition-colors">
         <AdminSidebar />
         <div className="lg:pl-72">
           <AdminTopbar user={{ name: session.name, email: session.email }} />
-          <main className="p-8">{children}</main>
+          <main className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
         </div>
       </div>
     </ThemeProvider>
