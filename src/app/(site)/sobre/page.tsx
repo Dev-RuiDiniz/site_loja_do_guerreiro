@@ -3,21 +3,21 @@ export default function SobrePage() {
     <main className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
       <section className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="rounded-[2rem] bg-[#111111] p-8 text-white">
-          <p className="text-xs uppercase tracking-[0.28em] text-white/55">Manifesto</p>
+          <p className="text-xs uppercase tracking-[0.28em] text-white/55">Identidade</p>
           <h1 className="mt-4 font-serif text-6xl leading-none">
-            Uma loja feita para vestir presença com respeito.
+            Uma presença visual firme, contemporânea e acolhedora.
           </h1>
         </div>
         <div className="space-y-6 border border-black/10 bg-white/70 p-8 text-[#544B44]">
           <p className="text-lg leading-8">
-            A Loja do Guerreiro nasce para criar uma experiência de moda afro-brasileira
-            com linguagem atual, força visual e acolhimento real. Nosso foco está em
-            peças têxteis que sustentam identidade sem cair na estética caricata.
+            A identidade da Loja do Guerreiro nasce do encontro entre moda afro-brasileira,
+            linguagem atual e respeito à força simbólica de quem veste cada peça. O foco está
+            em roupas e acessórios têxteis que afirmam presença sem recorrer à caricatura.
           </p>
           <p className="text-lg leading-8">
-            A direção criativa trabalha com tons terrosos, verdes profundos, dourado
-            fosco e bases escuras. O resultado é uma vitrine forte e moderna, mas
-            ainda próxima do público, com navegação simples e atendimento humano.
+            A direção visual trabalha com profundidade, matéria e calor: tons terrosos,
+            verdes densos, dourado fosco e bases escuras constroem uma vitrine forte e
+            elegante, sempre próxima do público e apoiada por atendimento humano.
           </p>
         </div>
       </section>
@@ -26,15 +26,15 @@ export default function SobrePage() {
         {[
           {
             title: "Presença",
-            text: "Modelagens com leitura forte, caimento honesto e espaço para movimento.",
+            text: "Modelagens com leitura forte, caimento honesto e espaço real para movimento.",
           },
           {
-            title: "Respeito",
-            text: "Referências afro-brasileiras tratadas com sobriedade e intenção.",
+            title: "Linguagem",
+            text: "Referências afro-brasileiras tratadas com sobriedade, intenção e contemporaneidade.",
           },
           {
             title: "Acolhimento",
-            text: "Venda assistida por WhatsApp para montar o pedido com clareza.",
+            text: "Venda assistida por WhatsApp para orientar escolhas com clareza e proximidade.",
           },
         ].map((item) => (
           <article key={item.title} className="border border-black/10 bg-white p-6">

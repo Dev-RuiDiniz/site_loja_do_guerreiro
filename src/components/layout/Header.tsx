@@ -15,7 +15,7 @@ const navItems = [
   { href: "/", label: "Início" },
   { href: "/loja", label: "Loja" },
   { href: "/categorias", label: "Coleções" },
-  { href: "/sobre", label: "Manifesto" },
+  { href: "/sobre", label: "Identidade" },
   { href: "/contato", label: "Contato" },
 ];
 

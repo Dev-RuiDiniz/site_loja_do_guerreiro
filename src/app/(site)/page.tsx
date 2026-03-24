@@ -301,7 +301,7 @@ export default function HomePage() {
             aria-hidden
           />
           <div className="relative">
-            <p className="text-xs uppercase tracking-[0.24em] text-white/55">Manifesto</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-white/55">Identidade</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight">
               Vestir presença não precisa parecer distante.
             </h2>

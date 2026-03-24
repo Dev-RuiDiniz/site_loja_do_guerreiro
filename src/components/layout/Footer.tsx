@@ -6,7 +6,7 @@ import { ancestryArtLayers } from "@/data/visualAssets";
 import { buildWhatsAppUrl, siteConfig } from "@/lib/site";
 
 const institutionalLinks = [
-  { href: "/sobre", label: "Manifesto" },
+  { href: "/sobre", label: "Identidade" },
   { href: "/contato", label: "Contato" },
   { href: "/loja", label: "Loja" },
 ];
@@ -32,7 +32,7 @@ export function Footer() {
             </p>
           </div>
           <div className="rounded-[1.6rem] border border-white/12 bg-white/6 p-5">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/52">Manifesto</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/52">Identidade</p>
             <p className="mt-3 font-serif text-2xl leading-tight text-white">
               Uma vitrine para vestir presença com cuidado, orientação e linguagem própria.
             </p>
