@@ -44,6 +44,40 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--commerce-border)] bg-[color:rgba(248,245,237,0.9)] backdrop-blur-xl">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute -left-10 top-0 h-24 w-24 rounded-full bg-[color:rgba(127,150,66,0.1)] blur-2xl" />
+        <div className="absolute left-[18%] top-2 h-20 w-20 rounded-full bg-[color:rgba(47,93,80,0.08)] blur-[36px]" />
+        <div className="absolute right-[28%] top-1 h-24 w-24 rounded-full bg-[color:rgba(127,150,66,0.08)] blur-[40px]" />
+        <div className="absolute right-6 top-3 h-20 w-20 rounded-full bg-[color:rgba(161,79,42,0.07)] blur-[34px]" />
+        <Image
+          src={ancestryArtLayers[0].src}
+          alt=""
+          width={240}
+          height={160}
+          className="absolute -left-8 top-0 h-auto w-36 rotate-[-10deg] opacity-[0.1] mix-blend-multiply"
+        />
+        <Image
+          src={ancestryArtLayers[0].src}
+          alt=""
+          width={220}
+          height={140}
+          className="absolute left-[22%] top-1 h-auto w-28 rotate-[8deg] opacity-[0.08] mix-blend-multiply"
+        />
+        <Image
+          src={ancestryArtLayers[0].src}
+          alt=""
+          width={260}
+          height={170}
+          className="absolute right-[20%] top-0 h-auto w-32 rotate-[-14deg] opacity-[0.08] mix-blend-multiply"
+        />
+        <Image
+          src={ancestryArtLayers[0].src}
+          alt=""
+          width={240}
+          height={160}
+          className="absolute -right-8 top-2 h-auto w-36 rotate-[12deg] opacity-[0.1] mix-blend-multiply"
+        />
+      </div>
       <Image
         src={ancestryArtLayers[1].src}
         alt=""
@@ -53,22 +87,18 @@ export function Header() {
         aria-hidden
       />
       <div className="mx-auto grid max-w-[var(--section-max)] gap-4 px-6 py-4 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:px-10">
-        <div className="hidden lg:block">
-          <p className="text-[10px] uppercase tracking-[0.32em] text-[var(--color-muted-foreground)]">
-            Ecommerce editorial
-          </p>
-          <p className="mt-2 max-w-xs text-sm leading-6 text-[var(--commerce-muted)]">
-            Compra assistida, colecao autoral e atendimento humano em todas as etapas.
-          </p>
-        </div>
-
         <div className="flex items-center justify-between gap-4 lg:contents">
           <Link
             href="/"
             aria-label={siteConfig.name}
-            className="justify-self-start lg:justify-self-center"
+            className="justify-self-start"
           >
-            <Brand subtitle="Azul profundo, verde vivo e presenca autoral" />
+            <Brand
+              subtitle="Moda autoral afro-brasileira"
+              titleClassName="text-[1.9rem] lg:text-[2.35rem]"
+              subtitleClassName="tracking-[0.32em]"
+              className="gap-4"
+            />
           </Link>
 
           <div className="flex items-center gap-3 lg:hidden">

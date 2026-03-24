@@ -8,6 +8,7 @@ interface BrandProps {
   compact?: boolean;
   subtitle?: string;
   subtitleClassName?: string;
+  titleClassName?: string;
   className?: string;
 }
 
@@ -16,6 +17,7 @@ export function Brand({
   compact = false,
   subtitle = "Moda autoral afro-brasileira",
   subtitleClassName,
+  titleClassName,
   className,
 }: BrandProps) {
   return (
@@ -33,7 +35,8 @@ export function Brand({
           className={cn(
             "font-serif leading-none",
             compact ? "text-xl" : "text-2xl",
-            invert ? "text-[var(--color-card)]" : "text-[var(--color-primary)]"
+            invert ? "text-[var(--color-card)]" : "text-[var(--color-primary)]",
+            titleClassName
           )}
         >
           Loja do Guerreiro
