@@ -134,13 +134,13 @@ export default function SEOFields({
   };
 
   return (
-    <div className="border border-gray-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+    <div className="overflow-hidden rounded-[1.6rem] border border-[var(--admin-border)]">
       {/* Header */}
-      <div className="bg-gray-50 dark:bg-zinc-800 px-4 py-3 border-b border-gray-200 dark:border-zinc-700">
+      <div className="bg-[color:rgba(198,161,91,0.08)] px-4 py-4 border-b border-[var(--admin-border)]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FiSearch className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-            <h3 className="font-medium text-gray-900 dark:text-white">SEO</h3>
+            <FiSearch className="w-5 h-5 text-[var(--admin-accent)]" />
+            <h3 className="font-medium text-[var(--admin-ink)]">SEO</h3>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
@@ -155,13 +155,13 @@ export default function SEOFields({
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 mt-3">
+        <div className="mt-3 flex gap-4">
           <button
             onClick={() => setActiveTab("fields")}
             className={`text-sm font-medium pb-2 border-b-2 transition-colors ${
               activeTab === "fields"
-                ? "border-black dark:border-white text-black dark:text-white"
-                : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                ? "border-[var(--admin-accent)] text-[var(--admin-ink)]"
+                : "border-transparent text-[var(--admin-muted)] hover:text-[var(--admin-ink)]"
             }`}
           >
             Campos
@@ -170,8 +170,8 @@ export default function SEOFields({
             onClick={() => setActiveTab("preview")}
             className={`text-sm font-medium pb-2 border-b-2 transition-colors ${
               activeTab === "preview"
-                ? "border-black dark:border-white text-black dark:text-white"
-                : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                ? "border-[var(--admin-accent)] text-[var(--admin-ink)]"
+                : "border-transparent text-[var(--admin-muted)] hover:text-[var(--admin-ink)]"
             }`}
           >
             Preview Google
@@ -186,10 +186,10 @@ export default function SEOFields({
             {/* Meta Title */}
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-[var(--admin-ink)]">
                   Título SEO
                 </label>
-                <span className={`text-xs ${metaTitle.length > 60 ? "text-red-500" : "text-gray-500"}`}>
+                <span className={`text-xs ${metaTitle.length > 60 ? "text-[var(--admin-danger)]" : "text-[var(--admin-muted)]"}`}>
                   {metaTitle.length}/60
                 </span>
               </div>
@@ -198,9 +198,9 @@ export default function SEOFields({
                 value={metaTitle}
                 onChange={(e) => onChange("metaTitle", e.target.value)}
                 placeholder="Título que aparece nos resultados de busca"
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all text-sm"
+                className="admin-input w-full px-4 py-2.5 text-sm"
               />
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-[var(--admin-muted)]">
                 Ideal: 30-60 caracteres. Use palavras-chave importantes no início.
               </p>
             </div>
@@ -208,10 +208,10 @@ export default function SEOFields({
             {/* Meta Description */}
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-[var(--admin-ink)]">
                   Descrição SEO
                 </label>
-                <span className={`text-xs ${metaDescription.length > 160 ? "text-red-500" : "text-gray-500"}`}>
+                <span className={`text-xs ${metaDescription.length > 160 ? "text-[var(--admin-danger)]" : "text-[var(--admin-muted)]"}`}>
                   {metaDescription.length}/160
                 </span>
               </div>
@@ -220,16 +220,16 @@ export default function SEOFields({
                 onChange={(e) => onChange("metaDescription", e.target.value)}
                 placeholder="Descrição que aparece nos resultados de busca"
                 rows={3}
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all text-sm resize-none"
+                className="admin-input w-full resize-none px-4 py-2.5 text-sm"
               />
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-[var(--admin-muted)]">
                 Ideal: 120-160 caracteres. Inclua uma chamada para ação.
               </p>
             </div>
 
             {/* Meta Keywords */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="mb-1 block text-sm font-medium text-[var(--admin-ink)]">
                 Palavras-chave
               </label>
               <input
@@ -237,24 +237,24 @@ export default function SEOFields({
                 value={metaKeywords}
                 onChange={(e) => onChange("metaKeywords", e.target.value)}
                 placeholder="palavra1, palavra2, palavra3"
-                className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all text-sm"
+                className="admin-input w-full px-4 py-2.5 text-sm"
               />
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-[var(--admin-muted)]">
                 Separe por vírgulas. Ideal: 3-10 palavras-chave relevantes.
               </p>
             </div>
 
             {/* OG Image */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="mb-1 block text-sm font-medium text-[var(--admin-ink)]">
                 Imagem de Compartilhamento (OG Image)
               </label>
-              <p className="mb-2 text-xs text-gray-500">
+              <p className="mb-2 text-xs text-[var(--admin-muted)]">
                 Tamanho recomendado: 1200x630 pixels.
               </p>
               <div className="relative">
                 {ogImage ? (
-                  <div className="relative w-full max-w-md aspect-[1200/630] border border-gray-200 dark:border-zinc-700 group rounded overflow-hidden">
+                  <div className="group relative w-full max-w-md aspect-[1200/630] overflow-hidden rounded-[1.2rem] border border-[var(--admin-border)]">
                     <Image 
                       src={ogImage} 
                       alt="OG Preview" 
@@ -265,7 +265,7 @@ export default function SEOFields({
                     <button
                       type="button"
                       onClick={() => onChange("ogImage", "")}
-                      className="absolute top-2 right-2 p-1.5 bg-black/80 text-white opacity-0 group-hover:opacity-100 transition-opacity rounded"
+                      className="absolute right-2 top-2 rounded-full bg-[var(--admin-overlay)] p-1.5 text-white opacity-0 transition-opacity group-hover:opacity-100"
                     >
                       <HiOutlineX className="h-4 w-4" />
                     </button>
@@ -275,18 +275,18 @@ export default function SEOFields({
                     type="button"
                     onClick={() => inputRef.current?.click()}
                     disabled={uploading}
-                    className="w-full max-w-md aspect-[1200/630] border-2 border-dashed border-gray-300 dark:border-zinc-700 hover:border-black dark:hover:border-white flex flex-col items-center justify-center gap-2 transition-colors rounded"
+                    className="flex w-full max-w-md aspect-[1200/630] flex-col items-center justify-center gap-2 rounded-[1.2rem] border-2 border-dashed border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.18)] transition-colors hover:border-[var(--admin-accent)]"
                   >
                     {uploading ? (
                       <div className="flex flex-col items-center gap-2">
-                        <div className="animate-spin h-6 w-6 border-2 border-black dark:border-white border-t-transparent rounded-full" />
-                        {progress > 0 && <span className="text-sm text-gray-500">{progress}%</span>}
+                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-[var(--admin-ink)] border-t-transparent" />
+                        {progress > 0 && <span className="text-sm text-[var(--admin-muted)]">{progress}%</span>}
                       </div>
                     ) : (
                       <>
-                        <HiOutlinePhotograph className="h-8 w-8 text-gray-400" />
-                        <span className="text-sm text-gray-500 dark:text-gray-400">Clique para enviar imagem</span>
-                        <span className="text-xs text-gray-400">1200x630 pixels</span>
+                        <HiOutlinePhotograph className="h-8 w-8 text-[var(--admin-muted)]" />
+                        <span className="text-sm text-[var(--admin-muted)]">Clique para enviar imagem</span>
+                        <span className="text-xs text-[var(--admin-muted)]">1200x630 pixels</span>
                       </>
                     )}
                   </button>
@@ -303,16 +303,16 @@ export default function SEOFields({
 
             {/* Issues & Suggestions */}
             {(issues.length > 0 || suggestions.length > 0) && (
-              <div className="pt-4 border-t border-gray-200 dark:border-zinc-700 space-y-3">
+              <div className="space-y-3 border-t border-[var(--admin-border)] pt-4">
                 {issues.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-red-600 flex items-center gap-1 mb-2">
+                    <h4 className="mb-2 flex items-center gap-1 text-sm font-medium text-[var(--admin-danger)]">
                       <FiAlertCircle className="w-4 h-4" />
                       Problemas
                     </h4>
                     <ul className="space-y-1">
                       {issues.map((issue, i) => (
-                        <li key={i} className="text-xs text-red-600 flex items-start gap-1">
+                        <li key={i} className="flex items-start gap-1 text-xs text-[var(--admin-danger)]">
                           <span className="mt-0.5">•</span>
                           {issue}
                         </li>
@@ -322,13 +322,13 @@ export default function SEOFields({
                 )}
                 {suggestions.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-yellow-600 flex items-center gap-1 mb-2">
+                    <h4 className="mb-2 flex items-center gap-1 text-sm font-medium text-[var(--admin-warning)]">
                       <FiCheckCircle className="w-4 h-4" />
                       Sugestões
                     </h4>
                     <ul className="space-y-1">
                       {suggestions.map((suggestion, i) => (
-                        <li key={i} className="text-xs text-yellow-600 flex items-start gap-1">
+                        <li key={i} className="flex items-start gap-1 text-xs text-[var(--admin-warning)]">
                           <span className="mt-0.5">•</span>
                           {suggestion}
                         </li>
@@ -343,24 +343,24 @@ export default function SEOFields({
           <div className="space-y-4">
             {/* Google Search Preview */}
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
+              <h4 className="mb-3 flex items-center gap-2 text-sm font-medium text-[var(--admin-ink)]">
                 <FiGlobe className="w-4 h-4" />
                 Como aparecerá no Google
               </h4>
-              <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg p-4 max-w-2xl">
-                <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
-                  <div className="w-4 h-4 bg-gray-200 dark:bg-zinc-700 rounded-full flex items-center justify-center">
+              <div className="max-w-2xl rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.32)] p-4">
+                <div className="mb-1 flex items-center gap-2 text-xs text-[var(--admin-muted)]">
+                  <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[color:rgba(198,161,91,0.16)]">
                     <span className="text-[8px]">S</span>
                   </div>
                   <span>lojadoguerreiro.com.br</span>
                 </div>
-                <div className="text-sm text-gray-500 mb-1">
+                <div className="mb-1 text-sm text-[var(--admin-muted)]">
                   {baseUrl}/{slug}
                 </div>
-                <h3 className="text-lg text-blue-700 dark:text-blue-400 hover:underline cursor-pointer font-medium mb-1 line-clamp-1">
+                <h3 className="mb-1 line-clamp-1 cursor-pointer text-lg font-medium text-[var(--color-primary)] hover:underline">
                   {metaTitle || "Adicione um título SEO"}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                <p className="line-clamp-2 text-sm text-[var(--admin-muted)]">
                   {metaDescription || "Adicione uma descrição SEO para ver como ela aparecerá nos resultados de busca do Google."}
                 </p>
               </div>
@@ -368,12 +368,12 @@ export default function SEOFields({
 
             {/* Social Media Preview */}
             <div>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
+              <h4 className="mb-3 flex items-center gap-2 text-sm font-medium text-[var(--admin-ink)]">
                 <FiGlobe className="w-4 h-4" />
                 Preview em Redes Sociais
               </h4>
-              <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-lg overflow-hidden max-w-md">
-                <div className="aspect-[1200/630] bg-gray-100 dark:bg-zinc-800 flex items-center justify-center">
+              <div className="max-w-md overflow-hidden rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.32)]">
+                <div className="flex aspect-[1200/630] items-center justify-center bg-[color:rgba(198,161,91,0.08)]">
                   {ogImage ? (
                     <img
                       src={ogImage}
@@ -385,15 +385,15 @@ export default function SEOFields({
                       }}
                     />
                   ) : (
-                    <span className="text-gray-400 text-sm">Sem imagem OG</span>
+                    <span className="text-sm text-[var(--admin-muted)]">Sem imagem OG</span>
                   )}
                 </div>
                 <div className="p-3">
-                  <p className="text-xs text-gray-500 uppercase mb-1">lojadoguerreiro.com.br</p>
-                  <h4 className="font-medium text-gray-900 dark:text-white line-clamp-2 text-sm">
+                  <p className="mb-1 text-xs uppercase text-[var(--admin-muted)]">lojadoguerreiro.com.br</p>
+                  <h4 className="line-clamp-2 text-sm font-medium text-[var(--admin-ink)]">
                     {metaTitle || "Título SEO"}
                   </h4>
-                  <p className="text-xs text-gray-500 line-clamp-2 mt-1">
+                  <p className="mt-1 line-clamp-2 text-xs text-[var(--admin-muted)]">
                     {metaDescription || "Descrição SEO"}
                   </p>
                 </div>

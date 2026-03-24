@@ -63,12 +63,12 @@ function RichTextEditor({ value, onChange, rows = 4, placeholder }: { value: str
   };
 
   return (
-    <div className="border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800">
-      <div className="flex items-center gap-1 p-2 border-b border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-900">
+    <div className="overflow-hidden rounded-[1.3rem] border border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.18)]">
+      <div className="flex items-center gap-1 border-b border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)] p-2">
         <button
           type="button"
           onClick={() => execCommand("bold")}
-          className="p-1.5 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded font-bold text-sm"
+          className="rounded-full p-1.5 text-sm font-bold text-[var(--admin-ink)] transition-colors hover:bg-[color:rgba(198,161,91,0.16)]"
           title="Negrito (Ctrl+B)"
         >
           B
@@ -76,7 +76,7 @@ function RichTextEditor({ value, onChange, rows = 4, placeholder }: { value: str
         <button
           type="button"
           onClick={() => execCommand("italic")}
-          className="p-1.5 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded italic text-sm"
+          className="rounded-full p-1.5 text-sm italic text-[var(--admin-ink)] transition-colors hover:bg-[color:rgba(198,161,91,0.16)]"
           title="Itálico (Ctrl+I)"
         >
           I
@@ -84,16 +84,16 @@ function RichTextEditor({ value, onChange, rows = 4, placeholder }: { value: str
         <button
           type="button"
           onClick={() => execCommand("underline")}
-          className="p-1.5 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded underline text-sm"
+          className="rounded-full p-1.5 text-sm underline text-[var(--admin-ink)] transition-colors hover:bg-[color:rgba(198,161,91,0.16)]"
           title="Sublinhado (Ctrl+U)"
         >
           U
         </button>
-        <div className="w-px h-5 bg-gray-300 dark:bg-zinc-600 mx-1" />
+        <div className="mx-1 h-5 w-px bg-[var(--admin-border)]" />
         <button
           type="button"
           onClick={handleLink}
-          className="p-1.5 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded text-sm"
+          className="rounded-full p-1.5 text-sm text-[var(--admin-ink)] transition-colors hover:bg-[color:rgba(198,161,91,0.16)]"
           title="Inserir Link"
         >
           <HiOutlineLink className="w-4 h-4" />
@@ -101,7 +101,7 @@ function RichTextEditor({ value, onChange, rows = 4, placeholder }: { value: str
         <button
           type="button"
           onClick={() => execCommand("unlink")}
-          className="p-1.5 hover:bg-gray-200 dark:hover:bg-zinc-700 rounded text-xs text-red-500"
+          className="rounded-full p-1.5 text-xs text-[var(--admin-danger)] transition-colors hover:bg-[color:rgba(138,47,63,0.12)]"
           title="Remover Link"
         >
           ✕
@@ -112,27 +112,27 @@ function RichTextEditor({ value, onChange, rows = 4, placeholder }: { value: str
         contentEditable
         onInput={handleInput}
         onBlur={handleInput}
-        className="px-4 py-2.5 text-black dark:text-white focus:outline-none min-h-[80px] prose prose-sm dark:prose-invert max-w-none"
+        className="min-h-[80px] max-w-none px-4 py-3 text-[var(--admin-ink)] focus:outline-none prose prose-sm"
         style={{ minHeight: rows * 24 + 20 }}
         data-placeholder={placeholder}
       />
       {showLinkModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setShowLinkModal(false)}>
-          <div className="bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-xl w-80" onClick={e => e.stopPropagation()}>
-            <h4 className="font-medium mb-3 text-black dark:text-white">Inserir Link</h4>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--admin-overlay)] p-4" onClick={() => setShowLinkModal(false)}>
+          <div className="admin-panel-strong w-80 rounded-[1.4rem] p-4" onClick={e => e.stopPropagation()}>
+            <h4 className="mb-3 font-medium text-[var(--admin-ink)]">Inserir Link</h4>
             <input
               type="url"
               value={linkUrl}
               onChange={e => setLinkUrl(e.target.value)}
               placeholder="https://exemplo.com"
-              className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white rounded mb-3"
+              className="admin-input mb-3 w-full px-3 py-2"
               autoFocus
             />
             <div className="flex gap-2 justify-end">
-              <button type="button" onClick={() => setShowLinkModal(false)} className="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded">
+              <button type="button" onClick={() => setShowLinkModal(false)} className="admin-action px-3 py-1.5 text-sm">
                 Cancelar
               </button>
-              <button type="button" onClick={insertLink} className="px-3 py-1.5 text-sm bg-black text-white hover:bg-gray-800 rounded">
+              <button type="button" onClick={insertLink} className="rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-sm text-[var(--color-primary-foreground)]">
                 Inserir
               </button>
             </div>
@@ -415,16 +415,20 @@ export default function ProdutosPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-serif font-semibold text-black dark:text-white">Produtos</h1>
-          <p className="text-gray-400 mt-1 text-sm">Gerencie os produtos do catálogo</p>
-        </div>
-        <div className="flex items-center gap-3">
+      <div className="admin-panel rounded-[2rem] p-6 lg:p-7">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="admin-kicker">Catalogo</p>
+            <h1 className="mt-2 font-serif text-4xl text-[var(--admin-ink)]">Produtos</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--admin-muted)]">
+              Gerencie pecas, categorias, SEO e leitura do acervo em uma superficie mais clara para decisao rapida.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
             onClick={() => setCategoryModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 border border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors text-sm"
+            className="admin-action flex items-center gap-2 px-4 py-2.5 text-sm"
             title="Gerenciar categorias"
           >
             <HiOutlineCog className="w-5 h-5" />
@@ -432,64 +436,74 @@ export default function ProdutosPage() {
           </button>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="flex items-center gap-2 rounded-full bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] shadow-[0_14px_32px_rgba(16,37,107,0.16)] transition-all hover:-translate-y-0.5 hover:brightness-110"
           >
             <HiOutlinePlus className="h-4 w-4" />
             Novo Produto
           </button>
         </div>
+        </div>
       </div>
 
       {/* Search */}
-      <div className="relative max-w-md">
-        <HiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-        <input
-          type="text"
-          placeholder="Buscar produtos..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white focus:border-black dark:focus:border-white outline-none transition-colors"
-        />
+      <div className="admin-panel rounded-[1.7rem] p-4">
+        <div className="relative max-w-xl">
+          <HiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--admin-muted)]" />
+          <input
+            type="text"
+            placeholder="Buscar produtos..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="admin-input w-full py-3 pl-11 pr-4 text-sm"
+          />
+        </div>
       </div>
 
       {/* Table */}
-      <div className="border border-gray-200 dark:border-zinc-800">
+      <div className="admin-panel overflow-hidden rounded-[1.8rem]">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-gray-200 dark:border-zinc-800">
-              <th className="px-6 py-4 text-left text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium">Produto</th>
-              <th className="px-6 py-4 text-left text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium">Categoria</th>
-              <th className="px-6 py-4 text-left text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium">SEO</th>
-              <th className="px-6 py-4 text-left text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium">Status</th>
-              <th className="px-6 py-4 text-right text-[11px] uppercase tracking-wider text-gray-500 dark:text-gray-400 font-medium">Ações</th>
+            <tr className="border-b border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)]">
+              <th className="px-6 py-4 text-left text-[11px] font-medium uppercase tracking-[0.24em] text-[var(--admin-muted)]">Produto</th>
+              <th className="px-6 py-4 text-left text-[11px] font-medium uppercase tracking-[0.24em] text-[var(--admin-muted)]">Categoria</th>
+              <th className="px-6 py-4 text-left text-[11px] font-medium uppercase tracking-[0.24em] text-[var(--admin-muted)]">SEO</th>
+              <th className="px-6 py-4 text-left text-[11px] font-medium uppercase tracking-[0.24em] text-[var(--admin-muted)]">Status</th>
+              <th className="px-6 py-4 text-right text-[11px] font-medium uppercase tracking-[0.24em] text-[var(--admin-muted)]">Acoes</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 dark:divide-zinc-800">
+          <tbody>
             {loading ? (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-gray-400">Carregando...</td>
+                <td colSpan={5} className="px-6 py-16 text-center text-sm text-[var(--admin-muted)]">Carregando catalogo...</td>
               </tr>
             ) : products.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-gray-400">Nenhum produto encontrado</td>
+                <td colSpan={5} className="px-6 py-16 text-center">
+                  <div className="mx-auto max-w-md">
+                    <p className="font-serif text-3xl text-[var(--admin-ink)]">Nenhum produto encontrado</p>
+                    <p className="mt-3 text-sm leading-6 text-[var(--admin-muted)]">
+                      Ajuste a busca ou cadastre a primeira peca para iniciar o catalogo.
+                    </p>
+                  </div>
+                </td>
               </tr>
             ) : (
               products.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-zinc-900/50 transition-colors">
+                <tr key={product.id} className="admin-table-row">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 bg-gray-100 dark:bg-zinc-800 flex-shrink-0">
+                      <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-[1rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)]">
                         {product.image && (
                           <Image src={product.image} alt={product.name} width={48} height={48} className="object-cover h-full w-full" />
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-black dark:text-white">{product.name}</p>
-                        <p className="text-sm text-gray-400">{product.slug}</p>
+                        <p className="font-medium text-[var(--admin-ink)]">{product.name}</p>
+                        <p className="text-sm text-[var(--admin-muted)]">{product.slug}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                  <td className="px-6 py-4 text-sm text-[var(--admin-muted)]">
                     {product.categories?.length > 0 
                       ? product.categories.map(c => c.category.name).join(", ")
                       : product.category?.name || "-"}
@@ -498,23 +512,23 @@ export default function ProdutosPage() {
                     <SEOIndicator metaTitle={product.metaTitle} metaDescription={product.metaDescription} />
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex px-2 py-1 text-[10px] uppercase tracking-wider font-medium ${
+                    <span className={`admin-badge inline-flex px-2.5 py-1 text-[10px] uppercase tracking-[0.22em] font-medium ${
                       product.active
-                        ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
-                        : "bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400"
+                        ? "admin-badge-success"
+                        : "admin-badge-muted"
                     }`}>
                       {product.active ? "Ativo" : "Inativo"}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-1">
-                      <button onClick={() => openView(product)} className="p-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+                      <button onClick={() => openView(product)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-muted)]">
                         <HiOutlineEye className="h-4 w-4" />
                       </button>
-                      <button onClick={() => openEdit(product)} className="p-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+                      <button onClick={() => openEdit(product)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-muted)]">
                         <HiOutlinePencil className="h-4 w-4" />
                       </button>
-                      <button onClick={() => openDelete(product)} className="p-2 text-gray-400 hover:text-red-600 transition-colors">
+                      <button onClick={() => openDelete(product)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-danger)]">
                         <HiOutlineTrash className="h-4 w-4" />
                       </button>
                     </div>
@@ -533,11 +547,11 @@ export default function ProdutosPage() {
             <button
               key={p}
               onClick={() => setPage(p)}
-              className={`w-10 h-10 text-sm ${
+              className={`admin-action h-10 w-10 text-sm ${
                 p === page
-                  ? "bg-black dark:bg-white text-white dark:text-black"
-                  : "border border-gray-200 dark:border-zinc-700 hover:border-black dark:hover:border-white"
-              } transition-colors`}
+                  ? "border-[var(--admin-accent)] bg-[var(--admin-accent)] text-[var(--color-primary)]"
+                  : ""
+              }`}
             >
               {p}
             </button>
@@ -554,7 +568,7 @@ export default function ProdutosPage() {
       >
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome *</label>
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Nome *</label>
             <input
               type="text"
               value={formData.name}
@@ -565,12 +579,12 @@ export default function ProdutosPage() {
                   slug: generateSlug(e.target.value),
                 });
               }}
-              className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none"
+              className="admin-input w-full px-4 py-2.5"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descrição Curta</label>
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Descricao Curta</label>
             <RichTextEditor
               value={formData.shortDescription}
               onChange={(v) => setFormData({ ...formData, shortDescription: v })}
@@ -580,7 +594,7 @@ export default function ProdutosPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descrição Completa</label>
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Descricao Completa</label>
             <RichTextEditor
               value={formData.description}
               onChange={(v) => setFormData({ ...formData, description: v })}
@@ -590,18 +604,18 @@ export default function ProdutosPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Categorias</label>
-            <div className="p-4 border border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-800/50 space-y-4">
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Categorias</label>
+            <div className="space-y-4 rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)] p-4">
               {categories.length === 0 ? (
-                <p className="text-sm text-gray-400">Nenhuma categoria cadastrada</p>
+                <p className="text-sm text-[var(--admin-muted)]">Nenhuma categoria cadastrada</p>
               ) : (
                 rootCategories.map((cat) => (
                   <div key={cat.id} className="space-y-2">
                     <label
-                      className={`flex items-center gap-2 px-3 py-2 border cursor-pointer transition-colors ${
+                      className={`flex cursor-pointer items-center gap-2 rounded-[1rem] px-3 py-2.5 transition-colors ${
                         formData.categoryIds.includes(cat.id)
-                          ? "border-black dark:border-white bg-black dark:bg-white text-white dark:text-black"
-                          : "border-gray-200 dark:border-zinc-700 hover:border-gray-400 dark:hover:border-zinc-500"
+                          ? "border border-[var(--admin-accent)] bg-[var(--admin-accent)] text-[var(--color-primary)]"
+                          : "border border-[var(--admin-border)] bg-[var(--admin-panel)] text-[var(--admin-ink)] hover:border-[var(--admin-border-strong)]"
                       }`}
                     >
                       <input
@@ -623,10 +637,10 @@ export default function ProdutosPage() {
                         {cat.children.map((sub) => (
                           <label
                             key={sub.id}
-                            className={`flex items-center gap-2 px-3 py-1.5 border cursor-pointer transition-colors text-xs ${
+                            className={`flex cursor-pointer items-center gap-2 rounded-full px-3 py-1.5 text-xs transition-colors ${
                               formData.categoryIds.includes(sub.id)
-                                ? "border-black dark:border-white bg-black dark:bg-white text-white dark:text-black"
-                                : "border-gray-200 dark:border-zinc-700 hover:border-gray-400 dark:hover:border-zinc-500"
+                                ? "border border-[var(--admin-accent)] bg-[var(--admin-accent)] text-[var(--color-primary)]"
+                                : "border border-[var(--admin-border)] bg-[var(--admin-panel)] text-[var(--admin-ink)] hover:border-[var(--admin-border-strong)]"
                             }`}
                           >
                             <input
@@ -653,7 +667,7 @@ export default function ProdutosPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Características</label>
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Caracteristicas</label>
             <div className="flex gap-2 mb-2">
               <input
                 type="text"
@@ -661,35 +675,35 @@ export default function ProdutosPage() {
                 onChange={(e) => setFeatureInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addFeature())}
                 placeholder="Digite uma característica..."
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none text-sm"
+                className="admin-input flex-1 px-4 py-2 text-sm"
               />
               <button
                 type="button"
                 onClick={addFeature}
-                className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-sm hover:bg-gray-800 dark:hover:bg-gray-100"
+                className="rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm text-[var(--color-primary-foreground)]"
               >
                 Adicionar
               </button>
             </div>
             <div className="flex flex-wrap gap-2">
               {formData.features.map((feature, index) => (
-                <span key={index} className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 dark:bg-zinc-800 text-sm">
+                <span key={index} className="admin-badge inline-flex items-center gap-1 px-3 py-1.5 text-sm">
                   {feature}
-                  <button type="button" onClick={() => removeFeature(index)} className="ml-1 text-gray-400 hover:text-red-500">×</button>
+                  <button type="button" onClick={() => removeFeature(index)} className="ml-1 text-[var(--admin-muted)] hover:text-[var(--admin-danger)]">×</button>
                 </span>
               ))}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Informações Técnicas</label>
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Informacoes Tecnicas</label>
             <div className="flex gap-2 mb-2">
               <input
                 type="text"
                 value={specLabel}
                 onChange={(e) => setSpecLabel(e.target.value)}
                 placeholder="Ex: Dimensões"
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none text-sm"
+                className="admin-input flex-1 px-4 py-2 text-sm"
               />
               <input
                 type="text"
@@ -697,21 +711,21 @@ export default function ProdutosPage() {
                 onChange={(e) => setSpecValue(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addSpec())}
                 placeholder="Ex: 60x80x120cm"
-                className="flex-1 px-4 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none text-sm"
+                className="admin-input flex-1 px-4 py-2 text-sm"
               />
               <button
                 type="button"
                 onClick={addSpec}
-                className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-sm hover:bg-gray-800 dark:hover:bg-gray-100"
+                className="rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm text-[var(--color-primary-foreground)]"
               >
                 Adicionar
               </button>
             </div>
             <div className="space-y-2">
               {formData.specifications.map((spec, index) => (
-                <div key={index} className="flex items-center justify-between px-3 py-2 bg-gray-100 dark:bg-zinc-800 text-sm">
+                <div key={index} className="admin-badge flex items-center justify-between px-3 py-2 text-sm">
                   <span><strong>{spec.label}:</strong> {spec.value}</span>
-                  <button type="button" onClick={() => removeSpec(index)} className="text-gray-400 hover:text-red-500">×</button>
+                  <button type="button" onClick={() => removeSpec(index)} className="text-[var(--admin-muted)] hover:text-[var(--admin-danger)]">×</button>
                 </div>
               ))}
             </div>
@@ -740,7 +754,7 @@ export default function ProdutosPage() {
           />
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="mb-1 block text-sm font-medium text-[var(--admin-ink)]">
               Garantia
             </label>
             <input
@@ -748,7 +762,7 @@ export default function ProdutosPage() {
               value={formData.warranty}
               onChange={(e) => setFormData({ ...formData, warranty: e.target.value })}
               placeholder="Ex: 2 anos"
-              className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent transition-all text-sm"
+              className="admin-input w-full px-4 py-2.5 text-sm"
             />
           </div>
 
@@ -769,7 +783,7 @@ export default function ProdutosPage() {
                 onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
                 className="accent-black"
               />
-              <span className="text-sm text-gray-600 dark:text-gray-400">Ativo</span>
+              <span className="text-sm text-[var(--admin-muted)]">Ativo</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -778,15 +792,15 @@ export default function ProdutosPage() {
                 onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                 className="accent-black"
               />
-              <span className="text-sm text-gray-600 dark:text-gray-400">Destaque</span>
+              <span className="text-sm text-[var(--admin-muted)]">Destaque</span>
             </label>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-zinc-800">
+          <div className="flex justify-end gap-3 border-t border-[var(--admin-border)] pt-4">
             <button
               type="button"
               onClick={() => setModalOpen(false)}
-              className="px-6 py-2.5 border border-gray-200 dark:border-zinc-700 text-sm font-medium hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
+              className="admin-action px-6 py-2.5 text-sm font-medium"
             >
               Cancelar
             </button>
@@ -794,7 +808,7 @@ export default function ProdutosPage() {
               type="button"
               onClick={handleSave}
               disabled={saving || !formData.name}
-              className="px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 disabled:opacity-50 transition-colors"
+              className="rounded-full bg-[var(--color-primary)] px-6 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] hover:brightness-110 disabled:opacity-50"
             >
               {saving ? "Salvando..." : "Salvar"}
             </button>
@@ -812,21 +826,21 @@ export default function ProdutosPage() {
         {selectedProduct && (
           <div className="space-y-6">
             {selectedProduct.image && (
-              <div className="relative h-64 w-full bg-gray-100 dark:bg-zinc-800">
+              <div className="relative h-64 w-full overflow-hidden rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)]">
                 <Image src={selectedProduct.image} alt={selectedProduct.name} fill className="object-cover" />
               </div>
             )}
             <div>
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Descrição</h3>
-              <p className="text-black dark:text-white">{selectedProduct.shortDescription || "-"}</p>
+              <h3 className="mb-1 text-sm font-medium text-[var(--admin-muted)]">Descricao</h3>
+              <p className="text-[var(--admin-ink)]">{selectedProduct.shortDescription || "-"}</p>
             </div>
             <div>
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Categoria</h3>
-              <p className="text-black dark:text-white">{selectedProduct.category?.name || "-"}</p>
+              <h3 className="mb-1 text-sm font-medium text-[var(--admin-muted)]">Categoria</h3>
+              <p className="text-[var(--admin-ink)]">{selectedProduct.category?.name || "-"}</p>
             </div>
             <div>
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">Características</h3>
-              <ul className="list-disc list-inside text-black dark:text-white">
+              <h3 className="mb-1 text-sm font-medium text-[var(--admin-muted)]">Caracteristicas</h3>
+              <ul className="list-disc list-inside text-[var(--admin-ink)]">
                 {selectedProduct.features?.map((f, i) => <li key={i}>{f}</li>) || "-"}
               </ul>
             </div>
@@ -848,18 +862,19 @@ export default function ProdutosPage() {
       {/* Category Management Modal */}
       {categoryModalOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setCategoryModalOpen(false)} />
-          <div className="relative bg-white dark:bg-zinc-900 w-full max-w-lg p-6 shadow-xl">
+          <div className="absolute inset-0 bg-[var(--admin-overlay)]" onClick={() => setCategoryModalOpen(false)} />
+          <div className="admin-panel-strong relative w-full max-w-lg rounded-[1.6rem] p-6">
             <button
               onClick={() => setCategoryModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              className="admin-action absolute right-4 top-4 flex h-10 w-10 items-center justify-center text-[var(--admin-muted)]"
             >
               <HiX className="w-5 h-5" />
             </button>
 
-            <h3 className="text-xl font-semibold text-black dark:text-white mb-6">Gerenciar Categorias</h3>
+            <p className="admin-kicker">Taxonomia</p>
+            <h3 className="mb-6 mt-2 font-serif text-3xl text-[var(--admin-ink)]">Gerenciar Categorias</h3>
 
-            <div className="space-y-3 mb-4">
+            <div className="mb-4 space-y-3">
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -867,12 +882,12 @@ export default function ProdutosPage() {
                   onChange={(e) => setNewCategoryName(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleAddCategory()}
                   placeholder="Nome da categoria..."
-                  className="flex-1 px-4 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none text-sm"
+                  className="admin-input flex-1 px-4 py-2 text-sm"
                 />
                 <button
                   onClick={handleAddCategory}
                   disabled={savingCategory || !newCategoryName.trim()}
-                  className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-sm hover:bg-gray-800 dark:hover:bg-gray-100 disabled:opacity-50"
+                  className="rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm text-[var(--color-primary-foreground)] disabled:opacity-50"
                 >
                   {savingCategory ? "..." : "Adicionar"}
                 </button>
@@ -880,7 +895,7 @@ export default function ProdutosPage() {
               <select
                 value={newCategoryParentId || ""}
                 onChange={(e) => setNewCategoryParentId(e.target.value || null)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:border-black dark:focus:border-white outline-none text-sm"
+                className="admin-input w-full px-4 py-2 text-sm"
               >
                 <option value="">Categoria principal (sem pai)</option>
                 {rootCategories.map((cat) => (
@@ -891,27 +906,27 @@ export default function ProdutosPage() {
 
             <div className="space-y-1 max-h-72 overflow-y-auto">
               {categories.length === 0 ? (
-                <p className="text-sm text-gray-400 text-center py-4">Nenhuma categoria cadastrada</p>
+                <p className="py-4 text-center text-sm text-[var(--admin-muted)]">Nenhuma categoria cadastrada</p>
               ) : (
                 rootCategories.map((cat) => (
                   <div key={cat.id}>
-                    <div className="flex items-center justify-between px-3 py-2 bg-gray-100 dark:bg-zinc-800">
-                      <span className="text-sm font-medium text-black dark:text-white">{cat.name}</span>
+                    <div className="admin-badge flex items-center justify-between rounded-[1rem] px-3 py-2.5">
+                      <span className="text-sm font-medium text-[var(--admin-ink)]">{cat.name}</span>
                       <button
                         onClick={() => handleDeleteCategory(cat.id)}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
+                        className="text-[var(--admin-muted)] transition-colors hover:text-[var(--admin-danger)]"
                       >
                         <HiOutlineTrash className="w-4 h-4" />
                       </button>
                     </div>
                     {cat.children && cat.children.length > 0 && (
-                      <div className="ml-4 border-l-2 border-gray-200 dark:border-zinc-700">
+                      <div className="ml-4 border-l-2 border-[var(--admin-border)]">
                         {cat.children.map((sub) => (
-                          <div key={sub.id} className="flex items-center justify-between px-3 py-2 bg-gray-50 dark:bg-zinc-800/50">
-                            <span className="text-sm text-gray-600 dark:text-gray-400">↳ {sub.name}</span>
+                          <div key={sub.id} className="flex items-center justify-between px-3 py-2">
+                            <span className="text-sm text-[var(--admin-muted)]">↳ {sub.name}</span>
                             <button
                               onClick={() => handleDeleteCategory(sub.id)}
-                              className="text-gray-400 hover:text-red-500 transition-colors"
+                              className="text-[var(--admin-muted)] transition-colors hover:text-[var(--admin-danger)]"
                             >
                               <HiOutlineTrash className="w-4 h-4" />
                             </button>

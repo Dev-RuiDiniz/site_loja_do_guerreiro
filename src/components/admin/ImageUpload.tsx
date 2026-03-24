@@ -53,22 +53,22 @@ export function ImageUpload({ value, onChange, folder = "images", label, accept 
   return (
     <div>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">
           {label}
         </label>
       )}
       <div className="relative">
         {value ? (
-          <div className="relative w-full h-48 border border-gray-200 dark:border-zinc-700 group">
+          <div className="group relative h-48 w-full overflow-hidden rounded-[1.3rem] border border-[var(--admin-border)]">
             {isPdf ? (
-              <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 dark:bg-zinc-800">
-                <HiOutlineDocumentText className="h-12 w-12 text-red-500" />
-                <span className="text-sm text-gray-600 dark:text-gray-400 mt-2">PDF Carregado</span>
+              <div className="flex h-full w-full flex-col items-center justify-center bg-[color:rgba(198,161,91,0.08)]">
+                <HiOutlineDocumentText className="h-12 w-12 text-[var(--admin-accent-strong)]" />
+                <span className="mt-2 text-sm text-[var(--admin-muted)]">PDF carregado</span>
                 <a 
                   href={value} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-xs text-blue-500 hover:underline mt-1"
+                  className="mt-1 text-xs text-[var(--color-primary)] hover:underline"
                 >
                   Visualizar PDF
                 </a>
@@ -79,7 +79,7 @@ export function ImageUpload({ value, onChange, folder = "images", label, accept 
             <button
               type="button"
               onClick={() => onChange("")}
-              className="absolute top-2 right-2 p-1.5 bg-black/80 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--admin-overlay)] text-white opacity-0 transition-opacity group-hover:opacity-100"
             >
               <HiOutlineX className="h-4 w-4" />
             </button>
@@ -89,17 +89,17 @@ export function ImageUpload({ value, onChange, folder = "images", label, accept 
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="w-full h-48 border-2 border-dashed border-gray-300 dark:border-zinc-700 hover:border-black dark:hover:border-white flex flex-col items-center justify-center gap-2 transition-colors"
+            className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-[1.3rem] border-2 border-dashed border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.18)] transition-colors hover:border-[var(--admin-accent)]"
           >
             {uploading ? (
               <div className="flex flex-col items-center gap-2">
-                <div className="animate-spin h-6 w-6 border-2 border-black dark:border-white border-t-transparent rounded-full" />
-                {progress > 0 && <span className="text-sm text-gray-500">{progress}%</span>}
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-[var(--admin-ink)] border-t-transparent" />
+                {progress > 0 && <span className="text-sm text-[var(--admin-muted)]">{progress}%</span>}
               </div>
             ) : (
               <>
-                <HiOutlinePhotograph className="h-8 w-8 text-gray-400" />
-                <span className="text-sm text-gray-500 dark:text-gray-400">Clique para enviar</span>
+                <HiOutlinePhotograph className="h-8 w-8 text-[var(--admin-muted)]" />
+                <span className="text-sm text-[var(--admin-muted)]">Clique para enviar</span>
               </>
             )}
           </button>
@@ -163,18 +163,18 @@ export function GalleryUpload({ value = [], onChange, folder = "gallery", label,
   return (
     <div>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">
           {label}
         </label>
       )}
       <div className="grid grid-cols-4 gap-3">
         {value.map((url, index) => (
-          <div key={index} className="relative aspect-square border border-gray-200 dark:border-zinc-700 group">
+          <div key={index} className="group relative aspect-square overflow-hidden rounded-[1rem] border border-[var(--admin-border)]">
             <Image src={url} alt={`Gallery ${index}`} fill className="object-cover" />
             <button
               type="button"
               onClick={() => removeImage(index)}
-              className="absolute top-1 right-1 p-1 bg-black/80 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--admin-overlay)] text-white opacity-0 transition-opacity group-hover:opacity-100"
             >
               <HiOutlineX className="h-3 w-3" />
             </button>
@@ -185,12 +185,12 @@ export function GalleryUpload({ value = [], onChange, folder = "gallery", label,
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="aspect-square border-2 border-dashed border-gray-300 dark:border-zinc-700 hover:border-black dark:hover:border-white flex items-center justify-center transition-colors"
+            className="flex aspect-square items-center justify-center rounded-[1rem] border-2 border-dashed border-[var(--admin-border)] bg-[color:rgba(255,255,255,0.18)] transition-colors hover:border-[var(--admin-accent)]"
           >
             {uploading ? (
-              <div className="animate-spin h-5 w-5 border-2 border-black dark:border-white border-t-transparent rounded-full" />
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-[var(--admin-ink)] border-t-transparent" />
             ) : (
-              <HiOutlinePlus className="h-6 w-6 text-gray-400" />
+              <HiOutlinePlus className="h-6 w-6 text-[var(--admin-muted)]" />
             )}
           </button>
         )}

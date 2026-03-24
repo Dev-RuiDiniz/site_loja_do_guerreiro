@@ -135,65 +135,70 @@ export default function BannersPage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-serif font-semibold text-black dark:text-white">Banners</h1>
-          <p className="text-gray-400 mt-1 text-sm">Gerencie os banners do Hero da página inicial</p>
-        </div>
-        <button onClick={openCreate} className="flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+      <div className="admin-panel rounded-[2rem] p-6 lg:p-7">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="admin-kicker">Vitrine</p>
+            <h1 className="mt-2 font-serif text-4xl text-[var(--admin-ink)]">Banners</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--admin-muted)]">
+              Organize a narrativa do hero como campanha ativa, com ordem, status e leitura clara da vitrine.
+            </p>
+          </div>
+          <button onClick={openCreate} className="flex items-center gap-2 rounded-full bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] shadow-[0_14px_32px_rgba(16,37,107,0.16)] transition-all hover:-translate-y-0.5 hover:brightness-110">
           <HiOutlinePlus className="h-4 w-4" />
           Novo Banner
         </button>
+        </div>
       </div>
 
       {/* Banners List */}
       <div className="space-y-4">
         {loading ? (
-          <div className="text-center py-12 text-gray-400">Carregando...</div>
+          <div className="admin-panel rounded-[1.6rem] py-12 text-center text-sm text-[var(--admin-muted)]">Carregando vitrine...</div>
         ) : banners.length === 0 ? (
-          <div className="text-center py-12 border border-dashed border-gray-300 dark:border-zinc-700">
-            <p className="text-gray-400 mb-4">Nenhum banner cadastrado</p>
-            <p className="text-sm text-gray-500">O Hero mostrará o conteúdo padrão até você adicionar banners</p>
+          <div className="admin-panel rounded-[1.6rem] border-2 border-dashed border-[var(--admin-border)] py-12 text-center">
+            <p className="mb-4 font-serif text-3xl text-[var(--admin-ink)]">Nenhum banner cadastrado</p>
+            <p className="text-sm text-[var(--admin-muted)]">O hero mostrara o conteudo padrao ate voce adicionar banners.</p>
           </div>
         ) : (
           banners.map((banner, idx) => (
-            <div key={banner.id} className="flex items-center gap-4 p-4 border border-gray-200 dark:border-zinc-800 hover:border-black dark:hover:border-white transition-colors group">
+            <div key={banner.id} className="admin-panel group flex items-center gap-4 rounded-[1.6rem] p-4 transition-colors">
               {/* Order Controls */}
               <div className="flex flex-col gap-1">
-                <button onClick={() => moveOrder(banner, "up")} disabled={idx === 0} className="p-1 text-gray-400 hover:text-black dark:hover:text-white disabled:opacity-30">
+                <button onClick={() => moveOrder(banner, "up")} disabled={idx === 0} className="admin-action flex h-8 w-8 items-center justify-center text-[var(--admin-muted)] disabled:opacity-30">
                   <HiOutlineArrowUp className="h-4 w-4" />
                 </button>
-                <button onClick={() => moveOrder(banner, "down")} disabled={idx === banners.length - 1} className="p-1 text-gray-400 hover:text-black dark:hover:text-white disabled:opacity-30">
+                <button onClick={() => moveOrder(banner, "down")} disabled={idx === banners.length - 1} className="admin-action flex h-8 w-8 items-center justify-center text-[var(--admin-muted)] disabled:opacity-30">
                   <HiOutlineArrowDown className="h-4 w-4" />
                 </button>
               </div>
 
               {/* Thumbnail */}
-              <div className="w-32 h-20 bg-gray-100 dark:bg-zinc-800 flex-shrink-0 relative overflow-hidden">
+              <div className="relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-[1rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)]">
                 {banner.image ? (
                   <Image src={banner.image} alt={banner.title} fill className="object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">Sem imagem</div>
+                  <div className="flex h-full w-full items-center justify-center text-xs text-[var(--admin-muted)]">Sem imagem</div>
                 )}
               </div>
 
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  {banner.badge && <span className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-400">{banner.badge}</span>}
-                  <span className={`text-xs px-2 py-0.5 ${banner.active ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400" : "bg-gray-100 dark:bg-zinc-800 text-gray-500"}`}>
+                  {banner.badge && <span className="admin-badge px-2 py-0.5 text-xs">{banner.badge}</span>}
+                  <span className={`admin-badge px-2 py-0.5 text-xs ${banner.active ? "admin-badge-success" : "admin-badge-muted"}`}>
                     {banner.active ? "Ativo" : "Inativo"}
                   </span>
                 </div>
-                <h3 className="font-medium text-black dark:text-white truncate">{banner.title}</h3>
-                {banner.subtitle && <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{banner.subtitle}</p>}
+                <h3 className="truncate font-medium text-[var(--admin-ink)]">{banner.title}</h3>
+                {banner.subtitle && <p className="truncate text-sm text-[var(--admin-muted)]">{banner.subtitle}</p>}
               </div>
 
               {/* Actions */}
               <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => openView(banner)} className="p-2 text-gray-400 hover:text-black dark:hover:text-white"><HiOutlineEye className="h-4 w-4" /></button>
-                <button onClick={() => openEdit(banner)} className="p-2 text-gray-400 hover:text-black dark:hover:text-white"><HiOutlinePencil className="h-4 w-4" /></button>
-                <button onClick={() => openDelete(banner)} className="p-2 text-gray-400 hover:text-red-600"><HiOutlineTrash className="h-4 w-4" /></button>
+                <button onClick={() => openView(banner)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-muted)]"><HiOutlineEye className="h-4 w-4" /></button>
+                <button onClick={() => openEdit(banner)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-muted)]"><HiOutlinePencil className="h-4 w-4" /></button>
+                <button onClick={() => openDelete(banner)} className="admin-action flex h-9 w-9 items-center justify-center text-[var(--admin-danger)]"><HiOutlineTrash className="h-4 w-4" /></button>
               </div>
             </div>
           ))
@@ -206,42 +211,42 @@ export default function BannersPage() {
           {/* Badge & Subtitle */}
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Badge (opcional)</label>
-              <input type="text" value={formData.badge} onChange={(e) => setFormData({ ...formData, badge: e.target.value })} placeholder="Ex: Distribuidor Exclusivo" className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none" />
+              <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Badge (opcional)</label>
+              <input type="text" value={formData.badge} onChange={(e) => setFormData({ ...formData, badge: e.target.value })} placeholder="Ex: Distribuidor Exclusivo" className="admin-input w-full px-4 py-2.5" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subtítulo</label>
-              <input type="text" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="Ex: A referência mundial em design" className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none" />
+              <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Subtitulo</label>
+              <input type="text" value={formData.subtitle} onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })} placeholder="Ex: A referencia mundial em design" className="admin-input w-full px-4 py-2.5" />
             </div>
           </div>
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Título *</label>
-                        <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Ex: Coleção Ori" className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-xl" />
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Titulo *</label>
+                        <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} placeholder="Ex: Colecao Ori" className="admin-input w-full px-4 py-2.5 text-xl" />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descrição</label>
-            <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows={3} placeholder="Texto descritivo do banner..." className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none resize-none" />
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">Descricao</label>
+            <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows={3} placeholder="Texto descritivo do banner..." className="admin-input w-full resize-none px-4 py-2.5" />
           </div>
 
           {/* Buttons */}
-          <div className="border border-gray-200 dark:border-zinc-700 p-4 space-y-4">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Botão Principal</h3>
+          <div className="space-y-4 rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)] p-4">
+            <h3 className="text-sm font-medium text-[var(--admin-ink)]">Botao Principal</h3>
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Texto</label>
-                <input type="text" value={formData.button1Text} onChange={(e) => setFormData({ ...formData, button1Text: e.target.value })} placeholder="Conhecer Produtos" className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm" />
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Texto</label>
+                <input type="text" value={formData.button1Text} onChange={(e) => setFormData({ ...formData, button1Text: e.target.value })} placeholder="Conhecer Produtos" className="admin-input w-full px-3 py-2 text-sm" />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Link</label>
-                <input type="text" value={formData.button1Link} onChange={(e) => setFormData({ ...formData, button1Link: e.target.value })} placeholder="/produtos" className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm" />
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Link</label>
+                <input type="text" value={formData.button1Link} onChange={(e) => setFormData({ ...formData, button1Link: e.target.value })} placeholder="/produtos" className="admin-input w-full px-3 py-2 text-sm" />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Estilo</label>
-                <select value={formData.button1Color} onChange={(e) => setFormData({ ...formData, button1Color: e.target.value })} className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm">
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Estilo</label>
+                <select value={formData.button1Color} onChange={(e) => setFormData({ ...formData, button1Color: e.target.value })} className="admin-input w-full px-3 py-2 text-sm">
                   <option value="white">Branco (Sólido)</option>
                   <option value="black">Preto (Sólido)</option>
                   <option value="outline">Outline (Transparente)</option>
@@ -250,20 +255,20 @@ export default function BannersPage() {
             </div>
           </div>
 
-          <div className="border border-gray-200 dark:border-zinc-700 p-4 space-y-4">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Botão Secundário (opcional)</h3>
+          <div className="space-y-4 rounded-[1.4rem] border border-[var(--admin-border)] bg-[color:rgba(198,161,91,0.08)] p-4">
+            <h3 className="text-sm font-medium text-[var(--admin-ink)]">Botao Secundario (opcional)</h3>
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Texto</label>
-                <input type="text" value={formData.button2Text} onChange={(e) => setFormData({ ...formData, button2Text: e.target.value })} placeholder="Assistir Vídeo" className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm" />
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Texto</label>
+                <input type="text" value={formData.button2Text} onChange={(e) => setFormData({ ...formData, button2Text: e.target.value })} placeholder="Assistir Video" className="admin-input w-full px-3 py-2 text-sm" />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Link</label>
-                <input type="text" value={formData.button2Link} onChange={(e) => setFormData({ ...formData, button2Link: e.target.value })} placeholder="#video" className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm" />
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Link</label>
+                <input type="text" value={formData.button2Link} onChange={(e) => setFormData({ ...formData, button2Link: e.target.value })} placeholder="#video" className="admin-input w-full px-3 py-2 text-sm" />
               </div>
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Estilo</label>
-                <select value={formData.button2Color} onChange={(e) => setFormData({ ...formData, button2Color: e.target.value })} className="w-full px-3 py-2 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none text-sm">
+                <label className="mb-1 block text-xs text-[var(--admin-muted)]">Estilo</label>
+                <select value={formData.button2Color} onChange={(e) => setFormData({ ...formData, button2Color: e.target.value })} className="admin-input w-full px-3 py-2 text-sm">
                   <option value="outline">Outline (Transparente)</option>
                   <option value="white">Branco (Sólido)</option>
                   <option value="black">Preto (Sólido)</option>
@@ -277,20 +282,20 @@ export default function BannersPage() {
 
           {/* Video (optional) */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">URL do Vídeo (opcional)</label>
-            <input type="text" value={formData.video} onChange={(e) => setFormData({ ...formData, video: e.target.value })} placeholder="https://youtube.com/..." className="w-full px-4 py-2.5 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white outline-none" />
+            <label className="mb-2 block text-sm font-medium text-[var(--admin-ink)]">URL do Video (opcional)</label>
+            <input type="text" value={formData.video} onChange={(e) => setFormData({ ...formData, video: e.target.value })} placeholder="https://youtube.com/..." className="admin-input w-full px-4 py-2.5" />
           </div>
 
           {/* Active */}
           <label className="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" checked={formData.active} onChange={(e) => setFormData({ ...formData, active: e.target.checked })} className="accent-black" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">Banner ativo</span>
+            <span className="text-sm text-[var(--admin-muted)]">Banner ativo</span>
           </label>
 
           {/* Actions */}
-          <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-zinc-800">
-            <button onClick={() => setModalOpen(false)} className="px-6 py-2.5 border border-gray-200 dark:border-zinc-700 text-sm font-medium">Cancelar</button>
-            <button onClick={handleSave} disabled={saving || !formData.title} className="px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-sm font-medium disabled:opacity-50">{saving ? "Salvando..." : "Salvar"}</button>
+          <div className="flex justify-end gap-3 border-t border-[var(--admin-border)] pt-4">
+            <button onClick={() => setModalOpen(false)} className="admin-action px-6 py-2.5 text-sm font-medium">Cancelar</button>
+            <button onClick={handleSave} disabled={saving || !formData.title} className="rounded-full bg-[var(--color-primary)] px-6 py-2.5 text-sm font-medium text-[var(--color-primary-foreground)] disabled:opacity-50">{saving ? "Salvando..." : "Salvar"}</button>
           </div>
         </div>
       </Modal>
@@ -298,22 +303,22 @@ export default function BannersPage() {
       {/* View Modal */}
       <Modal open={viewModalOpen} onClose={() => setViewModalOpen(false)} title="Prévia do Banner" size="xl">
         {selectedBanner && (
-          <div className="relative h-80 w-full bg-black overflow-hidden">
+          <div className="relative h-80 w-full overflow-hidden rounded-[1.6rem] bg-[var(--color-primary)]">
             {selectedBanner.image && <Image src={selectedBanner.image} alt={selectedBanner.title} fill className="object-cover opacity-60" />}
             <div className="absolute inset-0 flex items-center p-8">
               <div className="max-w-lg text-white">
-                {selectedBanner.badge && <span className="inline-block px-3 py-1 mb-4 text-xs bg-white/20 backdrop-blur-sm border border-white/30 rounded-full">{selectedBanner.badge}</span>}
-                {selectedBanner.subtitle && <p className="text-white/70 text-sm mb-2">{selectedBanner.subtitle}</p>}
-                <h2 className="text-4xl font-serif font-semibold mb-4">{selectedBanner.title}</h2>
-                {selectedBanner.description && <p className="text-white/80 text-sm mb-6">{selectedBanner.description}</p>}
+                {selectedBanner.badge && <span className="mb-4 inline-block rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs backdrop-blur-sm">{selectedBanner.badge}</span>}
+                {selectedBanner.subtitle && <p className="mb-2 text-sm text-white/70">{selectedBanner.subtitle}</p>}
+                <h2 className="mb-4 text-4xl font-serif font-semibold">{selectedBanner.title}</h2>
+                {selectedBanner.description && <p className="mb-6 text-sm text-white/80">{selectedBanner.description}</p>}
                 <div className="flex gap-3">
                   {selectedBanner.button1Text && (
-                    <button className={`px-4 py-2 text-sm font-medium ${selectedBanner.button1Color === "white" ? "bg-white text-black" : selectedBanner.button1Color === "black" ? "bg-black text-white" : "border border-white/80 text-white"}`}>
+                    <button className={`rounded-full px-4 py-2 text-sm font-medium ${selectedBanner.button1Color === "white" ? "bg-white text-black" : selectedBanner.button1Color === "black" ? "bg-black text-white" : "border border-white/80 text-white"}`}>
                       {selectedBanner.button1Text}
                     </button>
                   )}
                   {selectedBanner.button2Text && (
-                    <button className={`px-4 py-2 text-sm font-medium ${selectedBanner.button2Color === "white" ? "bg-white text-black" : selectedBanner.button2Color === "black" ? "bg-black text-white" : "border border-white/80 text-white"}`}>
+                    <button className={`rounded-full px-4 py-2 text-sm font-medium ${selectedBanner.button2Color === "white" ? "bg-white text-black" : selectedBanner.button2Color === "black" ? "bg-black text-white" : "border border-white/80 text-white"}`}>
                       {selectedBanner.button2Text}
                     </button>
                   )}
