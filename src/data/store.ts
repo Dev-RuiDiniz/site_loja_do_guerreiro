@@ -50,12 +50,12 @@ export interface StoreProduct {
 export const storeCategories: StoreCategory[] = [
   {
     id: "cat-vestidos",
-    slug: "vestidos-e-saias",
-    name: "Vestidos e Saias",
-    eyebrow: "Presenca em movimento",
+    slug: "saias-ojas-e-panos-das-costas",
+    name: "Saias, Ojás e Panos das Costas",
+    eyebrow: "Presenca em camadas",
     description:
-      "Modelagens fluidas, presenca de roda e acabamento pensado para movimento, celebracao e elegancia.",
-    trustNote: "Modelagens amplas com leitura forte para ocasioes especiais e uso autoral.",
+      "Saias de roda, ojas e panos das costas com leitura forte, movimento autoral e acabamento pensado para presenca.",
+    trustNote: "Pecas de composicao ampla para vestir gesto, ritual e assinatura com mais corpo visual.",
     accent: "#4F658F",
   },
   {
@@ -80,12 +80,12 @@ export const storeCategories: StoreCategory[] = [
   },
   {
     id: "cat-acessorios",
-    slug: "acessorios-texteis",
-    name: "Acessorios Texteis",
-    eyebrow: "Acabamento de assinatura",
+    slug: "lancamentos",
+    name: "Lançamentos",
+    eyebrow: "Novidades da vitrine",
     description:
-      "Faixas, panos e complementos que finalizam a composicao com textura, cor e identidade.",
-    trustNote: "Complementos que elevam a leitura da colecao sem disputar com a peca principal.",
+      "Entradas recentes do acervo com leitura editorial, presenca comercial e prioridade na vitrine da colecao.",
+    trustNote: "Selecao atualizada para destacar o que acabou de chegar e orientar a compra com rapidez.",
     accent: "#B8C88E",
   },
 ];
@@ -95,7 +95,7 @@ export const storeProducts: StoreProduct[] = [
     id: "prod-ori",
     slug: "vestido-ori-areia",
     name: "Vestido Ori Areia",
-    categorySlug: "vestidos-e-saias",
+    categorySlug: "saias-ojas-e-panos-das-costas",
     eyebrow: "Vestido manifesto",
     shortDescription:
       "Vestido longo de presenca serena, com cintura marcada e volume controlado para um visual imponente e acolhedor.",
@@ -130,7 +130,7 @@ export const storeProducts: StoreProduct[] = [
     id: "prod-alvorada",
     slug: "saia-alvorada-de-roda",
     name: "Saia Alvorada de Roda",
-    categorySlug: "vestidos-e-saias",
+    categorySlug: "saias-ojas-e-panos-das-costas",
     eyebrow: "Saia de giro amplo",
     shortDescription:
       "Saia de roda com volume firme, cintura confortavel e leitura visual marcante para composicoes de presenca.",
@@ -221,7 +221,7 @@ export const storeProducts: StoreProduct[] = [
     ],
     trustNote: "Boa opcao para quem busca uma peca escura com assinatura e flexibilidade.",
     featuredReason: "Traz densidade visual e ajuda a equilibrar a paleta da vitrine.",
-    bundleText: "Use com acessorios texteis para puxar a colecao para um campo mais editorial.",
+    bundleText: "Use com faixa, pano das costas ou outras entradas recentes da vitrine para ampliar a composição.",
     shippingNote: "Atendimento acompanha disponibilidade e sugestoes de coordenacao.",
     artworks: [
       { label: "Frente", base: "#10256B", accent: "#5A7340", detail: "#B8C88E", motif: "arcs" },
@@ -299,7 +299,7 @@ export const storeProducts: StoreProduct[] = [
     id: "prod-faixa",
     slug: "faixa-dourado-fosco",
     name: "Faixa Dourado Fosco",
-    categorySlug: "acessorios-texteis",
+    categorySlug: "lancamentos",
     eyebrow: "Complemento de brilho contido",
     shortDescription:
       "Faixa textil com brilho controlado, usada para finalizar a composicao com unidade e presenca.",
@@ -332,7 +332,7 @@ export const storeProducts: StoreProduct[] = [
     id: "prod-pano",
     slug: "pano-de-cabeca-folha-profunda",
     name: "Pano de Cabeca Folha Profunda",
-    categorySlug: "acessorios-texteis",
+    categorySlug: "lancamentos",
     eyebrow: "Acessorio de assinatura",
     shortDescription:
       "Pano de cabeca em tom profundo, com toque suave e acabamento limpo para composicoes autorais.",

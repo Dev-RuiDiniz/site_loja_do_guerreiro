@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site";
 const defaultMetadata = {
   title: "Loja do Guerreiro | Moda afro-brasileira com presença contemporânea",
   description:
-    "Roupas, conjuntos e acessórios têxteis com estética forte, moderna e acolhedora para expressões afro-brasileiras.",
+    "Saias, ojás, panos das costas, conjuntos e lançamentos com estética forte, moderna e acolhedora para expressões afro-brasileiras.",
   keywords: [
     "loja do guerreiro",
     "moda afro-brasileira",

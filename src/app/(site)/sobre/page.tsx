@@ -12,7 +12,8 @@ export default function SobrePage() {
           <p className="text-lg leading-8">
             A identidade da Loja do Guerreiro nasce do encontro entre moda afro-brasileira,
             linguagem atual e respeito à força simbólica de quem veste cada peça. O foco está
-            em roupas e acessórios têxteis que afirmam presença sem recorrer à caricatura.
+            em saias, ojás, panos das costas, conjuntos e bases autorais que afirmam presença
+            sem recorrer à caricatura.
           </p>
           <p className="text-lg leading-8">
             A direção visual trabalha com profundidade, matéria e calor: tons terrosos,
