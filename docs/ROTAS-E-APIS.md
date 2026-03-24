@@ -1,111 +1,82 @@
-# Rotas e APIs
+# Rotas e APIs Atuais
 
-## Rotas Web
+## Rotas web publicas
 
-## Publicas
+Principais rotas ativas:
 
 - `/`
-- `/blog`
-- `/blog/[slug]`
-- `/blog/categorias`
+- `/loja`
+- `/produto/[slug]`
 - `/categorias`
+- `/sobre`
 - `/contato`
 - `/faq`
 - `/garantia`
-- `/maletti`
-- `/manutencao`
+- `/blog`
+- `/blog/[slug]`
+- `/blog/categorias`
+
+Rotas publicas auxiliares ainda presentes no projeto:
+
 - `/marcas`
-- `/p/[slug]`
 - `/produtos`
 - `/produtos/[slug]`
-- `/salao-de-beleza`
-- `/sobre`
-- `/spa`
-- `/tricologia`
+- `/p/[slug]`
 
-## Login e admin
+## Rotas de login e admin
 
 - `/login`
 - `/login/setup`
 - `/admin`
 - `/admin/banners`
-- `/admin/blog`
-- `/admin/cabecalho`
-- `/admin/catalogo`
-- `/admin/configuracoes`
-- `/admin/editor/[pageId]`
-- `/admin/home`
-- `/admin/kommo`
-- `/admin/marcas`
-- `/admin/paginas`
-- `/admin/paginas/[id]`
-- `/admin/parceiros`
 - `/admin/produtos`
-- `/admin/relatorios`
+- `/admin/cabecalho`
 - `/admin/rodape`
-- `/admin/scripts`
+- `/admin/configuracoes`
 
-## APIs (metodos)
-
-## Admin
+## APIs administrativas
 
 - `/api/admin/banners` `[GET, POST]`
 - `/api/admin/banners/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/blog` `[GET, POST]`
-- `/api/admin/blog/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/blog/categories` `[GET, POST, PUT, DELETE]`
-- `/api/admin/blog/tags` `[GET, POST, PUT, DELETE]`
-- `/api/admin/brands` `[GET, POST]`
-- `/api/admin/brands/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/catalogs` `[GET, POST]`
-- `/api/admin/catalogs/[id]` `[PUT, DELETE]`
 - `/api/admin/categories` `[GET, POST]`
-- `/api/admin/categories/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/home-sections` `[GET, POST]`
-- `/api/admin/kommo` `[GET, PUT]`
-- `/api/admin/kommo/auth` `[POST]`
-- `/api/admin/kommo/pipelines` `[GET]`
+- `/api/admin/categories/[id]` `[DELETE]`
 - `/api/admin/layout` `[GET, PUT]`
-- `/api/admin/pages` `[GET, POST]`
-- `/api/admin/pages/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/partners` `[GET, POST]`
-- `/api/admin/partners/[id]` `[PUT, DELETE]`
 - `/api/admin/products` `[GET, POST]`
 - `/api/admin/products/[id]` `[GET, PUT, DELETE]`
-- `/api/admin/reports` `[GET]`
-- `/api/admin/scripts` `[GET, POST]`
-- `/api/admin/scripts/[id]` `[GET, PUT, DELETE]`
 - `/api/admin/settings` `[GET, POST]`
 
-## Auth
+## APIs de autenticacao
 
 - `/api/auth/forgot-password` `[POST]`
 - `/api/auth/login` `[POST]`
 - `/api/auth/logout` `[POST]`
 - `/api/auth/session` `[GET]`
-- `/api/auth/setup` `[POST, GET]`
+- `/api/auth/setup` `[GET, POST]`
 
-## Publico / frontend
+## APIs publicas
 
-- `/api/banners` `[GET]`
-- `/api/blog` `[GET]`
-- `/api/blog/[slug]` `[GET, POST]`
-- `/api/blog/categories` `[GET]`
-- `/api/brands` `[GET]`
 - `/api/categories` `[GET]`
-- `/api/home-sections` `[GET]`
-- `/api/kommo/leads` `[POST]`
-- `/api/layout` `[GET]`
-- `/api/pages/[slug]` `[GET]`
 - `/api/products` `[GET]`
 - `/api/products/[slug]` `[GET]`
 - `/api/products/search` `[GET]`
-- `/api/scripts` `[GET]`
-- `/api/seed-home` `[GET]`
-- `/api/upload` `[POST, DELETE]`
+- `/api/upload` `[POST]`
 - `/api/upload/client` `[POST]`
 
-## Metadados
+## Metadados e utilitarios
 
-- `/robots.txt` (gerado por `src/app/robots.ts`)
-- `/sitemap.xml` (gerado por `src/app/sitemap.ts`)
+- `/robots.txt`
+- `/sitemap.xml`
+
+## Fora de escopo atual
+
+As rotas abaixo pertenciam ao legado e nao devem mais ser usadas como referencia de implementacao:
+
+- multi-site por dominio
+- `/admin/blog`
+- `/admin/paginas`
+- `/admin/editor/[pageId]`
+- `/admin/kommo`
+- `/api/admin/blog*`
+- `/api/admin/pages*`
+- `/api/admin/kommo*`
+- `/api/seed-home`

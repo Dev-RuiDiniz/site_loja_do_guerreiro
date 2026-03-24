@@ -1,5 +1,19 @@
 # Checklist para Novo Site
 
+## Status
+
+Documento historico do legado.
+
+Ele foi mantido apenas como referencia de processo antigo e nao descreve mais a forma recomendada de operar a Loja do Guerreiro atual.
+
+Para estado tecnico vigente, use:
+
+- `README.md`
+- `docs/ARQUITETURA.md`
+- `docs/ROTAS-E-APIS.md`
+
+---
+
 Use esta lista para transformar esta base em um novo projeto rapidamente.
 
 ## 1) Setup tecnico

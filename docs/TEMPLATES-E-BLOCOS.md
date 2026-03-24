@@ -1,5 +1,13 @@
 # Templates e Blocos
 
+## Status
+
+Documento historico do legado.
+
+O projeto atual nao usa mais editor visual por blocos como arquitetura ativa. Este arquivo foi preservado apenas para consulta de implementacoes antigas e nao deve orientar novas entregas sem revisao.
+
+---
+
 ## Conceito
 
 A base usa blocos de conteudo para montar paginas dinamicas.

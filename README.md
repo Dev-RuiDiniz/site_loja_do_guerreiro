@@ -1,21 +1,19 @@
 # Loja do Guerreiro
 
-Loja virtual desenvolvida em `Next.js 16` para a marca **Loja do Guerreiro**, com foco em moda afro-religiosa, vitrine editorial forte e fechamento de atendimento via WhatsApp na primeira versao.
+Loja virtual em `Next.js 16` para a marca **Loja do Guerreiro**, com vitrine editorial, catalogo de moda afro-brasileira e fechamento comercial via WhatsApp.
 
 ## Objetivo do projeto
 
-Este repositorio deixou de ser uma base generica multi-site e passou a representar um produto unico:
+Este repositorio representa um produto unico, nao uma base multi-site.
 
 - marca unica: `Loja do Guerreiro`
 - proposta: loja virtual de roupas e acessorios texteis para religioes afro-brasileiras
-- foco inicial: vitrine, catalogo, pagina de produto, carrinho local e CTA de WhatsApp
-- painel administrativo enxuto para operacao da loja
+- foco atual: vitrine, catalogo, pagina de produto, carrinho local e atendimento via WhatsApp
+- painel administrativo enxuto para operacao de banners, produtos, layout e configuracoes
 
 ## Direcao da marca
 
 ### Posicionamento
-
-A Loja do Guerreiro combina:
 
 - presenca visual forte
 - linguagem contemporanea
@@ -40,27 +38,23 @@ Tipografia:
 - display: `Cormorant Garamond`
 - interface: `Manrope`
 
-Principios de interface:
+Sistema de interface:
 
-- contraste alto
-- composicao editorial
-- cards solidos e bordas finas
-- atmosfera quente e mineral
-- responsividade priorizada para mobile e desktop
+- storefront editorial com superficies quentes e minerais
+- admin operacional alinhado a mesma linguagem visual
+- padroes salvos em `.interface-design/system.md`
 
 ## Experiencia da loja
 
 ### Frontend publico
 
-O fluxo publico atual inclui:
-
 - home editorial
 - catalogo em `/loja`
 - detalhe de produto em `/produto/[slug]`
 - navegacao por categorias em `/categorias`
-- paginas institucionais em `/sobre` e `/contato`
+- paginas institucionais em `/sobre`, `/contato`, `/faq` e `/garantia`
 - carrinho client-side persistido localmente
-- fechamento de pedido via mensagem preformatada no WhatsApp
+- CTA de fechamento e atendimento via WhatsApp
 
 ### Modelo comercial atual
 
@@ -75,14 +69,15 @@ O fluxo publico atual inclui:
 src/
   app/
     (site)/                  # rotas publicas da loja
-    admin/                   # painel administrativo enxuto
+    admin/                   # painel administrativo
     api/
-      admin/                 # APIs do admin mantidas no MVP
+      admin/                 # APIs do admin
       auth/                  # login, logout, sessao e setup inicial
       categories/            # categorias publicas
       products/              # catalogo publico
       upload/                # upload usado pelo admin
     login/                   # acesso ao painel
+    proxy.ts                 # protecao de rotas admin
   components/
     admin/                   # UI do painel
     layout/                  # header, footer e CTA publico
@@ -93,20 +88,22 @@ src/
     ThemeContext.tsx         # tema do admin
   data/
     store.ts                 # dados da loja usados na storefront atual
+    visualAssets.ts          # acervo visual e configuracao editorial
   lib/
     auth.ts                  # leitura de sessao admin
-    prisma.ts                # fallback/local compat layer
+    prisma.ts                # singleton do Prisma Client
     seo.ts                   # metadata da loja
     session.ts               # configuracao de sessao admin
     site.ts                  # configuracoes da marca
 public/
-  icon.svg                   # icone atual da loja
-  images/hero/               # imagens mantidas para o site
+  brand-badge*.svg           # identidade principal
+  images/                    # imagens editoriais e grafismos
+docs/
+  visual-assets.md           # documento valido do acervo visual
+  *.md                       # docs tecnicas revisadas ou historicas
 ```
 
 ## Painel administrativo
-
-O admin foi reduzido ao necessario para o MVP.
 
 Rotas mantidas:
 
@@ -125,28 +122,28 @@ APIs administrativas mantidas:
 - `/api/admin/products`
 - `/api/admin/settings`
 
-O que foi removido do legado:
-
-- blog administrativo
-- marcas
-- parceiros
-- catalogos PDF
-- home sections antigas
-- visual editor legado
-- scripts externos antigos
-- integracao Kommo
-- APIs publicas herdadas fora do MVP
-
 ## Stack tecnica
 
-- `next@16`
-- `react@19`
-- `typescript`
-- `tailwindcss@4`
-- `framer-motion`
+Dependencias principais em uso:
+
+- `next@16.2.1`
+- `react@19.2.4`
+- `react-dom@19.2.4`
+- `typescript@5.9`
+- `tailwindcss@4.2.2`
+- `framer-motion@12.38`
 - `iron-session`
-- `@vercel/blob`
+- `@vercel/blob@2.3.1`
+- `zod@4.3`
 - componentes UI baseados em Radix
+
+Atualizacoes maiores deliberadamente adiadas para rodada separada:
+
+- `prisma 5 -> 7`
+- `typescript 5 -> 6`
+- `eslint 9 -> 10`
+- `lucide-react 0.x -> 1.x`
+- `@types/node 20 -> 25`
 
 ## Setup local
 
@@ -158,7 +155,7 @@ pnpm install
 
 ### 2. Configurar ambiente
 
-Copie `.env.example` para `.env` e preencha o que for necessario para autenticacao, uploads e servicos auxiliares.
+Copie `.env.example` para `.env` e preencha o necessario para autenticacao, uploads e servicos auxiliares.
 
 ### 3. Rodar em desenvolvimento
 
@@ -186,35 +183,26 @@ Servidor local padrao:
 
 Ultimo estado validado nesta base:
 
-- `pnpm lint` passa com warnings nao bloqueantes
+- `pnpm lint` passa
 - `pnpm build` passa
 
-Avisos conhecidos:
+Observacao conhecida:
 
-- `middleware` usa convencao depreciada do Next 16 e pode virar `proxy` em uma rodada futura
-- `baseline-browser-mapping` esta desatualizado e gera aviso no build
-
-## Estado do legado
-
-O legado principal ja foi removido:
-
-- assets publicos antigos
-- scripts de tracking antigos
-- logos e favicons de marcas anteriores
-- APIs publicas herdadas
-- modulos administrativos fora do MVP
-
-Ainda existe limpeza adicional possivel em rotas publicas herdadas que hoje estao fora do fluxo principal, como paginas antigas devolvendo `notFound()` ou equivalentes.
+- pode haver aviso de tooling relacionado a `baseline-browser-mapping` dependendo da arvore de build do ecossistema Next/Turbopack
 
 ## Documentacao complementar
 
-Os arquivos em `docs/` ainda refletem em parte a arquitetura antiga e devem ser tratados como historico tecnico ate serem reescritos:
+Arquivos atualmente validos e uteis:
 
-- [ARQUITETURA.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/ARQUITETURA.md)
-- [CHECKLIST-NOVO-SITE.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/CHECKLIST-NOVO-SITE.md)
-- [ROTAS-E-APIS.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/ROTAS-E-APIS.md)
-- [TEMPLATES-E-BLOCOS.md](C:/Users/Rui%20Francisco/Documents/GitHub/site_loja_do_guerreiro/docs/TEMPLATES-E-BLOCOS.md)
+- [visual-assets.md](C:\Users\RUI FRANCISCO\Documents\GitHub\site_loja_do_guerreiro\docs\visual-assets.md)
+- [ARQUITETURA.md](C:\Users\RUI FRANCISCO\Documents\GitHub\site_loja_do_guerreiro\docs\ARQUITETURA.md)
+- [ROTAS-E-APIS.md](C:\Users\RUI FRANCISCO\Documents\GitHub\site_loja_do_guerreiro\docs\ROTAS-E-APIS.md)
+
+Arquivos mantidos como referencia historica do legado:
+
+- [CHECKLIST-NOVO-SITE.md](C:\Users\RUI FRANCISCO\Documents\GitHub\site_loja_do_guerreiro\docs\CHECKLIST-NOVO-SITE.md)
+- [TEMPLATES-E-BLOCOS.md](C:\Users\RUI FRANCISCO\Documents\GitHub\site_loja_do_guerreiro\docs\TEMPLATES-E-BLOCOS.md)
 
 ## Resumo
 
-Este repositorio agora representa uma storefront unica da **Loja do Guerreiro**, com identidade propria, escopo de e-commerce enxuto e painel administrativo focado em operacao real da loja.
+Este repositorio representa uma storefront unica da **Loja do Guerreiro**, com identidade propria, operacao comercial enxuta e painel administrativo focado em operacao real da loja.
