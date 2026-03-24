@@ -117,15 +117,15 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                     Cor
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    {product.colors.map((color) => (
+                {product.colors.map((color) => (
                       <button
                         key={color.name}
                         type="button"
                         onClick={() => setSelectedColor(color)}
-                        className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
+                        className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)] ${
                           selectedColor.name === color.name
-                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
-                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)]"
+                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)] shadow-[0_12px_30px_rgba(127,150,66,0.18)]"
+                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]"
                         }`}
                       >
                         <span
@@ -148,10 +148,10 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                         key={size}
                         type="button"
                         onClick={() => setSelectedSize(size)}
-                        className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                        className={`rounded-full border px-4 py-2 text-sm transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)] ${
                           selectedSize === size
-                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
-                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)]"
+                            ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-accent-foreground)] shadow-[0_12px_30px_rgba(127,150,66,0.18)]"
+                            : "border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]"
                         }`}
                       >
                         {size}
@@ -168,7 +168,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                     <div className="inline-flex items-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)]">
                       <button
                         type="button"
-                        className="px-4 py-2 text-[var(--color-primary)]"
+                        className="px-4 py-2 text-[var(--color-primary)] transition-colors hover:text-[var(--color-accent)]"
                         onClick={() => setQuantity((current) => Math.max(1, current - 1))}
                       >
                         -
@@ -176,7 +176,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                       <span className="min-w-10 text-center">{quantity}</span>
                       <button
                         type="button"
-                        className="px-4 py-2 text-[var(--color-primary)]"
+                        className="px-4 py-2 text-[var(--color-primary)] transition-colors hover:text-[var(--color-accent)]"
                         onClick={() => setQuantity((current) => current + 1)}
                       >
                         +

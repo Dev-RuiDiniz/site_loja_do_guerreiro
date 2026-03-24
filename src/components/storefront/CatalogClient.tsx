@@ -99,10 +99,10 @@ export function CatalogClient({
                 <button
                   type="button"
                   onClick={() => setSelectedCategory("all")}
-                  className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors ${
+                  className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)] ${
                     selectedCategory === "all"
-                      ? "bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
-                      : "border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
+                      ? "bg-[var(--color-accent)] text-[var(--color-accent-foreground)] shadow-[0_12px_30px_rgba(127,150,66,0.2)]"
+                      : "border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]"
                   }`}
                 >
                   Tudo
@@ -112,10 +112,10 @@ export function CatalogClient({
                     key={category.slug}
                     type="button"
                     onClick={() => setSelectedCategory(category.slug)}
-                    className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors ${
+                    className={`rounded-full px-4 py-2 text-xs uppercase tracking-[0.18em] transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)] ${
                       selectedCategory === category.slug
-                        ? "bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
-                        : "border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:border-[var(--color-accent)]"
+                        ? "bg-[var(--color-accent)] text-[var(--color-accent-foreground)] shadow-[0_12px_30px_rgba(127,150,66,0.2)]"
+                        : "border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]"
                     }`}
                   >
                     {category.name}
@@ -131,7 +131,7 @@ export function CatalogClient({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Buscar por nome, colecao ou descricao"
-                className="h-12 w-full rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] pl-11 pr-4 text-sm text-[var(--color-primary)] outline-none transition-colors placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-accent)]"
+                className="h-12 w-full rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] pl-11 pr-4 text-sm text-[var(--color-primary)] outline-none transition-colors placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-accent)] focus:ring-4 focus:ring-[color:rgba(127,150,66,0.16)]"
               />
             </label>
           </div>
@@ -149,7 +149,7 @@ export function CatalogClient({
               {filteredProducts.length !== 1 ? "s" : ""} para a combinacao atual.
             </p>
           </div>
-          <div className="rounded-full border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)]">
+          <div className="rounded-full border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)] shadow-[0_10px_24px_rgba(16,37,107,0.06)]">
             Compra assistida sempre disponivel
           </div>
         </div>

@@ -41,7 +41,7 @@ export function Footer() {
             href={buildWhatsAppUrl(siteConfig.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex rounded-full border border-[color:rgba(248,245,237,0.24)] bg-[color:rgba(248,245,237,0.06)] px-5 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-primary-foreground)] transition-colors hover:border-[var(--color-chart-4)] hover:bg-[color:rgba(248,245,237,0.12)]"
+            className="inline-flex rounded-full border border-[color:rgba(248,245,237,0.24)] bg-[color:rgba(248,245,237,0.06)] px-5 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-primary-foreground)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-chart-4)] hover:bg-[color:rgba(248,245,237,0.12)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(198,161,91,0.2)]"
           >
             Finalizar pedido no WhatsApp
           </a>

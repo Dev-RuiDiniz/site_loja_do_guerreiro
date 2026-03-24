@@ -26,7 +26,7 @@ function CartButton() {
     <button
       type="button"
       onClick={openCart}
-      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] shadow-[0_10px_28px_rgba(16,37,107,0.12)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] shadow-[0_10px_28px_rgba(16,37,107,0.12)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)]"
       aria-label="Abrir carrinho"
     >
       <HiOutlineShoppingBag className="h-5 w-5" />
@@ -77,7 +77,7 @@ export function Header() {
               <SheetTrigger asChild>
                 <button
                   type="button"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)]"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.18)]"
                   aria-label="Abrir menu"
                 >
                   <HiOutlineMenuAlt3 className="h-6 w-6" />

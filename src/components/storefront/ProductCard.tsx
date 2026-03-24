@@ -13,7 +13,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
   return (
     <Link
       href={`/produto/${product.slug}`}
-      className="commerce-card group block overflow-hidden rounded-[1.8rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(16,37,107,0.14)]"
+      className="commerce-card group block overflow-hidden rounded-[1.8rem] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(16,37,107,0.14)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[color:rgba(127,150,66,0.22)]"
     >
       <div className="relative">
         <ProductArtwork
@@ -83,7 +83,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
             </div>
           </div>
 
-          <span className="inline-flex items-center text-sm font-medium text-[var(--color-primary)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-accent)]">
+          <span className="inline-flex items-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-3 py-2 text-sm font-medium text-[var(--color-primary)] transition-all group-hover:translate-x-1 group-hover:border-[var(--color-accent)] group-hover:text-[var(--color-accent)]">
             Ver peca
             <HiArrowRight className="ml-2 h-4 w-4" />
           </span>
