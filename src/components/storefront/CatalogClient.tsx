@@ -48,13 +48,13 @@ export function CatalogClient({
               aria-hidden
             />
             <div className="relative max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.28em] text-white/60">Colecao completa</p>
+              <p className="text-xs uppercase tracking-[0.28em] text-white/60">Coleção completa</p>
               <h2 className="mt-4 font-serif text-4xl leading-tight text-white lg:text-5xl">
-                Escolha por silhueta, textura e intensidade de presenca.
+                Escolha por silhueta, textura e intensidade de presença.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-white/74">
-                O catalogo organiza a colecao para leitura rapida, mas sem perder o campo
-                editorial da marca. O atendimento humano continua disponivel para fechar a compra.
+                O catálogo organiza a coleção para leitura rápida, mas sem perder o campo
+                editorial da marca. O atendimento humano continua disponível para fechar a compra.
               </p>
             </div>
           </div>
@@ -76,11 +76,11 @@ export function CatalogClient({
                   Merchandising vivo
                 </p>
                 <h2 className="mt-3 font-serif text-4xl leading-tight text-[var(--color-primary)]">
-                  Navegue como quem monta uma composicao, nao apenas uma lista.
+                  Navegue como quem monta uma composição, não apenas uma lista.
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--color-muted-foreground)]">
-                  Filtros, busca e cards trabalham juntos para acelerar comparacao, reforcar a
-                  assinatura da marca e deixar a compra assistida sempre por perto.
+                  Filtros, busca e cards trabalham juntos para acelerar a comparação, reforçar a
+                  assinatura da marca e manter a compra assistida sempre por perto.
                 </p>
               </div>
             </div>
@@ -93,7 +93,7 @@ export function CatalogClient({
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-                Filtre sua presenca
+                Filtre sua presença
               </p>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -130,7 +130,7 @@ export function CatalogClient({
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Buscar por nome, colecao ou descricao"
+                placeholder="Buscar por nome, coleção ou descrição"
                 className="h-12 w-full rounded-full border border-[var(--commerce-border)] bg-[var(--surface-strong)] pl-11 pr-4 text-sm text-[var(--color-primary)] outline-none transition-colors placeholder:text-[var(--color-muted-foreground)] focus:border-[var(--color-accent)] focus:ring-4 focus:ring-[color:rgba(127,150,66,0.16)]"
               />
             </label>
@@ -145,8 +145,8 @@ export function CatalogClient({
               Resultado da curadoria
             </p>
             <p className="mt-2 text-base text-[var(--commerce-muted)]">
-              {filteredProducts.length} peca{filteredProducts.length !== 1 ? "s" : ""} encontrada
-              {filteredProducts.length !== 1 ? "s" : ""} para a combinacao atual.
+              {filteredProducts.length} peça{filteredProducts.length !== 1 ? "s" : ""} encontrada
+              {filteredProducts.length !== 1 ? "s" : ""} para a combinação atual.
             </p>
           </div>
           <div className="rounded-full border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-4 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-primary)] shadow-[0_10px_24px_rgba(16,37,107,0.06)]">
@@ -157,13 +157,13 @@ export function CatalogClient({
         {filteredProducts.length === 0 ? (
           <div className="commerce-panel rounded-[2rem] p-8 text-center">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-              Nenhuma peca localizada
+              Nenhuma peça localizada
             </p>
             <h3 className="mt-3 font-serif text-4xl text-[var(--color-primary)]">
               Ajuste os filtros ou fale com o atendimento.
             </h3>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-[var(--commerce-muted)]">
-              Se voce procura uma combinacao especifica, o atendimento humano pode orientar por
+              Se você procura uma combinação específica, o atendimento humano pode orientar por
               categoria, cor, tamanho ou contexto de uso.
             </p>
           </div>

@@ -16,13 +16,13 @@ export default function HomePage() {
   const featuredCategories = storeCategories.slice(0, 4);
   const trustPillars = [
     "Atendimento humano para montar o pedido",
-    "Colecao curada para leitura rapida e combinacao facil",
-    "Fechamento pelo WhatsApp com orientacao da equipe",
+    "Coleção curada para leitura rápida e combinação fácil",
+    "Fechamento pelo WhatsApp com orientação da equipe",
   ];
   const productHighlights = [
-    "Silhuetas pensadas para movimento e permanencia.",
+    "Silhuetas pensadas para movimento e permanência.",
     "Tecidos com leitura forte e conforto de uso.",
-    "Compra assistida para tirar duvidas de tamanho, cor e combinacao.",
+    "Compra assistida para tirar dúvidas sobre tamanho, cor e combinação.",
   ];
 
   return (
@@ -41,18 +41,18 @@ export default function HomePage() {
             <div className="relative">
               <p className="text-xs uppercase tracking-[0.32em] text-white/58">Loja do Guerreiro</p>
               <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-none text-white lg:text-7xl">
-                Presenca contemporanea com memoria, materia e compra assistida.
+                Presença contemporânea com memória, matéria e compra assistida.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76">
-                Uma vitrine editorial para moda afro-brasileira atual, firme e sensivel, com
-                caminho de compra claro e atendimento humano sempre acessivel.
+                Uma vitrine editorial para moda afro-brasileira atual, firme e sensível, com
+                caminho de compra claro e atendimento humano sempre acessível.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button
                   className="h-12 rounded-full bg-[var(--color-accent)] px-6 text-[var(--color-accent-foreground)] hover:bg-[color:#6f8634]"
                   asChild
                 >
-                  <Link href="/loja">Explorar colecao</Link>
+                  <Link href="/loja">Explorar coleção</Link>
                 </Button>
                 <Button
                   variant="outline"
@@ -103,7 +103,7 @@ export default function HomePage() {
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                 <p className="text-xs uppercase tracking-[0.24em] text-white/65">Retrato editorial</p>
                 <p className="mt-3 max-w-sm font-serif text-3xl leading-tight">
-                  Corpo, gesto e luz como linguagem de heranca viva.
+                  Corpo, gesto e luz como linguagem de herança viva.
                 </p>
               </div>
             </div>
@@ -114,10 +114,10 @@ export default function HomePage() {
                   Compra assistida
                 </p>
                 <p className="mt-4 font-serif text-3xl leading-tight text-[var(--color-primary)]">
-                  Adicione ao carrinho e finalize com orientacao humana.
+                  Adicione ao carrinho e finalize com orientação humana.
                 </p>
                 <p className="mt-4 text-sm leading-7 text-[var(--commerce-muted)]">
-                  A vitrine ajuda a decidir. O WhatsApp ajuda a fechar com seguranca.
+                  A vitrine ajuda a decidir. O WhatsApp ajuda a fechar com segurança.
                 </p>
               </div>
 
@@ -131,10 +131,10 @@ export default function HomePage() {
                   aria-hidden
                 />
                 <p className="relative text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-                  Materia e memoria
+                  Matéria e memória
                 </p>
                 <p className="relative mt-4 font-serif text-3xl leading-tight text-[var(--color-primary)]">
-                  Tecidos, costuras e botanicas discretas organizam o imaginario da marca.
+                  Tecidos, costuras e botânicas discretas organizam o imaginário da marca.
                 </p>
               </div>
             </div>
@@ -147,15 +147,15 @@ export default function HomePage() {
           {[
             {
               title: "Atendimento humano",
-              body: "Orientacao para medidas, combinacoes e disponibilidade antes do fechamento.",
+              body: "Orientação sobre medidas, combinações e disponibilidade antes do fechamento.",
             },
             {
               title: "Venda assistida",
               body: "A loja foi desenhada para facilitar a escolha e levar para o WhatsApp no momento certo.",
             },
             {
-              title: "Colecao curada",
-              body: "Categorias, destaques e textos curtos ajudam a comparar pecas com rapidez.",
+              title: "Coleção curada",
+              body: "Categorias, destaques e textos curtos ajudam a comparar peças com rapidez.",
             },
           ].map((item) => (
             <div key={item.title} className="commerce-panel rounded-[1.7rem] p-6">
@@ -193,12 +193,12 @@ export default function HomePage() {
               Modernidade com raiz
             </p>
             <h2 className="mt-3 font-serif text-4xl leading-tight text-[var(--color-primary)]">
-              A direcao visual nasce do encontro entre retrato, fibra e silencio simbolico.
+              A direção visual nasce do encontro entre retrato, fibra e silêncio simbólico.
             </h2>
             <p className="mt-4 text-base leading-8 text-[var(--color-muted-foreground)]">
-              Em vez de literalidade, o site trabalha ancestralidade por meio de tecido,
-              repeticao, costura, presenca do corpo e elementos naturais filtrados por um
-              olhar contemporaneo.
+              Em vez de literalidade, o site trabalha a ancestralidade por meio do tecido,
+              da repetição, da costura, da presença do corpo e de elementos naturais filtrados
+              por um olhar contemporâneo.
             </p>
           </div>
         </div>
@@ -208,10 +208,10 @@ export default function HomePage() {
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-              Colecoes em destaque
+              Coleções em destaque
             </p>
             <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
-              Leitura rapida, assinatura forte
+              Leitura rápida, assinatura forte
             </h2>
           </div>
           <Link
@@ -264,7 +264,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-[var(--section-max)] px-6 py-14 lg:px-10">
           <div className="mb-8">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-              Lancamentos
+              Lançamentos
             </p>
             <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
               Vitrine em movimento
@@ -303,12 +303,12 @@ export default function HomePage() {
           <div className="relative">
             <p className="text-xs uppercase tracking-[0.24em] text-white/55">Manifesto</p>
             <h2 className="mt-4 font-serif text-4xl leading-tight">
-              Vestir presenca nao precisa parecer distante.
+              Vestir presença não precisa parecer distante.
             </h2>
             <p className="mt-5 text-base leading-8 text-white/72">
-              A Loja do Guerreiro se apoia em forma, tecido e permanencia. O novo acervo visual
-              reforca esse discurso com retratos firmes, fundos materiais e um campo grafico que
-              remete a memoria, costura e natureza.
+              A Loja do Guerreiro se apoia em forma, tecido e permanência. O novo acervo visual
+              reforça esse discurso com retratos firmes, fundos materiais e um campo gráfico que
+              remete à memória, à costura e à natureza.
             </p>
           </div>
         </div>
@@ -350,8 +350,8 @@ export default function HomePage() {
             Adicione suas escolhas ao carrinho e finalize o pedido no WhatsApp.
           </h2>
           <p className="mx-auto max-w-2xl text-base leading-8 text-white/70">
-            A vitrine foi pensada para venda assistida: voce percorre a colecao, le a historia
-            visual das pecas e fecha com acompanhamento humano.
+            A vitrine foi pensada para venda assistida: você percorre a coleção, lê a história
+            visual das peças e fecha o pedido com acompanhamento humano.
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <Button

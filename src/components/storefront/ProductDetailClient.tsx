@@ -24,9 +24,9 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
     .slice(0, 3);
 
   const assuranceCards = [
-    product.trustNote || "Atendimento humano para orientar medidas e combinacoes.",
+    product.trustNote || "Atendimento humano para orientar medidas e combinações.",
     product.shippingNote || "Pedido finalizado no WhatsApp com apoio da equipe.",
-    product.bundleText || "A colecao foi pensada para funcionar em camadas e coordenacoes.",
+    product.bundleText || "A coleção foi pensada para funcionar em camadas e coordenações.",
   ];
 
   return (
@@ -34,7 +34,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
       <section className="mx-auto max-w-[var(--section-max)] px-6 pb-16 pt-10 lg:px-10 lg:pb-24">
         <div className="mb-8 text-sm text-[var(--color-muted-foreground)]">
           <Link href="/" className="hover:text-[var(--color-primary)]">
-            Inicio
+            Início
           </Link>{" "}
           /{" "}
           <Link href="/loja" className="hover:text-[var(--color-primary)]">
@@ -74,7 +74,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-                  {product.eyebrow || category?.name || "Colecao"}
+                  {product.eyebrow || category?.name || "Coleção"}
                 </span>
                 {product.badge ? (
                   <span className="rounded-full bg-[var(--color-primary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary-foreground)]">
@@ -185,7 +185,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   </div>
                   <div className="text-right">
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                      Subtotal da selecao
+                      Subtotal da seleção
                     </p>
                     <p className="mt-2 font-serif text-3xl text-[var(--color-primary)]">
                       {formatCurrency(product.price * quantity)}
@@ -233,7 +233,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   Compra assistida
                 </p>
                 <p className="mt-2 text-sm leading-6 text-[var(--color-primary)]">
-                  Confirmamos medidas, disponibilidade, combinacoes e detalhes de finalizacao pelo WhatsApp.
+                  Confirmamos medidas, disponibilidade, combinações e detalhes de finalização pelo WhatsApp.
                 </p>
               </div>
             </div>
@@ -248,7 +248,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
 
             <div className="commerce-panel rounded-[1.8rem] p-6">
               <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted-foreground)]">
-                Sobre a peca
+                Sobre a peça
               </p>
               <p className="mt-4 text-base leading-8 text-[var(--color-muted-foreground)]">
                 {product.description}
@@ -303,7 +303,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   </p>
                   <p className="mt-3 font-serif text-3xl leading-tight text-[var(--color-primary)]">
                     {product.featuredReason ||
-                      "A peca dialoga com luz, tecido e permanencia em uma estetica de ancestralidade elegante."}
+                      "A peça dialoga com luz, tecido e permanência em uma estética de ancestralidade elegante."}
                   </p>
                 </div>
               </div>
@@ -329,7 +329,7 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
                   Continue explorando
                 </p>
                 <h2 className="mt-2 font-serif text-4xl text-[var(--color-primary)]">
-                  Pecas da mesma linha
+                  Peças da mesma linha
                 </h2>
               </div>
             </div>

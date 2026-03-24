@@ -27,14 +27,14 @@ export function Footer() {
           <div className="space-y-3">
             <Brand invert subtitle="Moda autoral afro-brasileira" />
             <p className="max-w-md text-sm leading-7 text-white/72">
-              Moda afro-brasileira com presenca forte, leitura contemporanea e acolhimento
+              Moda afro-brasileira com presença forte, leitura contemporânea e acolhimento
               comercial feito por gente.
             </p>
           </div>
           <div className="rounded-[1.6rem] border border-white/12 bg-white/6 p-5">
             <p className="text-[10px] uppercase tracking-[0.3em] text-white/52">Manifesto</p>
             <p className="mt-3 font-serif text-2xl leading-tight text-white">
-              Uma vitrine para vestir presenca com cuidado, orientacao e linguagem propria.
+              Uma vitrine para vestir presença com cuidado, orientação e linguagem própria.
             </p>
           </div>
           <a
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="relative">
-          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">Colecoes</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.26em] text-white/50">Coleções</p>
           <ul className="space-y-3 text-sm text-white/70">
             {storeCategories.map((category) => (
               <li key={category.slug}>
@@ -104,7 +104,7 @@ export function Footer() {
           <div className="space-y-3 text-sm leading-7 text-white/72">
             <p>Atendimento online para todo o Brasil.</p>
             <p>Montagem de pedido com apoio humano no WhatsApp.</p>
-            <p>Orientacao de combinacoes, tamanhos e disponibilidade.</p>
+            <p>Orientação sobre combinações, tamanhos e disponibilidade.</p>
           </div>
         </div>
       </div>

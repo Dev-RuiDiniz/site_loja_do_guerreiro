@@ -29,7 +29,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
           ) : null}
           {product.newArrival ? (
             <span className="rounded-full border border-[var(--commerce-border)] bg-[var(--color-secondary)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
-              Lancamento
+              Lançamento
             </span>
           ) : null}
         </div>
@@ -39,10 +39,10 @@ export function ProductCard({ product, category }: ProductCardProps) {
         <div className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted-foreground)]">
-              {product.eyebrow || category?.eyebrow || category?.name || "Colecao"}
+              {product.eyebrow || category?.eyebrow || category?.name || "Coleção"}
             </p>
             <span className="text-xs uppercase tracking-[0.22em] text-[var(--color-accent)]">
-              {category?.name || "Colecao"}
+              {category?.name || "Coleção"}
             </span>
           </div>
           <h3 className="font-serif text-[1.9rem] leading-tight text-[var(--color-primary)] transition-colors group-hover:text-[var(--color-accent)]">
@@ -62,7 +62,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
           </p>
           <p className="mt-2 text-sm leading-6 text-[var(--color-primary)]">
             {product.trustNote ||
-              "Atendimento humano para confirmar medidas, combinacoes e disponibilidade."}
+              "Atendimento humano para confirmar medidas, combinações e disponibilidade."}
           </p>
         </div>
 
@@ -84,7 +84,7 @@ export function ProductCard({ product, category }: ProductCardProps) {
           </div>
 
           <span className="inline-flex items-center rounded-full border border-[var(--commerce-border)] bg-[var(--surface-soft)] px-3 py-2 text-sm font-medium text-[var(--color-primary)] transition-all group-hover:translate-x-1 group-hover:border-[var(--color-accent)] group-hover:text-[var(--color-accent)]">
-            Ver peca
+            Ver peça
             <HiArrowRight className="ml-2 h-4 w-4" />
           </span>
         </div>

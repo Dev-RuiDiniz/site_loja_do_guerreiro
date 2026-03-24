@@ -12,9 +12,9 @@ import { ancestryArtLayers } from "@/data/visualAssets";
 import { buildWhatsAppUrl, siteConfig } from "@/lib/site";
 
 const navItems = [
-  { href: "/", label: "Inicio" },
+  { href: "/", label: "Início" },
   { href: "/loja", label: "Loja" },
-  { href: "/categorias", label: "Colecoes" },
+  { href: "/categorias", label: "Coleções" },
   { href: "/sobre", label: "Manifesto" },
   { href: "/contato", label: "Contato" },
 ];
