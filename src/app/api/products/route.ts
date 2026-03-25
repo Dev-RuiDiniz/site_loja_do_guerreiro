@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
   const paginated = filteredProducts.slice((page - 1) * limit, page * limit);
   const products = paginated.map((product) => ({
     ...product,
-    image: product.artworks[0],
+    image: product.image || product.artworks[0],
     category:
       storeCategories.find((categoryItem) => categoryItem.slug === product.categorySlug) || null,
   }));

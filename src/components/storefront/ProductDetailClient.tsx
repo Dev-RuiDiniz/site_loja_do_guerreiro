@@ -12,7 +12,15 @@ import { ancestryArtLayers, heroImages, themePanels } from "@/data/visualAssets"
 import { buildWhatsAppUrl, formatCurrency } from "@/lib/site";
 
 export function ProductDetailClient({ product }: { product: StoreProduct }) {
+  const productGallery =
+    product.gallery && product.gallery.length > 0
+      ? product.gallery
+      : product.image
+        ? [{ src: product.image, alt: product.name }]
+        : [];
+  const hasPhotoGallery = productGallery.length > 0;
   const [selectedArtwork, setSelectedArtwork] = useState(0);
+  const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState<StoreColor>(product.colors[0]);
   const [quantity, setQuantity] = useState(1);
@@ -45,29 +53,72 @@ export function ProductDetailClient({ product }: { product: StoreProduct }) {
 
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div className="space-y-5">
-            <ProductArtwork
-              artwork={product.artworks[selectedArtwork]}
-              className="aspect-[4/5] rounded-[2rem] border border-[var(--commerce-border)]"
-            />
-            <div className="grid grid-cols-2 gap-4">
-              {product.artworks.map((artwork, index) => (
-                <button
-                  key={artwork.label}
-                  type="button"
-                  onClick={() => setSelectedArtwork(index)}
-                  className={`overflow-hidden rounded-[1.25rem] border transition-colors ${
-                    selectedArtwork === index
-                      ? "border-[var(--color-accent)]"
-                      : "border-[var(--commerce-border)] hover:border-[var(--color-chart-4)]"
-                  }`}
-                >
-                  <ProductArtwork
-                    artwork={artwork}
-                    className="aspect-[4/3] border-0 shadow-none"
+            {hasPhotoGallery ? (
+              <>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-[var(--commerce-border)] bg-[var(--surface-soft)]">
+                  <Image
+                    src={productGallery[selectedPhoto].src}
+                    alt={productGallery[selectedPhoto].alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 48vw"
+                    priority
                   />
-                </button>
-              ))}
-            </div>
+                </div>
+                {productGallery.length > 1 ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    {productGallery.map((photo, index) => (
+                      <button
+                        key={photo.src}
+                        type="button"
+                        onClick={() => setSelectedPhoto(index)}
+                        className={`overflow-hidden rounded-[1.25rem] border transition-colors ${
+                          selectedPhoto === index
+                            ? "border-[var(--color-accent)]"
+                            : "border-[var(--commerce-border)] hover:border-[var(--color-chart-4)]"
+                        }`}
+                      >
+                        <div className="relative aspect-[4/3] bg-[var(--surface-soft)]">
+                          <Image
+                            src={photo.src}
+                            alt={photo.alt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 50vw, 20vw"
+                          />
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <ProductArtwork
+                  artwork={product.artworks[selectedArtwork]}
+                  className="aspect-[4/5] rounded-[2rem] border border-[var(--commerce-border)]"
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  {product.artworks.map((artwork, index) => (
+                    <button
+                      key={artwork.label}
+                      type="button"
+                      onClick={() => setSelectedArtwork(index)}
+                      className={`overflow-hidden rounded-[1.25rem] border transition-colors ${
+                        selectedArtwork === index
+                          ? "border-[var(--color-accent)]"
+                          : "border-[var(--commerce-border)] hover:border-[var(--color-chart-4)]"
+                      }`}
+                    >
+                      <ProductArtwork
+                        artwork={artwork}
+                        className="aspect-[4/3] border-0 shadow-none"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <div className="space-y-8">
